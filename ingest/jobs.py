@@ -1,8 +1,9 @@
 """Weekly open roles per company from public job boards: total, by function, and Boston-area count.
 
-Greenhouse, Lever and Ashby have public JSON APIs. Workday career sites answer the same POST their own pages use
-(unofficial). Posting titles and locations go to the raw snapshot only; the site publishes counts.
-Divisions (ownership: division) are skipped: a parent's board cannot be split to the robotics unit.
+Greenhouse, Lever, Ashby, Workable and Rippling have public JSON job-board endpoints. Workday career sites answer the
+same POST their own pages use (unofficial). Posting titles and locations go to the raw snapshot only; the site publishes
+counts. Companies with hiring_scope: parent are skipped: a parent's board (NVIDIA, Amazon, BICO) cannot be split to the
+physical AI unit.
 Run: uv run python -m ingest.jobs [company-id ...]
 """
 import re
@@ -74,7 +75,30 @@ def workday(token):
         time.sleep(0.5)
 
 
-FETCH = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday}
+def workable(token):
+    url = f"https://apply.workable.com/api/v3/accounts/{token}/jobs"
+    jobs, body = [], {"query": "", "location": [], "department": [], "worktype": [], "remote": []}
+    while True:
+        r = requests.post(url, json=body, headers=UA, timeout=60)
+        r.raise_for_status()
+        d = r.json()
+        jobs += [{"title": j["title"], "location": " / ".join(
+                 ", ".join(filter(None, [loc.get("city"), loc.get("region"), loc.get("country")]))
+                 for loc in j.get("locations") or [j.get("location") or {}])} for j in d["results"]]
+        if not d.get("nextPage"):
+            return jobs
+        body = {**body, "token": d["nextPage"]}
+        time.sleep(0.5)
+
+
+def rippling(token):
+    r = requests.get(f"https://api.rippling.com/platform/api/ats/v1/board/{token}/jobs", headers=UA, timeout=60)
+    r.raise_for_status()
+    return [{"title": j["name"], "location": (j.get("workLocation") or {}).get("label", "")} for j in r.json()]
+
+
+FETCH = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday, "workable": workable,
+         "rippling": rippling}
 
 
 def summarize(jobs):
@@ -92,7 +116,7 @@ def main(ids):
     for cid in ids or companies:
         c = companies[cid]
         board = c.get("careers")
-        if not board or board["ats"] not in FETCH or c["ownership"] == "division":
+        if not board or board["ats"] not in FETCH or c["hiring_scope"] == "parent":
             continue
         try:
             jobs = FETCH[board["ats"]](board["token"])

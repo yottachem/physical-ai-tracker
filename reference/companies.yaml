@@ -15,14 +15,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: periodic.com
     other_domains: []
     news:
       terms: ['"Periodic Labs"']
-    careers: null
+    careers: {ats: ashby, token: periodic-labs}
+    hiring_scope: company
     newsroom_feed: null
     focus: AI scientists running autonomous labs for physics and chemistry; superconductors and materials R&D first
-    verify: [domain]
+    verify: []
   lila-sciences:
     name: Lila Sciences
     segments: [lab-automation]
@@ -36,10 +37,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Lila Sciences"']
-    careers: null
+    careers: {ats: greenhouse, token: lilasciences}
+    hiring_scope: company
     newsroom_feed: null
     focus: Closed-loop AI Science Factories across therapeutics, materials, chemistry and energy; works through partnerships
-    verify: [domain]
+    verify: []
   medra:
     name: Medra
     segments: [lab-automation]
@@ -54,10 +56,11 @@ companies:
     news:
       terms: ['"Medra"']
       context: [robot, lab, AI]
-    careers: null
+    careers: {ats: ashby, token: medraai}
+    hiring_scope: company
     newsroom_feed: null
     focus: General-purpose robots that operate existing lab instruments, with an AI Experimentalist reasoning layer
-    verify: [domain]
+    verify: []
   automata:
     name: Automata
     segments: [lab-automation]
@@ -73,9 +76,10 @@ companies:
       terms: ['"Automata"']
       context: [lab, LINQ, automation]
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Modular robotics, orchestration software and data layer for AI-ready wet labs (LINQ)
-    verify: [domain]
+    verify: [careers]
   highres-biosolutions:
     name: HighRes Biosolutions
     segments: [lab-automation]
@@ -90,9 +94,10 @@ companies:
     news:
       terms: ['"HighRes Biosolutions"', '"HighRes Bio"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Robotic workcells and Cellario orchestration, with an AI layer of lab agents and robotic perception
-    verify: [domain]
+    verify: [careers]
   emerald-cloud-lab:
     name: Emerald Cloud Lab
     segments: [lab-automation]
@@ -107,9 +112,10 @@ companies:
     news:
       terms: ['"Emerald Cloud Lab"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: 'Remotely operated cloud lab: scientists script experiments that robots run on ~190 instrument types'
-    verify: [domain]
+    verify: [careers]
   biosero:
     name: Biosero
     segments: [lab-automation]
@@ -123,10 +129,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Biosero"']
-    careers: null
+    careers: {ats: workday, token: bico.wd103.myworkdayjobs.com/External}
+    hiring_scope: parent
     newsroom_feed: null
     focus: Lab orchestration software and integrated automation for pharma
-    verify: [hq, domain]
+    verify: [hq]
   multiply-labs:
     name: Multiply Labs
     segments: [lab-automation]
@@ -140,10 +147,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Multiply Labs"']
-    careers: null
+    careers: {ats: lever, token: multiplylabs}
+    hiring_scope: company
     newsroom_feed: null
     focus: Robotics for pharmaceutical manufacturing
-    verify: [domain]
+    verify: []
   trilobio:
     name: Trilobio
     segments: [lab-automation]
@@ -157,10 +165,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Trilobio"']
-    careers: null
+    careers: {ats: ashby, token: trilobio}
+    hiring_scope: company
     newsroom_feed: null
     focus: Whole-lab lab-in-a-box automation with no-code software for biologists
-    verify: [hq, domain]
+    verify: [hq, domain, careers]
   potato:
     name: Potato
     segments: [lab-automation]
@@ -176,9 +185,10 @@ companies:
       terms: ['"Potato"']
       context: [lab, robot, AI scientist]
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Robotic benchwork with AI agents generating and prioritizing experiments
-    verify: [hq, domain]
+    verify: [hq, domain, careers]
   physical-intelligence:
     name: Physical Intelligence
     segments: [foundation-models]
@@ -188,15 +198,16 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: physicalintelligence.company
-    other_domains: []
+    domain: pi.website
+    other_domains: [physicalintelligence.company]
     news:
       terms: ['"Physical Intelligence"']
       context: [robot, AI, pi0, π0]
-    careers: null
+    careers: {ats: ashby, token: physicalintelligence}
+    hiring_scope: company
     newsroom_feed: null
     focus: Vision-language-action models (π0 / π0.5) trained across many robot types
-    verify: [domain]
+    verify: []
   skild-ai:
     name: Skild AI
     segments: [foundation-models]
@@ -211,9 +222,10 @@ companies:
     news:
       terms: ['"Skild AI"', '"Skild Brain"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Skild Brain, one model meant to control any robot body; licensed to OEMs by API or firmware
-    verify: [domain]
+    verify: [careers]
   rhoda-ai:
     name: Rhoda AI
     segments: [foundation-models]
@@ -223,14 +235,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: rhoda.ai
     other_domains: []
     news:
       terms: ['"Rhoda AI"']
-    careers: null
+    careers: {ats: ashby, token: rhoda-ai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Video-trained foundation models for factory and logistics manipulation
-    verify: [hq, domain]
+    verify: [hq, careers]
   sudo-ai:
     name: Sudo AI
     segments: [foundation-models]
@@ -240,15 +253,16 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: sudo.ai
     other_domains: []
     news:
       terms: ['"Sudo AI"']
       context: [robot]
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Robot foundation models for manipulation
-    verify: [hq, domain]
+    verify: [hq, careers]
   nvidia:
     name: NVIDIA
     segments: [foundation-models]
@@ -264,9 +278,10 @@ companies:
       terms: ['"NVIDIA"']
       context: [robotics, physical AI, GR00T, Isaac, Cosmos, Jetson]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: 'Full stack: Cosmos world models, Isaac sim, GR00T humanoid models, Jetson edge compute'
-    verify: [hq, domain]
+    verify: [hq]
   google-deepmind:
     name: Google DeepMind
     segments: [foundation-models]
@@ -282,9 +297,10 @@ companies:
       terms: ['"Gemini Robotics"', '"DeepMind"']
       context: [robot, robotics]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Gemini Robotics VLA models; integrated into Apptronik Apollo
-    verify: [hq, domain]
+    verify: [hq]
   figure-ai:
     name: Figure AI
     segments: [humanoids]
@@ -298,10 +314,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Figure AI"', '"Figure 03"']
-    careers: null
+    careers: {ats: greenhouse, token: figureai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Figure 03 general-purpose humanoid with in-house Helix model; BotQ factory
-    verify: [domain]
+    verify: []
   agility-robotics:
     name: Agility Robotics
     segments: [humanoids]
@@ -315,10 +332,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Agility Robotics"']
-    careers: null
+    careers: {ats: greenhouse, token: agilityrobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Digit humanoid for warehouse tote handling
-    verify: [domain]
+    verify: []
   apptronik:
     name: Apptronik
     segments: [humanoids]
@@ -332,10 +350,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Apptronik"']
-    careers: null
+    careers: {ats: greenhouse, token: apptronik}
+    hiring_scope: company
     newsroom_feed: null
     focus: Apollo humanoid for industrial intralogistics
-    verify: [domain]
+    verify: []
   tesla:
     name: Tesla (Optimus, Robotaxi)
     segments: [humanoids, mobility]
@@ -351,6 +370,7 @@ companies:
       terms: ['"Optimus"', '"Tesla Robotaxi"', '"Cybercab"']
       context: [Tesla]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Optimus humanoid for Tesla's own factories first; camera-only end-to-end autonomy and Cybercab
     verify: [hq, domain]
@@ -367,10 +387,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Boston Dynamics"']
-    careers: null
+    careers: {ats: workday, token: bostondynamics.wd1.myworkdayjobs.com/Boston_Dynamics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Electric Atlas humanoid for automotive manufacturing; Stretch mobile case-handling robot
-    verify: [hq, domain]
+    verify: [hq]
   unitree:
     name: Unitree
     segments: [humanoids]
@@ -385,9 +406,10 @@ companies:
     news:
       terms: ['"Unitree"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Low-cost humanoids (G1, R1) for research, education and early commercial use
-    verify: [domain]
+    verify: [domain, careers]
   neura-robotics:
     name: NEURA Robotics
     segments: [humanoids]
@@ -402,9 +424,10 @@ companies:
     news:
       terms: ['"NEURA Robotics"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Multi-form-factor physical AI platform (cobots, 4NE1 humanoid)
-    verify: [domain]
+    verify: [careers]
   symbotic:
     name: Symbotic
     segments: [warehouse-factory]
@@ -419,9 +442,10 @@ companies:
     news:
       terms: ['"Symbotic"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: AI-orchestrated high-density storage and retrieval for large distribution centers
-    verify: [domain]
+    verify: [careers]
   locus-robotics:
     name: Locus Robotics
     segments: [warehouse-factory]
@@ -435,10 +459,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Locus Robotics"']
-    careers: null
+    careers: {ats: greenhouse, token: locusrobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Collaborative picking AMRs sold as robots-as-a-service; Locus Array for autonomous fulfillment
-    verify: [domain]
+    verify: []
   pickle-robot:
     name: Pickle Robot
     segments: [warehouse-factory]
@@ -452,10 +477,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Pickle Robot"']
-    careers: null
+    careers: {ats: lever, token: picklerobot}
+    hiring_scope: company
     newsroom_feed: null
     focus: Mobile AI-driven arms that unload floor-loaded trucks and containers onto conveyors
-    verify: [domain]
+    verify: []
   dexterity:
     name: Dexterity
     segments: [warehouse-factory]
@@ -470,10 +496,11 @@ companies:
     news:
       terms: ['"Dexterity"']
       context: [robot, robotics, AI]
-    careers: null
+    careers: {ats: lever, token: dexterity}
+    hiring_scope: company
     newsroom_feed: null
     focus: AI-driven truck loading/unloading and picking; robots-as-a-service
-    verify: [domain]
+    verify: []
   ambi-robotics:
     name: Ambi Robotics
     segments: [warehouse-factory]
@@ -487,10 +514,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Ambi Robotics"']
-    careers: null
+    careers: {ats: lever, token: ambirobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: AI parcel sorting and handling on its AmbiOS platform
-    verify: [domain]
+    verify: []
   mind-robotics:
     name: Mind Robotics
     segments: [warehouse-factory]
@@ -500,14 +528,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: mindrobotics.com
     other_domains: []
     news:
       terms: ['"Mind Robotics"']
-    careers: null
+    careers: {ats: ashby, token: mindrobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Rivian spinout building high-dexterity, task-shaped robots for warehouses and factories
-    verify: [hq, domain]
+    verify: [hq]
   1x-technologies:
     name: 1X Technologies
     segments: [consumer-home]
@@ -521,10 +550,11 @@ companies:
     other_domains: []
     news:
       terms: ['"1X Technologies"', '"1X NEO"']
-    careers: null
+    careers: {ats: ashby, token: 1x}
+    hiring_scope: company
     newsroom_feed: null
     focus: NEO soft-bodied home humanoid for chores
-    verify: [domain]
+    verify: []
   sunday:
     name: Sunday
     segments: [consumer-home]
@@ -534,15 +564,16 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: sunday.ai
     other_domains: []
     news:
       terms: ['"Sunday Robotics"', '"Sunday" "Memo"']
       context: [robot]
-    careers: null
+    careers: {ats: ashby, token: sunday}
+    hiring_scope: company
     newsroom_feed: null
     focus: Memo, a wheeled home robot trained from a Skill Capture Glove
-    verify: [hq, domain]
+    verify: [hq]
   meta:
     name: Meta (with EssilorLuxottica)
     segments: [wearables]
@@ -557,9 +588,10 @@ companies:
     news:
       terms: ['"Ray-Ban Meta"', '"Meta Ray-Ban Display"']
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: 'AI smart glasses: Ray-Ban Meta and Ray-Ban Display'
-    verify: [hq, domain]
+    verify: [hq]
   openai-devices:
     name: OpenAI (io devices)
     segments: [wearables]
@@ -575,9 +607,10 @@ companies:
       terms: ['"OpenAI"']
       context: [device, Jony Ive, io]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Screenless, context-aware AI device family (io, Jony Ive)
-    verify: [hq, domain]
+    verify: [hq]
   android-xr:
     name: Google and Samsung (Android XR)
     segments: [wearables]
@@ -593,9 +626,10 @@ companies:
       terms: ['"Android XR"']
       context: [glasses]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Android XR AI glasses with Gemini, with Warby Parker and Gentle Monster
-    verify: [hq, domain]
+    verify: [hq]
   apple:
     name: Apple
     segments: [wearables]
@@ -611,9 +645,10 @@ companies:
       terms: ['"Apple"']
       context: [smart glasses]
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: AI smart glasses (reported in development)
-    verify: [hq, domain]
+    verify: [hq]
   waymo:
     name: Waymo
     segments: [mobility]
@@ -627,10 +662,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Waymo"']
-    careers: null
+    careers: {ats: greenhouse, token: waymo}
+    hiring_scope: company
     newsroom_feed: null
     focus: Driverless ride-hailing
-    verify: [hq, domain]
+    verify: [hq]
   zoox:
     name: Zoox
     segments: [mobility]
@@ -644,10 +680,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Zoox"']
-    careers: null
+    careers: {ats: lever, token: zoox}
+    hiring_scope: company
     newsroom_feed: null
     focus: Purpose-built bidirectional robotaxi
-    verify: [hq, domain]
+    verify: [hq]
   baidu-apollo-go:
     name: Baidu Apollo Go
     segments: [mobility]
@@ -662,6 +699,7 @@ companies:
     news:
       terms: ['"Apollo Go"']
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Robotaxi in China, expanding abroad
     verify: [hq, domain]
@@ -678,10 +716,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Pony.ai"']
-    careers: null
+    careers: {ats: workable, token: pony-dot-ai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Robotaxi in China, expanding abroad
-    verify: [hq, domain]
+    verify: [hq]
   aurora-innovation:
     name: Aurora Innovation
     segments: [mobility]
@@ -696,9 +735,10 @@ companies:
     news:
       terms: ['"Aurora Innovation"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Driverless Class 8 trucking on Sun Belt freight lanes
-    verify: [hq, domain]
+    verify: [hq, careers]
   kodiak-ai:
     name: Kodiak AI
     segments: [mobility]
@@ -712,10 +752,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Kodiak AI"', '"Kodiak Robotics"']
-    careers: null
+    careers: {ats: greenhouse, token: kodiak}
+    hiring_scope: company
     newsroom_feed: null
     focus: Driverless trucks, starting off-highway in the Permian Basin; Bosch production hardware
-    verify: [hq, domain]
+    verify: [hq]
   zipline:
     name: Zipline
     segments: [mobility]
@@ -730,10 +771,11 @@ companies:
     news:
       terms: ['"Zipline"']
       context: [drone, delivery]
-    careers: null
+    careers: {ats: greenhouse, token: flyzipline}
+    hiring_scope: company
     newsroom_feed: null
     focus: Autonomous drone delivery for retail, food and health
-    verify: [hq, domain]
+    verify: [hq]
   starship-technologies:
     name: Starship Technologies
     segments: [mobility]
@@ -748,9 +790,10 @@ companies:
     news:
       terms: ['"Starship Technologies"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Sidewalk delivery robots on campuses and in cities
-    verify: [domain]
+    verify: [careers]
   serve-robotics:
     name: Serve Robotics
     segments: [mobility]
@@ -764,10 +807,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Serve Robotics"']
-    careers: null
+    careers: {ats: ashby, token: serverobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Sidewalk delivery for Uber Eats and DoorDash
-    verify: [hq, domain]
+    verify: [hq]
   anduril:
     name: Anduril
     segments: [defense]
@@ -781,10 +825,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Anduril"']
-    careers: null
+    careers: {ats: greenhouse, token: andurilindustries}
+    hiring_scope: company
     newsroom_feed: null
     focus: Lattice autonomy OS, drones, counter-UAS, autonomous aircraft
-    verify: [hq, domain]
+    verify: [hq]
   shield-ai:
     name: Shield AI
     segments: [defense]
@@ -798,10 +843,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Shield AI"']
-    careers: null
+    careers: {ats: lever, token: shieldai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Hivemind autonomy software for aircraft
-    verify: [domain]
+    verify: []
   saronic:
     name: Saronic
     segments: [defense]
@@ -815,10 +861,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Saronic"']
-    careers: null
+    careers: {ats: ashby, token: saronic}
+    hiring_scope: company
     newsroom_feed: null
     focus: Autonomous surface vessels
-    verify: [domain]
+    verify: []
   cmr-surgical:
     name: CMR Surgical
     segments: [healthcare]
@@ -833,9 +880,10 @@ companies:
     news:
       terms: ['"CMR Surgical"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Versius soft-tissue surgical robot; trained and validated with NVIDIA Cosmos-H simulation
-    verify: [hq, domain]
+    verify: [hq, careers]
   moon-surgical:
     name: Moon Surgical
     segments: [healthcare]
@@ -850,9 +898,10 @@ companies:
     news:
       terms: ['"Moon Surgical"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Maestro laparoscopic assistant; multi-model physical AI platform
-    verify: [hq, domain]
+    verify: [hq, careers]
   intuitive-surgical:
     name: Intuitive Surgical
     segments: [healthcare]
@@ -867,9 +916,10 @@ companies:
     news:
       terms: ['"Intuitive Surgical"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: da Vinci 5; AI in analytics and case review, motion surgeon-controlled
-    verify: [hq, domain]
+    verify: [hq, careers]
   diligent-robotics:
     name: Diligent Robotics
     segments: [healthcare]
@@ -883,10 +933,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Diligent Robotics"']
-    careers: null
+    careers: {ats: greenhouse, token: diligentrobotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Moxi mobile manipulator for hospital pharmacy and lab-sample runs
-    verify: [domain]
+    verify: []
   carbon-robotics:
     name: Carbon Robotics
     segments: [agriculture]
@@ -900,10 +951,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Carbon Robotics"']
-    careers: null
+    careers: {ats: ashby, token: carbon-robotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: LaserWeeder (AI vision plus CO2 lasers) and Autonomous Tractor Kit; Large Plant Model
-    verify: [domain]
+    verify: [careers]
   ginkgo-bioworks:
     name: Ginkgo Bioworks
     segments: [lab-automation]
@@ -917,10 +969,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Ginkgo Bioworks"']
-    careers: null
+    careers: {ats: greenhouse, token: ginkgobioworks}
+    hiring_scope: company
     newsroom_feed: null
     focus: Reconfigurable Automation Carts plus Catalyst software; autonomous lab network and Cloud Lab
-    verify: [domain]
+    verify: []
   cellino:
     name: Cellino
     segments: [lab-automation]
@@ -935,9 +988,10 @@ companies:
     news:
       terms: ['"Cellino"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: 'NEBULA autonomous iPSC manufacturing: AI imaging, laser cell editing and robotics in a closed loop'
-    verify: [domain]
+    verify: [careers]
   physical-superintelligence:
     name: Physical Superintelligence
     segments: [lab-automation]
@@ -947,14 +1001,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: physicalsuperintelligence.ai
     other_domains: []
     news:
       terms: ['"Physical Superintelligence"']
-    careers: null
+    careers: {ats: ashby, token: psi}
+    hiring_scope: company
     newsroom_feed: null
     focus: AI-native physics lab building systems that understand and design complex physical systems
-    verify: [domain]
+    verify: []
   walden-robotics:
     name: Walden Robotics
     segments: [humanoids]
@@ -964,14 +1019,15 @@ companies:
     parent: null
     ticker: null
     cik: 2144409
-    domain: null
+    domain: waldenrobotics.com
     other_domains: []
     news:
       terms: ['"Walden Robotics"']
-    careers: null
+    careers: {ats: rippling, token: walden-robotics}
+    hiring_scope: company
     newsroom_feed: null
     focus: Partially humanoid factory and warehouse robots driven by large behavior models; Toyota Research Institute spinout
-    verify: [domain]
+    verify: []
   rai-institute:
     name: RAI Institute
     segments: [foundation-models]
@@ -985,10 +1041,11 @@ companies:
     other_domains: []
     news:
       terms: ['"RAI Institute"', '"Robotics and AI Institute"']
-    careers: null
+    careers: {ats: lever, token: rai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Reinforcement learning and control for legged and humanoid robots
-    verify: [domain]
+    verify: []
   liquid-ai:
     name: Liquid AI
     segments: [foundation-models]
@@ -1002,10 +1059,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Liquid AI"']
-    careers: null
+    careers: {ats: ashby, token: liquid-ai}
+    hiring_scope: company
     newsroom_feed: null
     focus: Small on-device foundation models for devices, cars and robots (LFM2, LEAP SDK)
-    verify: [domain]
+    verify: []
   realtime-robotics:
     name: Realtime Robotics
     segments: [warehouse-factory]
@@ -1020,9 +1078,10 @@ companies:
     news:
       terms: ['"Realtime Robotics"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Real-time collision-free motion planning for multi-robot work cells
-    verify: [domain]
+    verify: [careers]
   teradyne-robotics:
     name: Teradyne Robotics
     segments: [warehouse-factory]
@@ -1037,6 +1096,7 @@ companies:
     news:
       terms: ['"Teradyne Robotics"', '"Universal Robots"', '"Mobile Industrial Robots"']
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Universal Robots cobots and MiR mobile robots with AI Accelerator; UR AI Trainer
     verify: [domain]
@@ -1053,10 +1113,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Tutor Intelligence"']
-    careers: null
+    careers: {ats: lever, token: tutorintelligence}
+    hiring_scope: company
     newsroom_feed: null
     focus: Robot arms for palletizing and packing on hourly RaaS; remote human tutors handle edge cases
-    verify: [domain]
+    verify: []
   berkshire-grey:
     name: Berkshire Grey
     segments: [warehouse-factory]
@@ -1071,9 +1132,10 @@ companies:
     news:
       terms: ['"Berkshire Grey"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: AI picking and sortation; Scoop autonomous trailer unloader
-    verify: [domain]
+    verify: [careers]
   amazon-robotics:
     name: Amazon Robotics
     segments: [warehouse-factory]
@@ -1088,6 +1150,7 @@ companies:
     news:
       terms: ['"Amazon Robotics"']
     careers: null
+    hiring_scope: parent
     newsroom_feed: null
     focus: Fleet robotics for Amazon fulfillment; not sold externally
     verify: [domain]
@@ -1105,9 +1168,10 @@ companies:
     news:
       terms: ['"Venti Technologies"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Autonomous vehicles for ports, airports and logistics hubs
-    verify: [domain]
+    verify: [domain, careers]
   motional:
     name: Motional
     segments: [mobility]
@@ -1121,10 +1185,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Motional"']
-    careers: null
+    careers: {ats: greenhouse, token: motional}
+    hiring_scope: company
     newsroom_feed: null
     focus: AI-first driving stack on Hyundai IONIQ 5
-    verify: [domain]
+    verify: []
   blue-water-autonomy:
     name: Blue Water Autonomy
     segments: [defense]
@@ -1134,14 +1199,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
-    other_domains: []
+    domain: blw.ai
+    other_domains: [bluewaterautonomy.com]
     news:
       terms: ['"Blue Water Autonomy"']
-    careers: null
+    careers: {ats: rippling, token: blue-water-autonomy}
+    hiring_scope: company
     newsroom_feed: null
     focus: Long-range unmanned ships for naval use
-    verify: [domain]
+    verify: []
   reframe-systems:
     name: Reframe Systems
     segments: [manufacturing-construction]
@@ -1151,14 +1217,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
-    other_domains: []
+    domain: reframe.systems
+    other_domains: [reframesystems.com]
     news:
       terms: ['"Reframe Systems"']
-    careers: null
+    careers: {ats: ashby, token: reframesystems}
+    hiring_scope: company
     newsroom_feed: null
     focus: Automated micro-factories producing homebuilding components (FAB1)
-    verify: [domain]
+    verify: []
   inkbit:
     name: Inkbit
     segments: [manufacturing-construction]
@@ -1173,9 +1240,10 @@ companies:
     news:
       terms: ['"Inkbit"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Multi-material 3D printing controlled by machine vision and AI
-    verify: [domain]
+    verify: [careers]
   irobot:
     name: iRobot
     segments: [consumer-home]
@@ -1190,9 +1258,10 @@ companies:
     news:
       terms: ['"iRobot"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Roomba vacuums and mops
-    verify: [domain]
+    verify: [careers]
   vicarious-surgical:
     name: Vicarious Surgical
     segments: [healthcare]
@@ -1206,10 +1275,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Vicarious Surgical"']
-    careers: null
+    careers: {ats: greenhouse, token: vicarioussurgical}
+    hiring_scope: company
     newsroom_feed: null
     focus: Single-incision surgical robot, first for ventral hernia
-    verify: [domain]
+    verify: []
   dexai-robotics:
     name: Dexai Robotics
     segments: [consumer-home]
@@ -1224,9 +1294,10 @@ companies:
     news:
       terms: ['"Dexai Robotics"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Kitchen robots (sold to Sony per the Boston Globe; thin public data)
-    verify: [domain]
+    verify: [domain, careers]
   xyz-robotics:
     name: XYZ Robotics
     segments: [warehouse-factory]
@@ -1241,9 +1312,10 @@ companies:
     news:
       terms: ['"XYZ Robotics"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: MassRobotics resident; thin public data
-    verify: [domain]
+    verify: [domain, careers]
   ava-robotics:
     name: Ava Robotics
     segments: [warehouse-factory]
@@ -1258,9 +1330,10 @@ companies:
     news:
       terms: ['"Ava Robotics"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: MassRobotics resident; thin public data
-    verify: [domain]
+    verify: [domain, careers]
   brecourt-solutions:
     name: Brecourt Solutions
     segments: [defense]
@@ -1275,6 +1348,7 @@ companies:
     news:
       terms: ['"Brecourt Solutions"']
     careers: null
+    hiring_scope: company
     newsroom_feed: null
     focus: Indoor first-responder drones; MassRobotics resident; thin public data
-    verify: [domain]
+    verify: [domain, careers]

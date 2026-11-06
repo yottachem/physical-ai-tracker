@@ -21,7 +21,7 @@ ATS = [
     ("lever", r"jobs\.(?:eu\.)?lever\.co/([A-Za-z0-9_.-]+)"),
     ("ashby", r"jobs\.ashbyhq\.com/([A-Za-z0-9_.%-]+)"),
     ("workable", r"apply\.workable\.com/([A-Za-z0-9_-]+)"),
-    ("workday", r"([a-z0-9-]+\.wd\d+\.myworkdayjobs\.com/[A-Za-z0-9_/-]+)"),
+    ("workday", r"([a-z0-9-]+\.wd\d+\.myworkdayjobs\.com/(?:[a-z]{2}-[A-Z]{2}/)?[A-Za-z0-9_-]+)"),
     ("rippling", r"ats\.rippling\.com/([A-Za-z0-9_-]+)"),
 ]
 NOT_TOKENS = {"embed", "v1", "js", "api", "jobs", "job_board", "static"}
@@ -87,6 +87,8 @@ def main(ids):
                     continue
                 for ats, rx in ATS:
                     for tok in re.findall(rx, r.text):
+                        if ats == "workday":  # tenant host + site, without the locale segment
+                            tok = re.sub(r"/[a-z]{2}-[A-Z]{2}/", "/", tok)
                         if tok.lower() not in NOT_TOKENS:
                             found.setdefault((ats, tok.rstrip("/")), r.url)
                 if found:

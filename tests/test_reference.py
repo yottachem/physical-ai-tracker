@@ -38,6 +38,9 @@ def test_company_fields(cid):
     assert set(c["verify"]) <= VERIFY_FIELDS
     if c["careers"]:
         assert c["careers"]["ats"] in ATS and c["careers"]["token"]
+    assert c["hiring_scope"] in {"company", "parent"}
+    if c["ownership"] == "division":
+        assert c["hiring_scope"] == "parent", "a division's board is its parent's"
 
 
 @pytest.mark.parametrize("cid", COMPANIES)
