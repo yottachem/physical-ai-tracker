@@ -281,7 +281,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: 'Full stack: Cosmos world models, Isaac sim, GR00T humanoid models, Jetson edge compute'
-    verify: [hq]
+    verify: []
   google-deepmind:
     name: Google DeepMind
     segments: [foundation-models]
@@ -300,7 +300,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Gemini Robotics VLA models; integrated into Apptronik Apollo
-    verify: [hq]
+    verify: []
   figure-ai:
     name: Figure AI
     segments: [humanoids]
@@ -336,7 +336,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Digit humanoid for warehouse tote handling
-    verify: []
+    verify: [ownership, ticker]
   apptronik:
     name: Apptronik
     segments: [humanoids]
@@ -373,7 +373,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Optimus humanoid for Tesla's own factories first; camera-only end-to-end autonomy and Cybercab
-    verify: [hq, domain]
+    verify: []
   boston-dynamics:
     name: Boston Dynamics
     segments: [humanoids, warehouse-factory]
@@ -591,7 +591,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: 'AI smart glasses: Ray-Ban Meta and Ray-Ban Display'
-    verify: [hq]
+    verify: []
   openai-devices:
     name: OpenAI (io devices)
     segments: [wearables]
@@ -648,7 +648,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: AI smart glasses (reported in development)
-    verify: [hq]
+    verify: []
   waymo:
     name: Waymo
     segments: [mobility]
@@ -702,7 +702,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Robotaxi in China, expanding abroad
-    verify: [hq, domain]
+    verify: [domain]
   pony-ai:
     name: Pony.ai
     segments: [mobility]
@@ -720,7 +720,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Robotaxi in China, expanding abroad
-    verify: [hq]
+    verify: []
   aurora-innovation:
     name: Aurora Innovation
     segments: [mobility]
@@ -738,7 +738,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Driverless Class 8 trucking on Sun Belt freight lanes
-    verify: [hq]
+    verify: []
   kodiak-ai:
     name: Kodiak AI
     segments: [mobility]
@@ -756,7 +756,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Driverless trucks, starting off-highway in the Permian Basin; Bosch production hardware
-    verify: [hq]
+    verify: []
   zipline:
     name: Zipline
     segments: [mobility]
@@ -797,7 +797,7 @@ companies:
   serve-robotics:
     name: Serve Robotics
     segments: [mobility]
-    hq: Redwood City, CA
+    hq: San Carlos, CA
     boston: false
     ownership: public
     parent: null
@@ -811,7 +811,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Sidewalk delivery for Uber Eats and DoorDash
-    verify: [hq]
+    verify: []
   anduril:
     name: Anduril
     segments: [defense]
@@ -919,7 +919,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: da Vinci 5; AI in analytics and case review, motion surgeon-controlled
-    verify: [hq, careers]
+    verify: [careers]
   diligent-robotics:
     name: Diligent Robotics
     segments: [healthcare]
