@@ -5,7 +5,8 @@
 # secondary: aggregators, AI-written trackers, company-profile sites, blogs. Review queue; shown as "secondary" on the site.
 # A domain matches itself and its subdomains. Every source domain in the ledger must appear here or be a company domain
 # (tests/test_reference.py), so new domains surface for a tier decision instead of defaulting silently.
-# Checked 2026-11-06 against the 74 domains cited in the Nov 2026 market map.
+# Checked 2026-11-06 against the 74 domains cited in the Nov 2026 market map, then the most frequent news domains from
+# the first 90-day news backfill (major outlets not on the tier-1 allowlist go to tier2 until the owner promotes them).
 
 tier1:
   wires: [businesswire.com, globenewswire.com, prnewswire.com, accesswire.com]
@@ -16,14 +17,26 @@ tier1:
   outlets: [reuters.com, bloomberg.com, wsj.com, ft.com, nytimes.com, apnews.com, cnbc.com, axios.com,
             theinformation.com, techcrunch.com, bostonglobe.com, therobotreport.com]
 
-tier2: [3dprint.com, abc7news.com, biopharmatrend.com, biospace.com, bostonbizscene.com, breakbulk.news,
-        business.mammothtimes.com, citybiz.co, digitalengineering247.com, electrek.co, exchange4media.com, geekwire.com,
-        insidehpc.com, logisticsviewpoints.com, manufacturing.net, marketbeat.com, mediapost.com,
-        medicaldevice-network.com, mmh.com, nasdaq.com, optics.org, pulse2.com, robotics247.com,
-        roboticsandautomationnews.com, rutlandherald.com, sifted.eu, siliconangle.com, streetinsider.com,
-        supplychain247.com, techradar.com, techspot.com, thenextweb.com, truckinginfo.com]
+tier2: [3dprint.com, abc7news.com, androidauthority.com, arstechnica.com, automationworld.com, barrons.com,
+        biopharmatrend.com, biospace.com, bizjournals.com, bostonbizscene.com, breakbulk.news, breakingdefense.com,
+        business.mammothtimes.com, businessinsider.com, citybiz.co, cnet.com, dcvelocity.com, defensenews.com,
+        digitalengineering247.com, digitaltrends.com, eetimes.com, electrek.co, electronicsweekly.com, engadget.com,
+        engineering.com, exchange4media.com, fiercebiotech.com, finance.yahoo.com, fleetowner.com, forbes.com,
+        fortune.com, freightwaves.com, geekwire.com, genengnews.com, gizmodo.com, insidehpc.com,
+        interestingengineering.com, logisticsmgmt.com, logisticsviewpoints.com, manufacturing.net, marketbeat.com,
+        marketwatch.com, mediapost.com, medicaldevice-network.com, mmh.com, nasdaq.com, optics.org, pulse2.com,
+        qz.com, robotics247.com, roboticsandautomationnews.com, rutlandherald.com, scmp.com, sifted.eu,
+        siliconangle.com, spectrum.ieee.org, statnews.com, streetinsider.com, supplychain247.com, tech.yahoo.com,
+        techradar.com, techrepublic.com, techspot.com, thenextweb.com, theregister.com, theverge.com,
+        truckinginfo.com, trucknews.com, venturebeat.com, wired.com, zdnet.com]
 
-secondary: [ai2.work, aiwiki.ai, mean.ceo, boringbusinessnerd.com, complex.com, deep-tech-week.com, dev.to, dealroom.co,
-            evsint.com, excedr.com, fast.io, humanoid.guide, ifactoryapp.com, komo.ai, letsdatascience.com, maginative.com,
-            metavert.io, meticulousresearch.com, nbot.ai, neuronfeed.com, newmarketpitch.com, owler.com, pdpspectra.com,
-            pulse.bot, remio.ai, sacra.com, simplify.jobs, standardbots.com, startupfortune.com, treeview.studio]
+secondary: [247wallst.com, ad-hoc-news.de, ai2.work, ainvest.com, aiwiki.ai, benzinga.com, boringbusinessnerd.com,
+            complex.com, cryptobriefing.com, dealroom.co, deep-tech-week.com, dev.to, evsint.com, excedr.com, fast.io,
+            finance.biggo.com, finviz.com, fool.com, hoodline.com, humanoid.guide, ifactoryapp.com, insidermonkey.com,
+            investing.com, kalkinemedia.com, komo.ai, konsulteer.com, letsdatascience.com, maginative.com,
+            markets.businessinsider.com, markets.financialcontent.com, marketscreener.com, marktechpost.com, mean.ceo,
+            menafn.com, metavert.io, meticulousresearch.com, mikekalil.com, morningstar.com, msn.com, nbot.ai,
+            neuronfeed.com, newmarketpitch.com, note.com, owler.com, pdpspectra.com, pulse.bot, remio.ai, sacra.com,
+            seekingalpha.com, simplify.jobs, simplywall.st, standardbots.com, startupfortune.com, stocktitan.net,
+            techtimes.com, theaiinsider.tech, tracxn.com, tradingview.com, treeview.studio, unite.ai, vocal.media,
+            yahoo.com, zacks.com]

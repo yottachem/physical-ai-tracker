@@ -7,6 +7,7 @@ counts. Companies with hiring_scope: parent are skipped: a parent's board (NVIDI
 physical AI unit.
 Run: uv run python -m ingest.jobs [company-id ...]
 """
+import csv
 import json
 import re
 import sys
@@ -16,7 +17,7 @@ from datetime import date
 
 import requests
 
-from ingest.common import RAW, load_companies, write_snapshot
+from ingest.common import RAW, ROOT, load_companies, write_snapshot
 
 UA = {"User-Agent": "physical-ai-tracker (job counts; github.com/yottachem/physical-ai-tracker)"}
 
@@ -133,6 +134,27 @@ def summarize(jobs):
             "by_function": dict(sorted(by_function.items()))}
 
 
+COUNTS = ROOT / "data" / "jobs" / "counts.csv"
+COUNT_COLUMNS = ["date", "company", "ats", "total", "boston", "by_function"]
+
+
+def write_counts(out):
+    """Committed series: one row per company per run day (today's rows replaced on a rerun). Raw postings stay in
+    the gitignored snapshot."""
+    today = date.today().isoformat()
+    rows = []
+    if COUNTS.exists():
+        with COUNTS.open() as fh:
+            rows = [r for r in csv.DictReader(fh) if not (r["date"] == today and r["company"] in out)]
+    rows += [{"date": today, "company": cid, "ats": o["ats"], "total": o["total"], "boston": o["boston"],
+              "by_function": json.dumps(o["by_function"], sort_keys=True)} for cid, o in out.items()]
+    COUNTS.parent.mkdir(parents=True, exist_ok=True)
+    with COUNTS.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, COUNT_COLUMNS)
+        w.writeheader()
+        w.writerows(sorted(rows, key=lambda r: (r["date"], r["company"])))
+
+
 def main(ids):
     companies = load_companies()
     out, errors = {}, {}
@@ -157,6 +179,7 @@ def main(ids):
             out = {**prev["companies"], **out}
             errors = {k: v for k, v in {**prev["errors"], **errors}.items() if k not in out or k in errors}
     path = write_snapshot("jobs", {"companies": out, "errors": errors})
+    write_counts(out)
     print(f"{len(out)} boards, {len(errors)} errors -> {path.relative_to(path.parents[3])}")
     return out, errors
 

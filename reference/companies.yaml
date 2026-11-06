@@ -75,6 +75,7 @@ companies:
     news:
       terms: ['"Automata"']
       context: [lab, LINQ, automation]
+      exclude: [Veritas Automata]
     careers: {ats: teamtailor, token: automata}
     hiring_scope: company
     newsroom_feed: null
@@ -313,7 +314,8 @@ companies:
     domain: figure.ai
     other_domains: []
     news:
-      terms: ['"Figure AI"', '"Figure 03"']
+      terms: ['"Figure AI"', '"Figure 03"', '"Figure 04"']
+      context: [robot, humanoid, Adcock, Helix, startup, Nvidia]
     careers: {ats: greenhouse, token: figureai}
     hiring_scope: company
     newsroom_feed: null
@@ -494,8 +496,7 @@ companies:
     domain: dexterity.ai
     other_domains: []
     news:
-      terms: ['"Dexterity"']
-      context: [robot, robotics, AI]
+      terms: ['"Dexterity AI"', '"Dexterity Inc"', '"Dexterity Mech"', '"Dexterity" "Kawasaki"', '"Dexterity" "FedEx"']
     careers: {ats: lever, token: dexterity}
     hiring_scope: company
     newsroom_feed: null
