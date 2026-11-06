@@ -93,11 +93,11 @@ companies:
     other_domains: []
     news:
       terms: ['"HighRes Biosolutions"', '"HighRes Bio"']
-    careers: null
+    careers: {ats: other, token: 'https://www.paycomonline.net/v4/ats/web.php/portal/A490811F8035AE70DC4C2BD27F50067F/career-page'}
     hiring_scope: company
     newsroom_feed: null
     focus: Robotic workcells and Cellario orchestration, with an AI layer of lab agents and robotic perception
-    verify: [careers]
+    verify: []
   emerald-cloud-lab:
     name: Emerald Cloud Lab
     segments: [lab-automation]
@@ -221,11 +221,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Skild AI"', '"Skild Brain"']
-    careers: null
+    careers: {ats: greenhouse, token: skildai-careers}
     hiring_scope: company
     newsroom_feed: null
     focus: Skild Brain, one model meant to control any robot body; licensed to OEMs by API or firmware
-    verify: [careers]
+    verify: []
   rhoda-ai:
     name: Rhoda AI
     segments: [foundation-models]
@@ -258,11 +258,11 @@ companies:
     news:
       terms: ['"Sudo AI"']
       context: [robot]
-    careers: null
+    careers: {ats: other, token: 'https://wcn7iq2vq1am.jobs.feishu.cn/863711/'}
     hiring_scope: company
     newsroom_feed: null
     focus: Robot foundation models for manipulation
-    verify: [hq, careers]
+    verify: [hq]
   nvidia:
     name: NVIDIA
     segments: [foundation-models]
@@ -423,11 +423,11 @@ companies:
     other_domains: []
     news:
       terms: ['"NEURA Robotics"']
-    careers: null
+    careers: {ats: other, token: 'https://jobs.neura-robotics.com/'}
     hiring_scope: company
     newsroom_feed: null
     focus: Multi-form-factor physical AI platform (cobots, 4NE1 humanoid)
-    verify: [careers]
+    verify: []
   symbotic:
     name: Symbotic
     segments: [warehouse-factory]
@@ -734,11 +734,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Aurora Innovation"']
-    careers: null
+    careers: {ats: ashby, token: aurora-operations-inc}
     hiring_scope: company
     newsroom_feed: null
     focus: Driverless Class 8 trucking on Sun Belt freight lanes
-    verify: [hq, careers]
+    verify: [hq]
   kodiak-ai:
     name: Kodiak AI
     segments: [mobility]
@@ -897,11 +897,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Moon Surgical"']
-    careers: null
+    careers: {ats: other, token: 'https://www.welcometothejungle.com/en/companies/moon-surgical/jobs'}
     hiring_scope: company
     newsroom_feed: null
     focus: Maestro laparoscopic assistant; multi-model physical AI platform
-    verify: [hq, careers]
+    verify: [hq]
   intuitive-surgical:
     name: Intuitive Surgical
     segments: [healthcare]
@@ -1077,11 +1077,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Realtime Robotics"']
-    careers: null
+    careers: {ats: workable, token: realtime-robotics}
     hiring_scope: company
     newsroom_feed: null
     focus: Real-time collision-free motion planning for multi-robot work cells
-    verify: [careers]
+    verify: []
   teradyne-robotics:
     name: Teradyne Robotics
     segments: [warehouse-factory]
