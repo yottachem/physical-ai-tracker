@@ -1275,11 +1275,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Vicarious Surgical"']
-    careers: {ats: greenhouse, token: vicarioussurgical}
+    careers: null
     hiring_scope: company
     newsroom_feed: null
     focus: Single-incision surgical robot, first for ventral hernia
-    verify: []
+    verify: ['careers: no Greenhouse/Lever/Ashby board found 2026-11-06; check careers page ATS']
   dexai-robotics:
     name: Dexai Robotics
     segments: [consumer-home]
