@@ -18,8 +18,9 @@ sources:
     auth: none
     license: Headlines and links only
     cadence: daily
-  form_d:
-    name: SEC EDGAR Form D (submissions + primary_doc.xml)
+  sec_filings:
+    name: SEC EDGAR filings watcher (submissions JSON; Form D primary_doc.xml; 8-K items; S-1/S-4/DRS; Forms 15 and 25)
+    module: ingest/filings.py; new filings go to data/review/queue.csv
     url: https://data.sec.gov/submissions/
     auth: none; User-Agent with contact email; <= 10 requests/second
     license: Public domain (US Gov)
