@@ -1,18 +1,22 @@
 """Weekly open roles per company from public job boards: total, by function, and Boston-area count.
 
-Greenhouse, Lever, Ashby, Workable and Rippling have public JSON job-board endpoints. Workday career sites answer the
+Greenhouse, Lever, Ashby, Workable, Rippling and BambooHR have public JSON job-board endpoints; Teamtailor has an RSS
+feed. Workday career sites answer the
 same POST their own pages use (unofficial). Posting titles and locations go to the raw snapshot only; the site publishes
 counts. Companies with hiring_scope: parent are skipped: a parent's board (NVIDIA, Amazon, BICO) cannot be split to the
 physical AI unit.
 Run: uv run python -m ingest.jobs [company-id ...]
 """
+import json
 import re
 import sys
 import time
+import xml.etree.ElementTree as ET
+from datetime import date
 
 import requests
 
-from ingest.common import load_companies, write_snapshot
+from ingest.common import RAW, load_companies, write_snapshot
 
 UA = {"User-Agent": "physical-ai-tracker (job counts; github.com/yottachem/physical-ai-tracker)"}
 
@@ -97,8 +101,27 @@ def rippling(token):
     return [{"title": j["name"], "location": (j.get("workLocation") or {}).get("label", "")} for j in r.json()]
 
 
+def bamboohr(token):
+    r = requests.get(f"https://{token}.bamboohr.com/careers/list", headers=UA, timeout=60)
+    r.raise_for_status()
+    return [{"title": j["jobOpeningName"], "location": ", ".join(filter(None, [
+             (j.get("location") or {}).get("city"), (j.get("location") or {}).get("state")]))}
+            for j in r.json()["result"]]
+
+
+def teamtailor(token):
+    r = requests.get(f"https://{token}.teamtailor.com/jobs.rss", headers=UA, timeout=60)
+    r.raise_for_status()
+    tt = "{https://teamtailor.com/locations}"
+    return [{"title": i.findtext("title"), "location": " / ".join(
+             ", ".join(filter(None, [loc.findtext(tt + "city"), loc.findtext(tt + "country")]))
+             for loc in i.iter(tt + "location")) or (i.findtext("remoteStatus") or "")}
+            for i in ET.fromstring(r.content).iter("item")]
+
+
 FETCH = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday, "workable": workable,
-         "rippling": rippling}
+         "rippling": rippling,
+         "bamboohr": bamboohr, "teamtailor": teamtailor}
 
 
 def summarize(jobs):
@@ -127,6 +150,12 @@ def main(ids):
         out[cid] = {"ats": board["ats"], "token": board["token"], **summarize(jobs), "postings": jobs}
         print(f"{cid}: {out[cid]['total']} roles, {out[cid]['boston']} Boston", flush=True)
         time.sleep(0.3)
+    if ids:  # a partial rerun updates today's snapshot instead of replacing it
+        today = RAW / "jobs" / f"{date.today().isoformat()}.json"
+        if today.exists():
+            prev = json.loads(today.read_text())
+            out = {**prev["companies"], **out}
+            errors = {k: v for k, v in {**prev["errors"], **errors}.items() if k not in out or k in errors}
     path = write_snapshot("jobs", {"companies": out, "errors": errors})
     print(f"{len(out)} boards, {len(errors)} errors -> {path.relative_to(path.parents[3])}")
     return out, errors

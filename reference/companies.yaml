@@ -75,11 +75,11 @@ companies:
     news:
       terms: ['"Automata"']
       context: [lab, LINQ, automation]
-    careers: null
+    careers: {ats: teamtailor, token: automata}
     hiring_scope: company
     newsroom_feed: null
     focus: Modular robotics, orchestration software and data layer for AI-ready wet labs (LINQ)
-    verify: [careers]
+    verify: []
   highres-biosolutions:
     name: HighRes Biosolutions
     segments: [lab-automation]
@@ -111,11 +111,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Emerald Cloud Lab"']
-    careers: null
+    careers: {ats: bamboohr, token: emeraldcloudlab}
     hiring_scope: company
     newsroom_feed: null
     focus: 'Remotely operated cloud lab: scientists script experiments that robots run on ~190 instrument types'
-    verify: [careers]
+    verify: []
   biosero:
     name: Biosero
     segments: [lab-automation]
@@ -441,11 +441,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Symbotic"']
-    careers: null
+    careers: {ats: workday, token: symbotic.wd504.myworkdayjobs.com/Symbotic}
     hiring_scope: company
     newsroom_feed: null
     focus: AI-orchestrated high-density storage and retrieval for large distribution centers
-    verify: [careers]
+    verify: []
   locus-robotics:
     name: Locus Robotics
     segments: [warehouse-factory]
@@ -789,11 +789,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Starship Technologies"']
-    careers: null
+    careers: {ats: teamtailor, token: starship}
     hiring_scope: company
     newsroom_feed: null
     focus: Sidewalk delivery robots on campuses and in cities
-    verify: [careers]
+    verify: []
   serve-robotics:
     name: Serve Robotics
     segments: [mobility]
@@ -1131,11 +1131,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Berkshire Grey"']
-    careers: null
+    careers: {ats: bamboohr, token: berkshiregrey}
     hiring_scope: company
     newsroom_feed: null
     focus: AI picking and sortation; Scoop autonomous trailer unloader
-    verify: [careers]
+    verify: []
   amazon-robotics:
     name: Amazon Robotics
     segments: [warehouse-factory]
