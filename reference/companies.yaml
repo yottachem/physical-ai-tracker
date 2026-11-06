@@ -1,0 +1,1280 @@
+# Company registry. Seeded 2026-11-06 from reference/seed/physical-ai-market-map-2026-11.md (Josh's Nov 2026 market map).
+# ownership: private | public | subsidiary (own brand, owned by parent) | division (inside parent; parent-level data only)
+# boston: Greater Boston as the map's Boston spotlight defines it (includes Beverly, Wilmington, Bedford, Billerica)
+# news.terms: exact phrases (any match); news.context: words one of which must also appear (ambiguous names)
+# careers: {ats: greenhouse | lever | ashby | workable | other, token: board token, url: careers page}
+# verify: fields not yet confirmed against a primary source; LAUNCH_GATE=1 pytest fails while any remain
+
+companies:
+  periodic-labs:
+    name: Periodic Labs
+    segments: [lab-automation]
+    hq: San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Periodic Labs"']
+    careers: null
+    newsroom_feed: null
+    focus: AI scientists running autonomous labs for physics and chemistry; superconductors and materials R&D first
+    verify: [domain]
+  lila-sciences:
+    name: Lila Sciences
+    segments: [lab-automation]
+    hq: Cambridge, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: lila.ai
+    other_domains: []
+    news:
+      terms: ['"Lila Sciences"']
+    careers: null
+    newsroom_feed: null
+    focus: Closed-loop AI Science Factories across therapeutics, materials, chemistry and energy; works through partnerships
+    verify: [domain]
+  medra:
+    name: Medra
+    segments: [lab-automation]
+    hq: San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: medra.ai
+    other_domains: []
+    news:
+      terms: ['"Medra"']
+      context: [robot, lab, AI]
+    careers: null
+    newsroom_feed: null
+    focus: General-purpose robots that operate existing lab instruments, with an AI Experimentalist reasoning layer
+    verify: [domain]
+  automata:
+    name: Automata
+    segments: [lab-automation]
+    hq: London, UK
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: automata.tech
+    other_domains: []
+    news:
+      terms: ['"Automata"']
+      context: [lab, LINQ, automation]
+    careers: null
+    newsroom_feed: null
+    focus: Modular robotics, orchestration software and data layer for AI-ready wet labs (LINQ)
+    verify: [domain]
+  highres-biosolutions:
+    name: HighRes Biosolutions
+    segments: [lab-automation]
+    hq: Beverly, MA
+    boston: true
+    ownership: subsidiary
+    parent: Axel Johnson
+    ticker: null
+    cik: null
+    domain: highresbio.com
+    other_domains: []
+    news:
+      terms: ['"HighRes Biosolutions"', '"HighRes Bio"']
+    careers: null
+    newsroom_feed: null
+    focus: Robotic workcells and Cellario orchestration, with an AI layer of lab agents and robotic perception
+    verify: [domain]
+  emerald-cloud-lab:
+    name: Emerald Cloud Lab
+    segments: [lab-automation]
+    hq: Austin, TX
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: emeraldcloudlab.com
+    other_domains: []
+    news:
+      terms: ['"Emerald Cloud Lab"']
+    careers: null
+    newsroom_feed: null
+    focus: 'Remotely operated cloud lab: scientists script experiments that robots run on ~190 instrument types'
+    verify: [domain]
+  biosero:
+    name: Biosero
+    segments: [lab-automation]
+    hq: San Diego, CA
+    boston: false
+    ownership: subsidiary
+    parent: BICO
+    ticker: null
+    cik: null
+    domain: biosero.com
+    other_domains: []
+    news:
+      terms: ['"Biosero"']
+    careers: null
+    newsroom_feed: null
+    focus: Lab orchestration software and integrated automation for pharma
+    verify: [hq, domain]
+  multiply-labs:
+    name: Multiply Labs
+    segments: [lab-automation]
+    hq: San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1690573
+    domain: multiplylabs.com
+    other_domains: []
+    news:
+      terms: ['"Multiply Labs"']
+    careers: null
+    newsroom_feed: null
+    focus: Robotics for pharmaceutical manufacturing
+    verify: [domain]
+  trilobio:
+    name: Trilobio
+    segments: [lab-automation]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: trilobio.com
+    other_domains: []
+    news:
+      terms: ['"Trilobio"']
+    careers: null
+    newsroom_feed: null
+    focus: Whole-lab lab-in-a-box automation with no-code software for biologists
+    verify: [hq, domain]
+  potato:
+    name: Potato
+    segments: [lab-automation]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Potato"']
+      context: [lab, robot, AI scientist]
+    careers: null
+    newsroom_feed: null
+    focus: Robotic benchwork with AI agents generating and prioritizing experiments
+    verify: [hq, domain]
+  physical-intelligence:
+    name: Physical Intelligence
+    segments: [foundation-models]
+    hq: San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: physicalintelligence.company
+    other_domains: []
+    news:
+      terms: ['"Physical Intelligence"']
+      context: [robot, AI, pi0, π0]
+    careers: null
+    newsroom_feed: null
+    focus: Vision-language-action models (π0 / π0.5) trained across many robot types
+    verify: [domain]
+  skild-ai:
+    name: Skild AI
+    segments: [foundation-models]
+    hq: Pittsburgh, PA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: skild.ai
+    other_domains: []
+    news:
+      terms: ['"Skild AI"', '"Skild Brain"']
+    careers: null
+    newsroom_feed: null
+    focus: Skild Brain, one model meant to control any robot body; licensed to OEMs by API or firmware
+    verify: [domain]
+  rhoda-ai:
+    name: Rhoda AI
+    segments: [foundation-models]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Rhoda AI"']
+    careers: null
+    newsroom_feed: null
+    focus: Video-trained foundation models for factory and logistics manipulation
+    verify: [hq, domain]
+  sudo-ai:
+    name: Sudo AI
+    segments: [foundation-models]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Sudo AI"']
+      context: [robot]
+    careers: null
+    newsroom_feed: null
+    focus: Robot foundation models for manipulation
+    verify: [hq, domain]
+  nvidia:
+    name: NVIDIA
+    segments: [foundation-models]
+    hq: Santa Clara, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: NVDA
+    cik: 1045810
+    domain: nvidia.com
+    other_domains: []
+    news:
+      terms: ['"NVIDIA"']
+      context: [robotics, physical AI, GR00T, Isaac, Cosmos, Jetson]
+    careers: null
+    newsroom_feed: null
+    focus: 'Full stack: Cosmos world models, Isaac sim, GR00T humanoid models, Jetson edge compute'
+    verify: [hq, domain]
+  google-deepmind:
+    name: Google DeepMind
+    segments: [foundation-models]
+    hq: London, UK
+    boston: false
+    ownership: division
+    parent: Alphabet
+    ticker: GOOGL
+    cik: 1652044
+    domain: deepmind.google
+    other_domains: []
+    news:
+      terms: ['"Gemini Robotics"', '"DeepMind"']
+      context: [robot, robotics]
+    careers: null
+    newsroom_feed: null
+    focus: Gemini Robotics VLA models; integrated into Apptronik Apollo
+    verify: [hq, domain]
+  figure-ai:
+    name: Figure AI
+    segments: [humanoids]
+    hq: Sunnyvale, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 2014185
+    domain: figure.ai
+    other_domains: []
+    news:
+      terms: ['"Figure AI"', '"Figure 03"']
+    careers: null
+    newsroom_feed: null
+    focus: Figure 03 general-purpose humanoid with in-house Helix model; BotQ factory
+    verify: [domain]
+  agility-robotics:
+    name: Agility Robotics
+    segments: [humanoids]
+    hq: Salem, OR
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1727116
+    domain: agilityrobotics.com
+    other_domains: []
+    news:
+      terms: ['"Agility Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Digit humanoid for warehouse tote handling
+    verify: [domain]
+  apptronik:
+    name: Apptronik
+    segments: [humanoids]
+    hq: Austin, TX
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1918029
+    domain: apptronik.com
+    other_domains: []
+    news:
+      terms: ['"Apptronik"']
+    careers: null
+    newsroom_feed: null
+    focus: Apollo humanoid for industrial intralogistics
+    verify: [domain]
+  tesla:
+    name: Tesla (Optimus, Robotaxi)
+    segments: [humanoids, mobility]
+    hq: Austin, TX
+    boston: false
+    ownership: public
+    parent: null
+    ticker: TSLA
+    cik: 1318605
+    domain: tesla.com
+    other_domains: []
+    news:
+      terms: ['"Optimus"', '"Tesla Robotaxi"', '"Cybercab"']
+      context: [Tesla]
+    careers: null
+    newsroom_feed: null
+    focus: Optimus humanoid for Tesla's own factories first; camera-only end-to-end autonomy and Cybercab
+    verify: [hq, domain]
+  boston-dynamics:
+    name: Boston Dynamics
+    segments: [humanoids, warehouse-factory]
+    hq: Waltham, MA
+    boston: true
+    ownership: subsidiary
+    parent: Hyundai Motor Group
+    ticker: null
+    cik: null
+    domain: bostondynamics.com
+    other_domains: []
+    news:
+      terms: ['"Boston Dynamics"']
+    careers: null
+    newsroom_feed: null
+    focus: Electric Atlas humanoid for automotive manufacturing; Stretch mobile case-handling robot
+    verify: [hq, domain]
+  unitree:
+    name: Unitree
+    segments: [humanoids]
+    hq: Hangzhou, China
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: unitree.com
+    other_domains: []
+    news:
+      terms: ['"Unitree"']
+    careers: null
+    newsroom_feed: null
+    focus: Low-cost humanoids (G1, R1) for research, education and early commercial use
+    verify: [domain]
+  neura-robotics:
+    name: NEURA Robotics
+    segments: [humanoids]
+    hq: Metzingen, Germany
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: neura-robotics.com
+    other_domains: []
+    news:
+      terms: ['"NEURA Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Multi-form-factor physical AI platform (cobots, 4NE1 humanoid)
+    verify: [domain]
+  symbotic:
+    name: Symbotic
+    segments: [warehouse-factory]
+    hq: Wilmington, MA
+    boston: true
+    ownership: public
+    parent: null
+    ticker: SYM
+    cik: 1837240
+    domain: symbotic.com
+    other_domains: []
+    news:
+      terms: ['"Symbotic"']
+    careers: null
+    newsroom_feed: null
+    focus: AI-orchestrated high-density storage and retrieval for large distribution centers
+    verify: [domain]
+  locus-robotics:
+    name: Locus Robotics
+    segments: [warehouse-factory]
+    hq: Wilmington, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1676668
+    domain: locusrobotics.com
+    other_domains: []
+    news:
+      terms: ['"Locus Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Collaborative picking AMRs sold as robots-as-a-service; Locus Array for autonomous fulfillment
+    verify: [domain]
+  pickle-robot:
+    name: Pickle Robot
+    segments: [warehouse-factory]
+    hq: Charlestown, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1770325
+    domain: picklerobot.com
+    other_domains: []
+    news:
+      terms: ['"Pickle Robot"']
+    careers: null
+    newsroom_feed: null
+    focus: Mobile AI-driven arms that unload floor-loaded trucks and containers onto conveyors
+    verify: [domain]
+  dexterity:
+    name: Dexterity
+    segments: [warehouse-factory]
+    hq: Redwood City, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 2137857
+    domain: dexterity.ai
+    other_domains: []
+    news:
+      terms: ['"Dexterity"']
+      context: [robot, robotics, AI]
+    careers: null
+    newsroom_feed: null
+    focus: AI-driven truck loading/unloading and picking; robots-as-a-service
+    verify: [domain]
+  ambi-robotics:
+    name: Ambi Robotics
+    segments: [warehouse-factory]
+    hq: Berkeley, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1794061
+    domain: ambirobotics.com
+    other_domains: []
+    news:
+      terms: ['"Ambi Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: AI parcel sorting and handling on its AmbiOS platform
+    verify: [domain]
+  mind-robotics:
+    name: Mind Robotics
+    segments: [warehouse-factory]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Mind Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Rivian spinout building high-dexterity, task-shaped robots for warehouses and factories
+    verify: [hq, domain]
+  1x-technologies:
+    name: 1X Technologies
+    segments: [consumer-home]
+    hq: Hayward, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: 1x.tech
+    other_domains: []
+    news:
+      terms: ['"1X Technologies"', '"1X NEO"']
+    careers: null
+    newsroom_feed: null
+    focus: NEO soft-bodied home humanoid for chores
+    verify: [domain]
+  sunday:
+    name: Sunday
+    segments: [consumer-home]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Sunday Robotics"', '"Sunday" "Memo"']
+      context: [robot]
+    careers: null
+    newsroom_feed: null
+    focus: Memo, a wheeled home robot trained from a Skill Capture Glove
+    verify: [hq, domain]
+  meta:
+    name: Meta (with EssilorLuxottica)
+    segments: [wearables]
+    hq: Menlo Park, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: META
+    cik: 1326801
+    domain: meta.com
+    other_domains: []
+    news:
+      terms: ['"Ray-Ban Meta"', '"Meta Ray-Ban Display"']
+    careers: null
+    newsroom_feed: null
+    focus: 'AI smart glasses: Ray-Ban Meta and Ray-Ban Display'
+    verify: [hq, domain]
+  openai-devices:
+    name: OpenAI (io devices)
+    segments: [wearables]
+    hq: San Francisco, CA
+    boston: false
+    ownership: division
+    parent: OpenAI
+    ticker: null
+    cik: null
+    domain: openai.com
+    other_domains: []
+    news:
+      terms: ['"OpenAI"']
+      context: [device, Jony Ive, io]
+    careers: null
+    newsroom_feed: null
+    focus: Screenless, context-aware AI device family (io, Jony Ive)
+    verify: [hq, domain]
+  android-xr:
+    name: Google and Samsung (Android XR)
+    segments: [wearables]
+    hq: null
+    boston: false
+    ownership: division
+    parent: Alphabet; Samsung
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Android XR"']
+      context: [glasses]
+    careers: null
+    newsroom_feed: null
+    focus: Android XR AI glasses with Gemini, with Warby Parker and Gentle Monster
+    verify: [hq, domain]
+  apple:
+    name: Apple
+    segments: [wearables]
+    hq: Cupertino, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: AAPL
+    cik: 320193
+    domain: apple.com
+    other_domains: []
+    news:
+      terms: ['"Apple"']
+      context: [smart glasses]
+    careers: null
+    newsroom_feed: null
+    focus: AI smart glasses (reported in development)
+    verify: [hq, domain]
+  waymo:
+    name: Waymo
+    segments: [mobility]
+    hq: Mountain View, CA
+    boston: false
+    ownership: subsidiary
+    parent: Alphabet
+    ticker: null
+    cik: null
+    domain: waymo.com
+    other_domains: []
+    news:
+      terms: ['"Waymo"']
+    careers: null
+    newsroom_feed: null
+    focus: Driverless ride-hailing
+    verify: [hq, domain]
+  zoox:
+    name: Zoox
+    segments: [mobility]
+    hq: Foster City, CA
+    boston: false
+    ownership: subsidiary
+    parent: Amazon
+    ticker: null
+    cik: null
+    domain: zoox.com
+    other_domains: []
+    news:
+      terms: ['"Zoox"']
+    careers: null
+    newsroom_feed: null
+    focus: Purpose-built bidirectional robotaxi
+    verify: [hq, domain]
+  baidu-apollo-go:
+    name: Baidu Apollo Go
+    segments: [mobility]
+    hq: Beijing, China
+    boston: false
+    ownership: division
+    parent: Baidu
+    ticker: BIDU
+    cik: 1329099
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Apollo Go"']
+    careers: null
+    newsroom_feed: null
+    focus: Robotaxi in China, expanding abroad
+    verify: [hq, domain]
+  pony-ai:
+    name: Pony.ai
+    segments: [mobility]
+    hq: Guangzhou, China
+    boston: false
+    ownership: public
+    parent: null
+    ticker: PONY
+    cik: 1969302
+    domain: pony.ai
+    other_domains: []
+    news:
+      terms: ['"Pony.ai"']
+    careers: null
+    newsroom_feed: null
+    focus: Robotaxi in China, expanding abroad
+    verify: [hq, domain]
+  aurora-innovation:
+    name: Aurora Innovation
+    segments: [mobility]
+    hq: Pittsburgh, PA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: AUR
+    cik: 1828108
+    domain: aurora.tech
+    other_domains: []
+    news:
+      terms: ['"Aurora Innovation"']
+    careers: null
+    newsroom_feed: null
+    focus: Driverless Class 8 trucking on Sun Belt freight lanes
+    verify: [hq, domain]
+  kodiak-ai:
+    name: Kodiak AI
+    segments: [mobility]
+    hq: Mountain View, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: KDK
+    cik: 1853138
+    domain: kodiak.ai
+    other_domains: []
+    news:
+      terms: ['"Kodiak AI"', '"Kodiak Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Driverless trucks, starting off-highway in the Permian Basin; Bosch production hardware
+    verify: [hq, domain]
+  zipline:
+    name: Zipline
+    segments: [mobility]
+    hq: South San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: flyzipline.com
+    other_domains: []
+    news:
+      terms: ['"Zipline"']
+      context: [drone, delivery]
+    careers: null
+    newsroom_feed: null
+    focus: Autonomous drone delivery for retail, food and health
+    verify: [hq, domain]
+  starship-technologies:
+    name: Starship Technologies
+    segments: [mobility]
+    hq: San Francisco, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1787055
+    domain: starship.xyz
+    other_domains: []
+    news:
+      terms: ['"Starship Technologies"']
+    careers: null
+    newsroom_feed: null
+    focus: Sidewalk delivery robots on campuses and in cities
+    verify: [domain]
+  serve-robotics:
+    name: Serve Robotics
+    segments: [mobility]
+    hq: Redwood City, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: SERV
+    cik: 1832483
+    domain: serverobotics.com
+    other_domains: []
+    news:
+      terms: ['"Serve Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Sidewalk delivery for Uber Eats and DoorDash
+    verify: [hq, domain]
+  anduril:
+    name: Anduril
+    segments: [defense]
+    hq: Costa Mesa, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: anduril.com
+    other_domains: []
+    news:
+      terms: ['"Anduril"']
+    careers: null
+    newsroom_feed: null
+    focus: Lattice autonomy OS, drones, counter-UAS, autonomous aircraft
+    verify: [hq, domain]
+  shield-ai:
+    name: Shield AI
+    segments: [defense]
+    hq: San Diego, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1675769
+    domain: shield.ai
+    other_domains: []
+    news:
+      terms: ['"Shield AI"']
+    careers: null
+    newsroom_feed: null
+    focus: Hivemind autonomy software for aircraft
+    verify: [domain]
+  saronic:
+    name: Saronic
+    segments: [defense]
+    hq: Austin, TX
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 2033142
+    domain: saronic.com
+    other_domains: []
+    news:
+      terms: ['"Saronic"']
+    careers: null
+    newsroom_feed: null
+    focus: Autonomous surface vessels
+    verify: [domain]
+  cmr-surgical:
+    name: CMR Surgical
+    segments: [healthcare]
+    hq: Cambridge, UK
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: cmrsurgical.com
+    other_domains: []
+    news:
+      terms: ['"CMR Surgical"']
+    careers: null
+    newsroom_feed: null
+    focus: Versius soft-tissue surgical robot; trained and validated with NVIDIA Cosmos-H simulation
+    verify: [hq, domain]
+  moon-surgical:
+    name: Moon Surgical
+    segments: [healthcare]
+    hq: null
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: moonsurgical.com
+    other_domains: []
+    news:
+      terms: ['"Moon Surgical"']
+    careers: null
+    newsroom_feed: null
+    focus: Maestro laparoscopic assistant; multi-model physical AI platform
+    verify: [hq, domain]
+  intuitive-surgical:
+    name: Intuitive Surgical
+    segments: [healthcare]
+    hq: Sunnyvale, CA
+    boston: false
+    ownership: public
+    parent: null
+    ticker: ISRG
+    cik: 1035267
+    domain: intuitive.com
+    other_domains: []
+    news:
+      terms: ['"Intuitive Surgical"']
+    careers: null
+    newsroom_feed: null
+    focus: da Vinci 5; AI in analytics and case review, motion surgeon-controlled
+    verify: [hq, domain]
+  diligent-robotics:
+    name: Diligent Robotics
+    segments: [healthcare]
+    hq: Austin, TX
+    boston: false
+    ownership: subsidiary
+    parent: Serve Robotics
+    ticker: null
+    cik: null
+    domain: diligentrobots.com
+    other_domains: []
+    news:
+      terms: ['"Diligent Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Moxi mobile manipulator for hospital pharmacy and lab-sample runs
+    verify: [domain]
+  carbon-robotics:
+    name: Carbon Robotics
+    segments: [agriculture]
+    hq: Seattle, WA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: carbonrobotics.com
+    other_domains: []
+    news:
+      terms: ['"Carbon Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: LaserWeeder (AI vision plus CO2 lasers) and Autonomous Tractor Kit; Large Plant Model
+    verify: [domain]
+  ginkgo-bioworks:
+    name: Ginkgo Bioworks
+    segments: [lab-automation]
+    hq: Boston, MA
+    boston: true
+    ownership: public
+    parent: null
+    ticker: DNA
+    cik: 1830214
+    domain: ginkgobioworks.com
+    other_domains: []
+    news:
+      terms: ['"Ginkgo Bioworks"']
+    careers: null
+    newsroom_feed: null
+    focus: Reconfigurable Automation Carts plus Catalyst software; autonomous lab network and Cloud Lab
+    verify: [domain]
+  cellino:
+    name: Cellino
+    segments: [lab-automation]
+    hq: Cambridge, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1785112
+    domain: cellinobio.com
+    other_domains: []
+    news:
+      terms: ['"Cellino"']
+    careers: null
+    newsroom_feed: null
+    focus: 'NEBULA autonomous iPSC manufacturing: AI imaging, laser cell editing and robotics in a closed loop'
+    verify: [domain]
+  physical-superintelligence:
+    name: Physical Superintelligence
+    segments: [lab-automation]
+    hq: Cambridge, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Physical Superintelligence"']
+    careers: null
+    newsroom_feed: null
+    focus: AI-native physics lab building systems that understand and design complex physical systems
+    verify: [domain]
+  walden-robotics:
+    name: Walden Robotics
+    segments: [humanoids]
+    hq: Cambridge, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 2144409
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Walden Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Partially humanoid factory and warehouse robots driven by large behavior models; Toyota Research Institute spinout
+    verify: [domain]
+  rai-institute:
+    name: RAI Institute
+    segments: [foundation-models]
+    hq: Cambridge, MA
+    boston: true
+    ownership: subsidiary
+    parent: Hyundai Motor Group
+    ticker: null
+    cik: null
+    domain: rai-inst.com
+    other_domains: []
+    news:
+      terms: ['"RAI Institute"', '"Robotics and AI Institute"']
+    careers: null
+    newsroom_feed: null
+    focus: Reinforcement learning and control for legged and humanoid robots
+    verify: [domain]
+  liquid-ai:
+    name: Liquid AI
+    segments: [foundation-models]
+    hq: Cambridge, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 2004369
+    domain: liquid.ai
+    other_domains: []
+    news:
+      terms: ['"Liquid AI"']
+    careers: null
+    newsroom_feed: null
+    focus: Small on-device foundation models for devices, cars and robots (LFM2, LEAP SDK)
+    verify: [domain]
+  realtime-robotics:
+    name: Realtime Robotics
+    segments: [warehouse-factory]
+    hq: Boston, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1771953
+    domain: rtr.ai
+    other_domains: []
+    news:
+      terms: ['"Realtime Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Real-time collision-free motion planning for multi-robot work cells
+    verify: [domain]
+  teradyne-robotics:
+    name: Teradyne Robotics
+    segments: [warehouse-factory]
+    hq: North Reading, MA
+    boston: true
+    ownership: division
+    parent: Teradyne
+    ticker: TER
+    cik: 97210
+    domain: teradynerobotics.com
+    other_domains: [universal-robots.com, mobile-industrial-robots.com]
+    news:
+      terms: ['"Teradyne Robotics"', '"Universal Robots"', '"Mobile Industrial Robots"']
+    careers: null
+    newsroom_feed: null
+    focus: Universal Robots cobots and MiR mobile robots with AI Accelerator; UR AI Trainer
+    verify: [domain]
+  tutor-intelligence:
+    name: Tutor Intelligence
+    segments: [warehouse-factory]
+    hq: Watertown, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1893758
+    domain: tutorintelligence.com
+    other_domains: []
+    news:
+      terms: ['"Tutor Intelligence"']
+    careers: null
+    newsroom_feed: null
+    focus: Robot arms for palletizing and packing on hourly RaaS; remote human tutors handle edge cases
+    verify: [domain]
+  berkshire-grey:
+    name: Berkshire Grey
+    segments: [warehouse-factory]
+    hq: Bedford, MA
+    boston: true
+    ownership: subsidiary
+    parent: SoftBank Group
+    ticker: null
+    cik: null
+    domain: berkshiregrey.com
+    other_domains: []
+    news:
+      terms: ['"Berkshire Grey"']
+    careers: null
+    newsroom_feed: null
+    focus: AI picking and sortation; Scoop autonomous trailer unloader
+    verify: [domain]
+  amazon-robotics:
+    name: Amazon Robotics
+    segments: [warehouse-factory]
+    hq: North Reading, MA
+    boston: true
+    ownership: division
+    parent: Amazon
+    ticker: AMZN
+    cik: 1018724
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Amazon Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Fleet robotics for Amazon fulfillment; not sold externally
+    verify: [domain]
+  venti-technologies:
+    name: Venti Technologies
+    segments: [mobility]
+    hq: Weston, MA / Singapore
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Venti Technologies"']
+    careers: null
+    newsroom_feed: null
+    focus: Autonomous vehicles for ports, airports and logistics hubs
+    verify: [domain]
+  motional:
+    name: Motional
+    segments: [mobility]
+    hq: Boston, MA
+    boston: true
+    ownership: subsidiary
+    parent: Hyundai Motor Group
+    ticker: null
+    cik: null
+    domain: motional.com
+    other_domains: []
+    news:
+      terms: ['"Motional"']
+    careers: null
+    newsroom_feed: null
+    focus: AI-first driving stack on Hyundai IONIQ 5
+    verify: [domain]
+  blue-water-autonomy:
+    name: Blue Water Autonomy
+    segments: [defense]
+    hq: Boston, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Blue Water Autonomy"']
+    careers: null
+    newsroom_feed: null
+    focus: Long-range unmanned ships for naval use
+    verify: [domain]
+  reframe-systems:
+    name: Reframe Systems
+    segments: [manufacturing-construction]
+    hq: Billerica, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Reframe Systems"']
+    careers: null
+    newsroom_feed: null
+    focus: Automated micro-factories producing homebuilding components (FAB1)
+    verify: [domain]
+  inkbit:
+    name: Inkbit
+    segments: [manufacturing-construction]
+    hq: Medford, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1866959
+    domain: inkbit3d.com
+    other_domains: []
+    news:
+      terms: ['"Inkbit"']
+    careers: null
+    newsroom_feed: null
+    focus: Multi-material 3D printing controlled by machine vision and AI
+    verify: [domain]
+  irobot:
+    name: iRobot
+    segments: [consumer-home]
+    hq: Bedford, MA
+    boston: true
+    ownership: subsidiary
+    parent: Shenzhen Picea Robotics
+    ticker: null
+    cik: null
+    domain: irobot.com
+    other_domains: []
+    news:
+      terms: ['"iRobot"']
+    careers: null
+    newsroom_feed: null
+    focus: Roomba vacuums and mops
+    verify: [domain]
+  vicarious-surgical:
+    name: Vicarious Surgical
+    segments: [healthcare]
+    hq: Waltham, MA
+    boston: true
+    ownership: public
+    parent: null
+    ticker: RBOT
+    cik: 1812173
+    domain: vicarioussurgical.com
+    other_domains: []
+    news:
+      terms: ['"Vicarious Surgical"']
+    careers: null
+    newsroom_feed: null
+    focus: Single-incision surgical robot, first for ventral hernia
+    verify: [domain]
+  dexai-robotics:
+    name: Dexai Robotics
+    segments: [consumer-home]
+    hq: Boston, MA
+    boston: true
+    ownership: subsidiary
+    parent: Sony
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Dexai Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: Kitchen robots (sold to Sony per the Boston Globe; thin public data)
+    verify: [domain]
+  xyz-robotics:
+    name: XYZ Robotics
+    segments: [warehouse-factory]
+    hq: Boston, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"XYZ Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: MassRobotics resident; thin public data
+    verify: [domain]
+  ava-robotics:
+    name: Ava Robotics
+    segments: [warehouse-factory]
+    hq: Boston, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: 1774240
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Ava Robotics"']
+    careers: null
+    newsroom_feed: null
+    focus: MassRobotics resident; thin public data
+    verify: [domain]
+  brecourt-solutions:
+    name: Brecourt Solutions
+    segments: [defense]
+    hq: Boston, MA
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: null
+    other_domains: []
+    news:
+      terms: ['"Brecourt Solutions"']
+    careers: null
+    newsroom_feed: null
+    focus: Indoor first-responder drones; MassRobotics resident; thin public data
+    verify: [domain]
