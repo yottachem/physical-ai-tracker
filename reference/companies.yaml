@@ -230,7 +230,7 @@ companies:
   rhoda-ai:
     name: Rhoda AI
     segments: [foundation-models]
-    hq: null
+    hq: Palo Alto, CA
     boston: false
     ownership: private
     parent: null
@@ -244,7 +244,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Video-trained foundation models for factory and logistics manipulation
-    verify: [hq, careers]
+    verify: [careers]
   sudo-ai:
     name: Sudo AI
     segments: [foundation-models]
