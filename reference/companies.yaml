@@ -9,7 +9,7 @@ companies:
   periodic-labs:
     name: Periodic Labs
     segments: [lab-automation]
-    hq: San Francisco, CA
+    hq: Menlo Park, CA
     boston: false
     ownership: private
     parent: null
@@ -134,7 +134,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Lab orchestration software and integrated automation for pharma
-    verify: [hq]
+    verify: []
   multiply-labs:
     name: Multiply Labs
     segments: [lab-automation]
@@ -156,7 +156,7 @@ companies:
   trilobio:
     name: Trilobio
     segments: [lab-automation]
-    hq: null
+    hq: San Francisco, CA
     boston: false
     ownership: private
     parent: null
@@ -170,11 +170,11 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Whole-lab lab-in-a-box automation with no-code software for biologists
-    verify: [hq, domain, careers]
+    verify: [domain, careers]
   potato:
     name: Potato
     segments: [lab-automation]
-    hq: null
+    hq: Issaquah, WA
     boston: false
     ownership: private
     parent: null
@@ -189,7 +189,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Robotic benchwork with AI agents generating and prioritizing experiments
-    verify: [hq, domain, careers]
+    verify: [domain, careers]
   physical-intelligence:
     name: Physical Intelligence
     segments: [foundation-models]
@@ -248,7 +248,7 @@ companies:
   sudo-ai:
     name: Sudo AI
     segments: [foundation-models]
-    hq: null
+    hq: Menlo Park, CA
     boston: false
     ownership: private
     parent: null
@@ -263,7 +263,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Robot foundation models for manipulation
-    verify: [hq]
+    verify: []
   nvidia:
     name: NVIDIA
     segments: [foundation-models]
@@ -305,7 +305,7 @@ companies:
   figure-ai:
     name: Figure AI
     segments: [humanoids]
-    hq: Sunnyvale, CA
+    hq: San Jose, CA
     boston: false
     ownership: private
     parent: null
@@ -393,7 +393,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Electric Atlas humanoid for automotive manufacturing; Stretch mobile case-handling robot
-    verify: [hq]
+    verify: []
   unitree:
     name: Unitree
     segments: [humanoids]
@@ -469,7 +469,7 @@ companies:
   pickle-robot:
     name: Pickle Robot
     segments: [warehouse-factory]
-    hq: Charlestown, MA
+    hq: Cambridge, MA
     boston: true
     ownership: private
     parent: null
@@ -523,7 +523,7 @@ companies:
   mind-robotics:
     name: Mind Robotics
     segments: [warehouse-factory]
-    hq: null
+    hq: Palo Alto, CA
     boston: false
     ownership: private
     parent: null
@@ -537,11 +537,11 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Rivian spinout building high-dexterity, task-shaped robots for warehouses and factories
-    verify: [hq]
+    verify: []
   1x-technologies:
     name: 1X Technologies
     segments: [consumer-home]
-    hq: Hayward, CA
+    hq: Palo Alto, CA
     boston: false
     ownership: private
     parent: null
@@ -559,7 +559,7 @@ companies:
   sunday:
     name: Sunday
     segments: [consumer-home]
-    hq: null
+    hq: Mountain View, CA
     boston: false
     ownership: private
     parent: null
@@ -574,7 +574,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Memo, a wheeled home robot trained from a Skill Capture Glove
-    verify: [hq]
+    verify: []
   meta:
     name: Meta (with EssilorLuxottica)
     segments: [wearables]
@@ -611,11 +611,11 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Screenless, context-aware AI device family (io, Jony Ive)
-    verify: [hq]
+    verify: []
   android-xr:
     name: Google and Samsung (Android XR)
     segments: [wearables]
-    hq: null
+    hq: Mountain View, CA
     boston: false
     ownership: division
     parent: Alphabet; Samsung
@@ -630,7 +630,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Android XR AI glasses with Gemini, with Warby Parker and Gentle Monster
-    verify: [hq]
+    verify: []
   apple:
     name: Apple
     segments: [wearables]
@@ -667,7 +667,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Driverless ride-hailing
-    verify: [hq]
+    verify: []
   zoox:
     name: Zoox
     segments: [mobility]
@@ -685,7 +685,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Purpose-built bidirectional robotaxi
-    verify: [hq]
+    verify: []
   baidu-apollo-go:
     name: Baidu Apollo Go
     segments: [mobility]
@@ -776,7 +776,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Autonomous drone delivery for retail, food and health
-    verify: [hq]
+    verify: []
   starship-technologies:
     name: Starship Technologies
     segments: [mobility]
@@ -830,7 +830,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Lattice autonomy OS, drones, counter-UAS, autonomous aircraft
-    verify: [hq]
+    verify: []
   shield-ai:
     name: Shield AI
     segments: [defense]
@@ -884,11 +884,11 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Versius soft-tissue surgical robot; trained and validated with NVIDIA Cosmos-H simulation
-    verify: [hq, careers]
+    verify: [careers]
   moon-surgical:
     name: Moon Surgical
     segments: [healthcare]
-    hq: null
+    hq: San Carlos, CA
     boston: false
     ownership: private
     parent: null
@@ -902,7 +902,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Maestro laparoscopic assistant; multi-model physical AI platform
-    verify: [hq]
+    verify: []
   intuitive-surgical:
     name: Intuitive Surgical
     segments: [healthcare]
@@ -1158,7 +1158,7 @@ companies:
   venti-technologies:
     name: Venti Technologies
     segments: [mobility]
-    hq: Weston, MA / Singapore
+    hq: Weston, MA
     boston: true
     ownership: private
     parent: null
@@ -1302,7 +1302,7 @@ companies:
   xyz-robotics:
     name: XYZ Robotics
     segments: [warehouse-factory]
-    hq: Boston, MA
+    hq: Shanghai, China
     boston: true
     ownership: private
     parent: null
@@ -1320,7 +1320,7 @@ companies:
   ava-robotics:
     name: Ava Robotics
     segments: [warehouse-factory]
-    hq: Boston, MA
+    hq: Cambridge, MA
     boston: true
     ownership: private
     parent: null
