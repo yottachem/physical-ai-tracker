@@ -58,6 +58,7 @@ jobs:
           git add data/news data/review data/jobs reference/ledger.csv
           if git diff --cached --quiet; then echo "No data changes"; exit 0; fi
           git commit -m "Data update $(date -u +%F)"
+          git pull --rebase   # main may have moved during the run (registry edits)
           git push
       - name: Open an issue if the run fails
         if: failure() && github.event_name == 'schedule'
