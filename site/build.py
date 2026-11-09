@@ -197,7 +197,36 @@ def funding_context(recs, segments, ledger):
                         "reported": sum(r["amount"] for r in sel if r["status"] != "closed"),
                         "n": len(sel)}
         table.append({"name": s["name"], "cells": cells})
-    return {"rows": rows, "periods": periods, "table": table}
+    return {"rows": rows, "periods": periods, "table": table, **funding_charts(recs, segments, rows)}
+
+
+def funding_charts(recs, segments, rows, start="2021"):
+    """Closed and reported equity per half-year since start: the market (each round once) and each segment."""
+    now = half(date.today().isoformat())
+    span = [f"{y} H{h}" for y in range(int(start), int(now[:4]) + 1) for h in (1, 2)]
+    span = span[:span.index(now) + 1]
+    eq = [r for r in rows if is_equity(r) and r["amount"] and len(r["date"]) >= 7 and r["date"] >= start]
+
+    def sums(sel, closed):
+        out = defaultdict(float)
+        for r in sel:
+            if (r["status"] == "closed") == closed:
+                out[half(r["date"])] += r["amount"]
+        return out
+
+    def chart(sel, name, **kw):
+        return charts.half_bars(span, sums(sel, True), sums(sel, False), partial=now,
+                                desc=f"{name}: disclosed equity per half-year since {start}", **kw)
+
+    panels = []
+    for sid, s in segments.items():
+        sel = [r for r in eq if sid in recs[r["company"]]["c"]["segments"]]
+        if sel:
+            panels.append({"name": s["name"], "total": sum(r["amount"] for r in sel if r["status"] == "closed"),
+                           "svg": chart(sel, s["name"], width=320, height=130, small=True)})
+    return {"market_chart": chart(eq, "All tracked companies", width=1000, height=280),
+            "market_chart_small": chart(eq, "All tracked companies", width=340, height=170, small=True), "panels": sorted(panels, key=lambda p: -p["total"]),
+            "chart_start": start}
 
 
 def hiring_context(recs, segments, jobs):

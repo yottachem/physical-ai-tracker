@@ -116,6 +116,39 @@ def bar_chart(values, years, *, partial=None, kind="n", width=640, height=200, d
     return "".join(out)
 
 
+def half_bars(periods, closed, reported, *, partial=None, width=640, height=200, desc="", small=False):
+    """Half-year bars, oldest first: closed amounts solid, reported ones (talks, unconfirmed) as an outlined bar beside
+    them, never stacked, since the two are never added. periods: ["2021 H1", ...]; closed/reported: {period: usd}."""
+    top, bottom, left, right = (10, 20, 38, 6) if small else (14, 26, 44, 12)
+    w, h = width - left - right, height - top - bottom
+    ticks = nice_ticks(0, max([v for v in (*closed.values(), *reported.values()) if v] or [1]), n=2 if small else 4)
+    y = scale(0, ticks[-1], top + h, top)
+    slot = w / len(periods)
+    out = [f'<svg viewBox="0 0 {width} {height}" role="img" aria-label="{escape(desc)}" class="chart">']
+    for t in ticks:
+        out.append(f'<line x1="{left}" x2="{left + w}" y1="{y(t):.1f}" y2="{y(t):.1f}" class="grid"/>'
+                   f'<text x="{left - 6}" y="{y(t) + 3.5:.1f}" text-anchor="end" class="tick">{tick_label(t, "usd")}</text>')
+    for i, p in enumerate(periods):
+        x0 = left + i * slot
+        c, r = closed.get(p) or 0, reported.get(p) or 0
+        cw = slot * (0.62 if r else 0.8)
+        cls = "bar part" if p == partial else "bar"
+        if c:
+            out.append(f'<rect x="{x0 + slot * .1:.1f}" y="{y(c):.1f}" width="{cw:.1f}" height="{top + h - y(c):.1f}" '
+                       f'class="{cls}"><title>{p}: {fmt(c, "usd")} closed</title></rect>')
+        if r:
+            rx = x0 + slot * .1 + (cw if c else 0)
+            out.append(f'<rect x="{rx + .5:.1f}" y="{y(r):.1f}" width="{slot * .22:.1f}" height="{top + h - y(r):.1f}" '
+                       f'class="bar rep-bar"><title>{p}: {fmt(r, "usd")} reported</title></rect>')
+        if p.endswith("H1"):
+            out.append(f'<text x="{x0 + slot:.1f}" y="{height - (5 if small else 8)}" text-anchor="middle" '
+                       f'class="tick">{p[2:4] if small else p[:4]}</text>')
+    if partial in periods and not small:
+        out.append(f'<text x="{left + w:.1f}" y="{top - 3}" text-anchor="end" class="note">{partial} to date</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
 def spark(values, years, *, partial=None, width=150, height=34, cls="s-1"):
     pts = [(yr, values.get(yr)) for yr in years if values.get(yr) is not None and yr != partial]
     if len(pts) < 2:

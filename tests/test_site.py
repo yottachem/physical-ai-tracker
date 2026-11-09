@@ -21,3 +21,10 @@ def test_build_renders_every_page(tmp_path, monkeypatch):
     assert pages == {"index.html", "feed.html", "funding.html", "hiring.html", "methods.html", "status.html"}
     assert len(list((tmp_path / "dist" / "company").glob("*.html"))) == len(build.load_companies())
     assert "news.google.com" not in (tmp_path / "dist" / "feed.html").read_text()
+
+
+def test_half_bars_keep_closed_and_reported_apart():
+    svg = build.charts.half_bars(["2026 H1", "2026 H2"], {"2026 H1": 2e9}, {"2026 H1": 1e9, "2026 H2": 5e8},
+                                 partial="2026 H2", desc="test")
+    assert svg.count('class="bar"') == 1 and svg.count("rep-bar") == 2   # side by side, never stacked
+    assert "2026 H2 to date" in svg and "$2.0B closed" in svg

@@ -7,6 +7,17 @@
 <h1>Funding</h1>
 <p class="lede">Disclosed equity rounds by customer segment and half-year. Closed rounds and reported ones (talks, unconfirmed) are totaled separately and never added together.</p>
 <p class="sub">Debt, loans, grants and awards are left out of the totals but listed below. A company in two segments counts in both, so segment totals do not add up to a market total. Rounds dated only by year are not in the half-year table.</p>
+<h2>Over time</h2>
+<p class="key">Disclosed equity per half-year since {{ chart_start }}<i class="k-c"></i>closed<i class="k-r"></i>reported or announced, not closed<i class="k-p"></i>current half, to date</p>
+<div class="wide">{{ market_chart | safe }}</div><div class="narrow">{{ market_chart_small | safe }}</div>
+<p class="sub">Each round counted once. Before 2026, coverage is each company's major disclosed rounds, collected once by hand; small early rounds may be missing. The current half-year is partial.</p>
+<h3>By segment</h3>
+<p class="sub">Each panel has its own scale; the figure beside the name is closed equity since {{ chart_start }}.</p>
+<div class="multi">
+{% for p in panels %}<div><h3>{{ p.name }} <small>{{ p.total | fmt("usd") }}</small></h3>{{ p.svg | safe }}</div>
+{% endfor %}</div>
+
+<h2>By segment and half-year</h2>
 <div class="tw"><table>
 <thead><tr><th>Segment</th>{% for p in periods %}<th class="n">{{ p }}</th>{% endfor %}</tr></thead>
 <tbody>
