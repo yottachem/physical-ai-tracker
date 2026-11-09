@@ -1,7 +1,7 @@
 """Build the site into site/dist from the registry, ledger and data files. No JavaScript is needed to read it; a small
 inline script adds the home and feed filters.
 
-Pages: home (market map grid by segment), one page per company, feed, funding, hiring, methods, status.
+Pages: home (market map grid by segment, with the checked statements in analysis/claims.yaml), one page per company, feed, funding, hiring, methods, status.
 
 Figures:
   raised     closed equity rounds with a disclosed amount, summed; debt, loans, grants and awards are left out, and
@@ -31,6 +31,7 @@ ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT))
 import charts  # noqa: E402  (site/charts.py)
+from analysis import claims  # noqa: E402
 from ingest.common import load_companies, load_ledger, load_segments  # noqa: E402
 from ingest.filings import read_queue  # noqa: E402
 from ingest.news import read_articles  # noqa: E402
@@ -285,7 +286,8 @@ def status_context(ledger, articles, jobs, values, heads, fin):
             "curated": [{"path": p, "what": w, "changed": last_changed(p)} for p, w in CURATED]}
 
 
-def main(preview=False):
+def load():
+    """Everything the pages are built from; analysis/claims.py uses it too."""
     companies = load_companies()
     segments = load_segments()
     ledger = [ledger_row(r, companies) for r in load_ledger()]
@@ -296,6 +298,14 @@ def main(preview=False):
     heads = read(ROOT / "data" / "public" / "headcount.csv")
     fin = read(ROOT / "data" / "public" / "financials.csv")
     recs = company_records(companies, segments, ledger, articles, jobs, values, heads, fin)
+    return {"companies": companies, "segments": segments, "ledger": ledger, "articles": articles, "jobs": jobs,
+            "values": values, "heads": heads, "fin": fin, "recs": recs}
+
+
+def main(preview=False):
+    d = load()
+    companies, segments, ledger, articles, jobs, values, heads, fin, recs = (
+        d[k] for k in ("companies", "segments", "ledger", "articles", "jobs", "values", "heads", "fin", "recs"))
 
     env = Environment(loader=FileSystemLoader(HERE / "templates"), autoescape=select_autoescape(["html", "j2"]),
                       trim_blocks=True, lstrip_blocks=True)
@@ -312,7 +322,8 @@ def main(preview=False):
     def render(template, path, page, **ctx):
         (DIST / path).write_text(env.get_template(template).render(**common, page=page, **ctx))
 
-    render("index.html.j2", "index.html", "index", **home_context(recs, segments))
+    said, _ = claims.evaluate(claims.values(recs, segments, functions=FUNCTIONS)) if claims.SPEC.exists() else ({}, [])
+    render("index.html.j2", "index.html", "index", **home_context(recs, segments), claims=said)
     for r in recs.values():
         render("company.html.j2", f"company/{r['id']}.html", "company", r=r, up="../")
     render("feed.html.j2", "feed.html", "feed", **feed_context(recs, articles))

@@ -35,6 +35,7 @@ uv run python -m classify.accept     # tier-1 funding -> ledger (auto); the rest
 uv run python -m ingest.jobs         # open roles -> data/jobs/counts.csv
 uv run python -m ingest.financials   # public pure plays: XBRL facts and annual-report headcount -> data/public/
 uv run python -m ingest.prices       # weekly closes and market value (run after financials) -> data/public/
+uv run python -m analysis.claims         # re-check the home-page statements (--values lists every value they can use)
 uv run python -m classify.review list   # review queue, grouped by event; in Claude Code, /review-events works through it
 uv run python site/build.py --preview   # site -> site/dist (market map, company pages, feed, funding, hiring, methods, status)
 ```
@@ -63,6 +64,7 @@ SEC requires a contact email: set `CONTACT_EMAIL`, or the macOS Keychain item `p
 | `data/public/headcount.csv` | Employee count from each 10-K / 20-F, with the quoted sentence and filing link |
 | `data/public/prices.csv` | Weekly closing price per public company since 2025, with currency |
 | `data/public/market_value.csv` | Latest close x latest SEC share count; blank market cap where shares are unknown (non-US, SPAC-shell CIK) |
+| `analysis/claims.yaml` | Checked statements on the home page, each with the condition it rests on; `analysis/claims.py` re-checks them |
 | `site/` | `build.py` + Jinja templates + server-rendered SVG charts (`charts.py`, shared with lifesci-tools-tracker); output in `site/dist/` (gitignored) |
 | `tools/push_tx_warn.py` | Run daily on the maintainer's Mac (launchd): copies the Texas WARN files into data/warn/tx/ through the GitHub API when they change |
 | `tests/` | Registry, ledger, tier rules, ingest parsers, site build |

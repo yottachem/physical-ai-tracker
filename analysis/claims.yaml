@@ -1,0 +1,168 @@
+# Checked statements for the home page. analysis/claims.py re-checks each one on every build.
+#
+#   market    statements about all tracked companies, shown under the headline figures
+#   <segment> statements about one segment (id with dashes as underscores), shown under its heading
+#
+#   id        unique within its entry
+#   text      what the page says. {t.name:format} fills in a value from the current run; t is this entry, m the
+#             market, other segments by key (defense.raised_12m). **bold** is allowed.
+#             formats: pct (31%), spct (+31%), apct (magnitude), x (3.8x), usd ($620 million), int, f1, ord (third),
+#             lower, poss (Anduril's, Mind Robotics')
+#             See every value: uv run python -m analysis.claims --values
+#   holds     the condition the text depends on, as a Python expression over the same values.
+#             If false, the page shows `fallback` marked "under review" and the daily run opens an issue.
+#   fallback  neutral wording with current numbers, no interpretation ("" hides the statement).
+#
+# Rules: statements are about segments and the market. A company is named only as the holder of a figure (largest
+# round, most open roles), never judged. A rewrite changes text and holds together so the condition states exactly
+# what the text asserts. Never loosen holds just to clear a flag.
+#
+# Money is closed equity rounds with a disclosed amount, last 12 months by month; "reported" covers rounds reported or
+# announced but not closed. Roles are the latest weekly job-board count. Shares are fractions.
+
+# Plausibility ranges, by value name. A value outside its range is treated as a possible data problem, not a
+# finding: every statement that uses it is held for review (data_check).
+checks:
+  raised_12m: [0, 1.0e+11]
+  raised_multiple: [0, 50]
+  top_round: [0, 2.0e+10]
+  roles: [0, 50000]
+  boston_share: [0, 1]
+  top3_share: [0, 1]
+  top_round_share: [0, 1]
+  top_hirer_share: [0, 1]
+  raised_share: [0, 1]
+  roles_share: [0, 1]
+
+claims:
+  market:
+    - id: concentrated
+      holds: m.top3_share >= 0.4 and m.rounds_12m >= 10
+      text: >-
+        Capital is concentrated. {m.rounds_12m:int} closed rounds raised {m.raised_12m:usd} in the last 12 months, and
+        the three largest account for **{m.top3_share:pct}** of it; the largest was {m.top_round_company:poss}
+        {m.top_round:usd} {m.top_round_label}.
+      fallback: >-
+        {m.rounds_12m:int} closed rounds raised {m.raised_12m:usd} in the last 12 months; the three largest account
+        for {m.top3_share:pct}.
+    - id: year_on_year
+      holds: m.raised_multiple >= 1.5
+      text: >-
+        Closed equity in the last 12 months is **{m.raised_multiple:x}** the 12 months before
+        ({m.raised_prev_12m:usd}), counting only rounds with a disclosed amount.
+      fallback: >-
+        Closed equity: {m.raised_12m:usd} in the last 12 months, {m.raised_prev_12m:usd} in the 12 months before.
+    - id: hiring_concentrated
+      holds: m.top_hirer_share >= 0.25
+      text: >-
+        Hiring is concentrated too: {m.top_hirer} lists {m.top_hirer_roles:int} of the {m.roles:int} open roles
+        counted across {m.boards:int} job boards (**{m.top_hirer_share:pct}**).
+      fallback: >-
+        {m.roles:int} open roles across {m.boards:int} job boards; the most at one company is
+        {m.top_hirer_roles:int}.
+    - id: boston_roles
+      holds: m.boston_share < 0.2 and m.boston_frac >= 0.3
+      text: >-
+        {m.boston_n:int} of the {m.n:int} companies are in Greater Boston or have a site there, but only
+        **{m.boston_share:pct}** of counted open roles are in the Boston area.
+      fallback: >-
+        {m.boston_n:int} of {m.n:int} companies carry the Boston tag; {m.boston_roles:int} of {m.roles:int} counted
+        open roles are in the Boston area.
+
+  defense:
+    - id: capital
+      holds: t.raised_rank == 1 and t.raised_share >= 0.4
+      text: >-
+        The largest segment by capital: **{t.raised_share:pct}** of all closed equity in the last 12 months
+        ({t.raised_12m:usd} across {t.rounds_12m:int} rounds), from {t.n:int} companies.
+      fallback: >-
+        {t.raised_12m:usd} closed across {t.rounds_12m:int} rounds in the last 12 months.
+    - id: hiring
+      holds: t.roles_rank == 1 and t.top_hirer_share >= 0.5
+      text: >-
+        Also the largest by hiring, with {t.roles:int} open roles, {t.roles_share:pct} of all counted; {t.top_hirer}
+        alone lists {t.top_hirer_share:pct} of the segment's.
+      fallback: >-
+        {t.roles:int} open roles across {t.boards:int} job boards.
+
+  foundation_models:
+    - id: capital
+      holds: t.raised_rank == 2 and t.raised_multiple >= 3
+      text: >-
+        Second only to defense in capital: {t.raised_12m:usd} closed in the last 12 months, **{t.raised_multiple:x}**
+        the 12 months before, in {t.rounds_12m:int} rounds.
+      fallback: >-
+        {t.raised_12m:usd} closed in the last 12 months; {t.raised_prev_12m:usd} in the 12 months before.
+    - id: few_roles
+      holds: t.raised_share >= 2 * t.roles_share
+      text: >-
+        A far larger share of capital than of hiring: {t.raised_share:pct} of the market's closed equity, but
+        {t.roles_share:pct} of counted open roles ({t.roles:int} across {t.boards:int} boards).
+      fallback: >-
+        {t.raised_share:pct} of closed equity in the last 12 months; {t.roles_share:pct} of counted open roles.
+
+  mobility:
+    - id: one_round
+      holds: t.top_round_share >= 0.5
+      text: >-
+        One round dominates: {t.top_round_company:poss} {t.top_round:usd} is **{t.top_round_share:pct}** of the
+        {t.raised_12m:usd} closed in the last 12 months.
+      fallback: >-
+        {t.raised_12m:usd} closed across {t.rounds_12m:int} rounds in the last 12 months.
+    - id: hiring_public
+      holds: t.roles_rank == 2 and t.public_rank == 1
+      text: >-
+        Second in hiring ({t.roles:int} open roles) and the segment with the most public companies, {t.public_n:int}
+        of {t.n:int}.
+      fallback: >-
+        {t.roles:int} open roles; {t.public_n:int} of {t.n:int} companies are public.
+
+  warehouse_factory:
+    - id: boston
+      holds: t.boston_n_rank == 1 and t.boston_share >= 0.4
+      text: >-
+        The most Boston-heavy segment: {t.boston_n:int} of {t.n:int} companies, and **{t.boston_share:pct}** of its
+        {t.roles:int} open roles are in the Boston area.
+      fallback: >-
+        {t.boston_n:int} of {t.n:int} companies carry the Boston tag; {t.boston_roles:int} of {t.roles:int} open roles
+        are in the Boston area.
+    - id: capital
+      holds: t.raised_multiple >= 3
+      text: >-
+        Closed equity rose to {t.raised_12m:usd} in the last 12 months from {t.raised_prev_12m:usd} the year before;
+        {t.top_round_company:poss} {t.top_round:usd} {t.top_round_label} is {t.top_round_share:pct} of it.
+      fallback: >-
+        {t.raised_12m:usd} closed in the last 12 months; {t.raised_prev_12m:usd} in the 12 months before.
+
+  humanoids:
+    - id: reported
+      holds: t.reported_12m >= 2 * t.raised_12m
+      text: >-
+        Much of the money is not closed yet: **{t.reported_12m:usd}** in rounds reported or announced in the last 12
+        months, against {t.raised_12m:usd} closed.
+      fallback: >-
+        {t.raised_12m:usd} closed and {t.reported_12m:usd} reported or announced in the last 12 months.
+
+  lab_automation:
+    - id: boston
+      holds: t.boston_share_rank == 1 and t.boston_share >= 0.4
+      text: >-
+        The most Boston-centered hiring of any segment with 100 or more open roles: **{t.boston_share:pct}** of
+        {t.roles:int} are in the Boston area.
+      fallback: >-
+        {t.boston_roles:int} of {t.roles:int} open roles are in the Boston area.
+
+  healthcare:
+    - id: no_rounds
+      holds: t.rounds_12m == 0
+      text: >-
+        No closed equity rounds with a disclosed amount in the last 12 months.
+      fallback: >-
+        {t.raised_12m:usd} closed across {t.rounds_12m:int} rounds in the last 12 months.
+    - id: one_hirer
+      holds: t.top_hirer_share >= 0.9
+      text: >-
+        Counted hiring is nearly all one company: {t.top_hirer} lists **{t.top_hirer_share:pct}** of the segment's
+        {t.roles:int} open roles.
+      fallback: >-
+        {t.roles:int} open roles across {t.boards:int} job boards.

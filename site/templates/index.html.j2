@@ -1,5 +1,15 @@
 {% extends "base.html.j2" %}
 {% import "_macros.html.j2" as m %}
+{% macro said(rows) %}
+{% set shown = rows | selectattr("html") | list %}
+{% if shown %}
+<ul class="claims">
+{% for c in shown %}
+<li>{{ c.html | safe }}{% if c.status != "ok" %} <span class="flag">under review</span>{% endif %}{% if preview %}<br><code class="cond">holds: {{ c.holds }}</code>{% endif %}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endmacro %}
 {% block path %}{% endblock %}
 {% block title %}Market map{% endblock %}
 {% block body %}
@@ -12,6 +22,12 @@
   <div class="fig"><b>{{ figs.boston_roles | fmt }}</b><span>of them in Greater Boston</span></div>
 </div>
 
+{% if claims.market %}
+<h2>What the data says</h2>
+<p class="sub">Each statement is re-checked against the data on every daily run. When the data stops supporting one, it's replaced with the plain numbers and marked under review until it's rewritten.</p>
+{{ said(claims.market) }}
+{% endif %}
+
 <div class="filters" role="group" aria-label="Filter companies">
   <label>Location <select name="boston"><option value="">All</option><option value="boston">Greater Boston</option></select></label>
   <label>Ownership <select name="own"><option value="">All</option><option value="private">Private</option><option value="public">Public</option><option value="subsidiary">Subsidiary</option><option value="division">Division</option></select></label>
@@ -22,6 +38,7 @@
 <section data-group>
 <h2 id="{{ g.id }}">{{ g.name }}</h2>
 <p class="sub">Customers: {{ g.customers }}</p>
+{{ said(claims.get(g.id | replace("-", "_"), [])) }}
 <div class="tw"><table>
 <thead><tr><th>Company</th><th class="n">Latest valuation</th><th class="n">Closed equity raised</th><th class="n">Open roles</th><th></th><th>Latest news</th></tr></thead>
 <tbody>

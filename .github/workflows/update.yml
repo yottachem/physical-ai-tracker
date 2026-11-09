@@ -54,6 +54,8 @@ jobs:
           else
             echo "Not Monday; skipping job boards, financials and prices"
           fi
+      - name: Check statements
+        run: uv run python -m analysis.claims
       - name: Test
         run: uv run pytest -q
       - name: Commit data
@@ -65,6 +67,14 @@ jobs:
           git commit -m "Data update $(date -u +%F)"
           git pull --rebase   # main may have moved during the run (registry edits)
           git push
+      - name: Open an issue for statements under review
+        if: always() && github.event_name == 'schedule' && hashFiles('analysis/results/review.json') != ''
+        run: |
+          uv run python -m analysis.claims --markdown > review.md
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --search "Statements under review in:title" --json number --jq length)
+          if [ -s review.md ] && [ "$open" = "0" ]; then
+            gh issue create -R "$GITHUB_REPOSITORY" --title "Statements under review $(date -u +%F)" --body-file review.md
+          fi
       - name: Open an issue if the run fails
         if: failure() && github.event_name == 'schedule'
         run: gh issue create -R "$GITHUB_REPOSITORY" --title "Update failed $(date -u +%F)" --body "See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
