@@ -1,6 +1,7 @@
 name: update
-# Daily: SEC filings -> news -> acceptance rules -> (Mondays) job boards -> test -> commit data.
-# Commits data/news/articles.csv, data/review/queue.csv, data/jobs/counts.csv and auto-accepted ledger rows, so the
+# Daily: SEC filings -> news -> acceptance rules -> (Mondays) job boards and public financials -> test -> commit data.
+# Commits data/news/articles.csv, data/review/queue.csv, data/jobs/counts.csv, data/public/*.csv and auto-accepted
+# ledger rows, so the
 # site's history accumulates in git. Raw snapshots stay in the runner (gitignored).
 # Off until the owner turns it on: scheduled runs need repo variable SCHEDULE_ON=true.
 # Secret: CONTACT_EMAIL (SEC User-Agent; never written to the repo).
@@ -10,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       jobs:
-        description: "Also fetch job boards (otherwise Mondays only)"
+        description: "Also fetch job boards and public financials (otherwise Mondays only)"
         type: boolean
         default: false
       news_days:
@@ -42,12 +43,13 @@ jobs:
         run: uv run python -m ingest.news --sources bing,gnews,gdelt --days "${{ inputs.news_days || '3' }}"
       - name: Acceptance rules
         run: uv run python -m classify.accept
-      - name: Job boards (Mondays, or when asked)
+      - name: Job boards and public financials (Mondays, or when asked)
         run: |
           if [ "${{ inputs.jobs }}" = "true" ] || [ "$(date -u +%u)" = "1" ]; then
             uv run python -m ingest.jobs
+            uv run python -m ingest.financials
           else
-            echo "Not Monday; skipping job boards"
+            echo "Not Monday; skipping job boards and financials"
           fi
       - name: Test
         run: uv run pytest -q
@@ -55,7 +57,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add data/news data/review data/jobs reference/ledger.csv
+          git add data/news data/review data/jobs data/public reference/ledger.csv
           if git diff --cached --quiet; then echo "No data changes"; exit 0; fi
           git commit -m "Data update $(date -u +%F)"
           git pull --rebase   # main may have moved during the run (registry edits)

@@ -11,8 +11,8 @@ Which physical AI companies are growing, raising, hiring or shrinking? This proj
 | Funding and valuations | Announcements, accepted by source tier (below) | Daily |
 | Open roles | Public job boards: Greenhouse, Lever, Ashby, Workday, Workable, Rippling, BambooHR, Teamtailor | Weekly |
 | Layoffs | State WARN notices | Weekly |
-| Headcount | 10-K human capital (public); company-stated figures (private) | Monthly / on detection |
-| Public companies | SEC EDGAR financials; derived month-end market value | Monthly |
+| Headcount | 10-K / 20-F employee count (public); company-stated figures (private) | Weekly / on detection |
+| Public companies | SEC EDGAR XBRL: revenue, net income, R&D, cash, shares outstanding | Weekly |
 
 ## Acceptance
 
@@ -31,6 +31,7 @@ uv run python -m ingest.filings      # new SEC filings -> data/review/queue.csv
 uv run python -m ingest.news         # headlines -> data/news/articles.csv (--days, --sources)
 uv run python -m classify.accept     # tier-1 funding -> ledger (auto); the rest -> review queue
 uv run python -m ingest.jobs         # open roles -> data/jobs/counts.csv
+uv run python -m ingest.financials   # public pure plays: XBRL facts and annual-report headcount -> data/public/
 uv run python -m classify.review list   # review queue, grouped by event; in Claude Code, /review-events works through it
 ```
 
@@ -54,6 +55,8 @@ SEC requires a contact email: set `CONTACT_EMAIL`, or the macOS Keychain item `p
 | `data/news/articles.csv` | Matched headlines: date, company, publisher link, source tier, event tags |
 | `data/review/queue.csv` | Candidate events awaiting review, and the record of auto, duplicate, accepted and rejected decisions |
 | `data/jobs/counts.csv` | Open roles per company per run: total, Boston, by function |
+| `data/public/financials.csv` | XBRL facts per company and calendar frame (revenue, net income, R&D, cash, shares), with filing accession |
+| `data/public/headcount.csv` | Employee count from each 10-K / 20-F, with the quoted sentence and filing link |
 | `tests/` | Registry, ledger and tier rules |
 
 ## License
