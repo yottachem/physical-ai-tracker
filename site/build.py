@@ -80,6 +80,11 @@ def show_date(d):
     return d or "undated"
 
 
+def month(d):
+    """'Jul 2026' from 'YYYY-MM[-DD]'."""
+    return date(int(d[:4]), int(d[5:7]), 1).strftime("%b %Y")
+
+
 def half(d):
     """'2026 H2' when the month is known, else the year, else None."""
     if len(d) >= 7:
@@ -118,6 +123,8 @@ def company_records(companies, segments, ledger, articles, jobs, values, heads, 
         own = c["ownership"]
         stage = (f"Public ({c['ticker']})" if own == "public" else f"{OWNERSHIP[own]} of {c['parent']}" if c["parent"]
                  else rnd or OWNERSHIP[own])
+        if c.get("wound_down"):
+            stage = f"Wound down {month(c['wound_down'])}" + (f", ex-{c['ticker']}" if own == "public" else "")
         series = jobs.get(cid, [])
         counted = c["careers"] and c["careers"]["ats"] != "other"
         news = sorted((a for a in articles if a["company"] == cid and a["url"]), key=lambda a: a["date"], reverse=True)
@@ -137,7 +144,7 @@ def company_records(companies, segments, ledger, articles, jobs, values, heads, 
             "events": [r for r in rows if r["type"] not in ("funding", "valuation")],
             "raised": sum(r["amount"] for r in closed), "raised_n": len(closed),
             "raised_floor": any(r["qualifier"] == "at_least" for r in closed),
-            "valuation": val, "stage": stage, "ownership": own,
+            "valuation": val, "stage": stage, "ownership": own, "wound_down": c.get("wound_down"),
             "counted": bool(counted) and c["hiring_scope"] == "company",
             "careers_url": c["careers"]["token"] if c["careers"] and c["careers"]["ats"] == "other" else None,
             "roles": series[-1][1] if series and counted else None, "boston_roles": series[-1][2] if series and counted else None,

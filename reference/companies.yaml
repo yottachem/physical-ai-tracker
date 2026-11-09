@@ -6,6 +6,8 @@
 # ticker: US symbol (needs cik), or SYMBOL.EXCHANGE for non-US listings (688836.SS); no SEC filings for those
 # careers: {ats: greenhouse | lever | ashby | workable | workday | rippling | bamboohr | teamtailor | smartrecruiters,
 #   token: board token} or {ats: other, token: careers page URL} (listed on the site, not counted); null = no public board
+# wound_down: date operations ended (assets assigned or liquidated, company dissolved); needs a ledger status row on or
+#   before it. Acquired companies are not wound down: they become subsidiaries or divisions of the buyer
 # verify: fields not yet confirmed against a primary source; LAUNCH_GATE=1 pytest fails while any remain
 
 companies:
@@ -1272,6 +1274,7 @@ companies:
     hq: Waltham, MA
     boston: true
     ownership: public
+    wound_down: '2026-07-21'
     parent: null
     ticker: RBOT
     cik: 1812173

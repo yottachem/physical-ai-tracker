@@ -46,6 +46,10 @@ def test_company_fields(cid):
     assert c["hiring_scope"] in {"company", "parent"}
     if c["ownership"] == "division":
         assert c["hiring_scope"] == "parent", "a division's board is its parent's"
+    if c.get("wound_down"):
+        assert re.fullmatch(r"\d{4}-\d{2}(-\d{2})?", c["wound_down"]), "wound_down is a quoted date string"
+        assert any(r["company"] == cid and r["type"] == "status" and r["date"] and r["date"] <= c["wound_down"]
+                   for r in LEDGER), "a wound-down company cites a ledger status row on or before the date"
 
 
 @pytest.mark.parametrize("cid", COMPANIES)

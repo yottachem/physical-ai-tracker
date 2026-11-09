@@ -8,6 +8,7 @@ spec.loader.exec_module(build)
 
 def test_half_and_equity():
     assert build.half("2026-08-03") == "2026 H2" and build.half("2026-03") == "2026 H1" and build.half("2026") == "2026"
+    assert build.month("2026-07-21") == "Jul 2026" and build.month("2026-01") == "Jan 2026"
     assert build.is_equity({"type": "funding", "round": "Series B", "detail": "$75M Series B"})
     assert not build.is_equity({"type": "funding", "round": "Bridge loan (Hyundai)", "detail": ""})
     assert not build.is_equity({"type": "funding", "round": "", "detail": "$20M ARPA-H award"})

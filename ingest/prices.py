@@ -30,7 +30,8 @@ UA = {"User-Agent": "physical-ai-tracker (+https://github.com/yottachem/physical
 
 
 def in_scope(c):
-    return c["ownership"] == "public" and c.get("ticker") and c["hiring_scope"] == "company"
+    return (c["ownership"] == "public" and c.get("ticker") and c["hiring_scope"] == "company"
+            and not c.get("wound_down"))  # a shell's OTC quote is not a market value
 
 
 def closes(ticker):
@@ -63,7 +64,8 @@ def main(ids):
     companies = load_companies()
     fin = read(FIN)
     prices = [r for r in read(PRICES) if ids and r["company"] not in ids]  # a full run rebuilds; a subset keeps the rest
-    values = {r["company"]: r for r in read(VALUE)}
+    values = {r["company"]: r for r in read(VALUE)
+              if r["company"] in companies and in_scope(companies[r["company"]])}  # drop companies that left scope
     errors = {}
     for cid in ids or companies:
         c = companies[cid]
