@@ -1,5 +1,6 @@
 name: update
-# Daily: SEC filings -> WARN notices (CA, TX) -> news -> acceptance rules -> (Mondays) job boards and public financials -> test -> commit data.
+# Daily: SEC filings -> WARN notices (CA, TX) -> news -> acceptance rules -> (Mondays) job boards and public
+# financials -> test -> commit data.
 # Commits data/news/articles.csv, data/review/queue.csv, data/jobs/counts.csv, data/public/*.csv and auto-accepted
 # ledger rows, so the site's history accumulates in git. Raw snapshots stay in the runner (gitignored).
 # Scheduled runs need repo variable SCHEDULE_ON=true (on since 2026-11-07).
