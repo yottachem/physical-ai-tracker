@@ -189,7 +189,8 @@ companies:
     other_domains: []
     news:
       terms: ['"Potato"']
-      context: [lab, robot, AI scientist]
+      context: [robot, scientist, AI, synthetic biology, biotech]
+      exclude: [Potato Lab, Kang Tae-oh, Lee Sun-bin, mashed, potato seed, potatoes]
     careers: null
     hiring_scope: company
     newsroom_feed: null
@@ -612,6 +613,7 @@ companies:
     news:
       terms: ['"OpenAI"']
       context: [device, Jony Ive, io]
+      exclude: [listening device, recording device, spy device, bugging, Alfozan]
     careers: null
     hiring_scope: parent
     newsroom_feed: null
@@ -993,6 +995,9 @@ companies:
     other_domains: []
     news:
       terms: ['"Cellino"']
+      context: [cell, stem, iPSC, biomanufactur, therapy, therapies, tissue, ARPA-H, immune, biotech, autologous]
+      exclude: [Massimo Cellino, Cellino and Barnes, Cellino & Barnes, Cellino v. Barnes, Cellino Law, Ross Cellino,
+        Timothy Cellino, Lucas Cellino, Leeds]
     careers: null
     hiring_scope: company
     newsroom_feed: null
@@ -1191,6 +1196,7 @@ companies:
     other_domains: []
     news:
       terms: ['"Motional"']
+      exclude: [files motional]   # a court story's typo for "motion"
     careers: {ats: greenhouse, token: motional}
     hiring_scope: company
     newsroom_feed: 'https://www.motional.com/rss.xml'

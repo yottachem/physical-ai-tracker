@@ -33,3 +33,11 @@ def test_newsroom_rss_and_atom(monkeypatch):
 def test_newsroom_without_feed_fetches_nothing(monkeypatch):
     monkeypatch.setattr(news.requests, "get", lambda *a, **k: 1 / 0)
     assert news.newsroom({"name": "Acme", "newsroom_feed": None}, 7) == []
+
+
+def test_exclude_and_context():
+    potato = {"news": {"terms": ['"Potato"'], "context": ["scientist", "AI"], "exclude": ["Potato Lab"]}}
+    assert news.relevant(potato, "Potato Just Launched the Tool It Wishes It Had as a Lab Scientist")
+    assert not news.relevant(potato, "Netflix drops trailer for K-drama 'The Potato Lab'")
+    assert not news.relevant(potato, "Instant mashed potatoes started in a USDA lab")  # no context word
+    assert news.excluded(potato, "The Potato Lab episodes 1-2 recap")

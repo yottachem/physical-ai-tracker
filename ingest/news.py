@@ -53,9 +53,13 @@ def _has(text, phrase):
     return re.search(rf"(?<![\w-]){re.escape(phrase)}(?![\w-])", text, re.I) is not None
 
 
+def excluded(c, text):
+    return any(_has(text, x) for x in c["news"].get("exclude", []))
+
+
 def relevant(c, title, summary=""):
     text = f"{title} {summary}"
-    if any(_has(text, x) for x in c["news"].get("exclude", [])):
+    if excluded(c, text):
         return False
     if not any(all(_has(text, p) for p in phrases(t)) for t in c["news"]["terms"]):
         return False
@@ -236,7 +240,9 @@ def main(ids, sources, days, resolve_max=400):
     recent = (date.today() - timedelta(days=3)).isoformat()
     companies = load_companies()
     fetch = {"bing": bing, "gnews": gnews, "gdelt": Gdelt(), "newsroom": newsroom}
-    store = read_articles()
+    # An exclude phrase added later also clears the stored articles it matches (titles only: summaries aren't kept)
+    store = [a for a in read_articles()
+             if a["company"] in companies and not excluded(companies[a["company"]], a["title"])]
     by_url = {(a["company"], a["url"]): a for a in store if a["url"]}
     by_title = {(a["company"], norm_title(a["title"])): a for a in store}
     today = date.today().isoformat()
