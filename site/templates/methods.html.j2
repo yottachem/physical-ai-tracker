@@ -37,7 +37,7 @@
 <ul>
 <li><b>Closed equity raised</b> sums closed rounds with a disclosed amount. Debt, loans, grants and awards are excluded. A "&ge;" marks a total that includes an "at least" figure.</li>
 <li><b>Market value</b> is the latest weekly close times common shares outstanding from the latest SEC filing. Prices come from an unofficial Yahoo Finance endpoint; listings outside the US show a price only.</li>
-<li><b>Open roles</b> are the postings on a company's public job board on the count date. A board can lag hiring, list evergreen roles or cover several sites.</li>
+<li><b>Open roles</b> are the postings on a company's public job board on the count date. A board can lag hiring, list evergreen roles or cover several sites. Function is inferred from the job title by keyword rules (<a href="{{ repo }}/blob/main/ingest/jobs.py">ingest/jobs.py</a>); titles that fit none count as Other.</li>
 <li><b>Headcount</b> is quoted from annual reports with the sentence it came from, or from company statements; it is a dated point, not a series.</li>
 </ul>
 

@@ -22,17 +22,54 @@ from ingest.common import RAW, ROOT, load_companies, write_snapshot
 
 UA = {"User-Agent": "physical-ai-tracker (job counts; github.com/yottachem/physical-ai-tracker)"}
 
-# First match wins, so the specific families come before the broad ones
+# First match wins, so the specific families come before the broad ones. The second block holds domain words (radar,
+# operator, commercial) that decide only when the title names no function the first block knows.
 FUNCTIONS = [
+    ("regulatory-clinical", r"regulatory|clinical (affairs|research|study|studies|trial|evidence|data|operations|"
+                            r"science|development)|post.?market|surveillance|vigilance|\braqa\b|\bqa/ra\b|"
+                            r"\bra specialist|medical affairs|compliance|biostatistic"),
+    ("go-to-market", r"sales|territory|market development|\baccount (executive|manager|director|lead)|key account|"
+                     r"business development|marketing|\bbd\b|da vinci specialist|contract negotiat|market access|"
+                     r"\bmarket insights?\b|reimbursement|health economics|value (&|and) economics|"
+                     r"competitive insights|tender|commercial operations|account management|"
+                     r"strategic accounts"),
     ("research", r"\bresearch (scientist|engineer)|\bscientist\b|\bphd\b|research"),
-    ("ml-ai", r"machine learning|\bml\b|\bai\b|deep learning|perception|computer vision|\bllm\b|reinforcement|foundation model"),
+    ("ml-ai", r"machine learning|\bml\b|\bai\b|deep learning|perception|computer vision|\bllm\b|reinforcement|"
+              r"foundation model|annotation|labell?ing|data scien"),
     ("robotics-controls", r"robot|controls?\b|motion planning|autonomy|navigation|slam|manipulation|locomotion"),
-    ("hardware", r"mechanical|electrical|hardware|mechatronic|actuator|firmware|embedded|optic|sensor|pcb|thermal|materials?\b|battery|power electronics"),
-    ("software", r"software|\bswe\b|backend|front.?end|full.?stack|platform|infrastructure|devops|\bsre\b|data engineer|security engineer"),
-    ("field-deployment", r"field|deployment|customer success|support engineer|solutions|integration|service"),
-    ("manufacturing-ops", r"manufactur|production|technician|assembly|supply chain|quality|procurement|operations|logistics|facilities|\bnpi\b|test engineer"),
-    ("go-to-market", r"sales|account|business development|marketing|partnership|\bbd\b|commercial|growth"),
-    ("g-and-a", r"finance|legal|counsel|recruit|talent|people|\bhr\b|accounting|payroll|admin|executive assistant|office"),
+    ("product-design", r"product manag|product owner|product lead|program manag|project manag|\btpm\b|"
+                       r"product design|industrial design|user experience|\bux\b|(visual|interaction|product|"
+                       r"industrial|graphic|experience) designer|human factors|usability|technical writ|documentation"),
+    ("hardware", r"mechanical|electrical|hardware|mechatronic|actuator|firmware|embedded|optic|sensor|pcb|thermal|"
+                 r"materials?\b|battery|power electronics|fpga|asic|ultrasound|design engineer|\bnpd\b"),
+    ("software", r"software|\bswe\b|backend|front.?end|full.?stack|platform|infrastructure|devops|\bsre\b|"
+                 r"data engineer|security engineer|developer|cloud|\bit\b|business systems?|\bsap\b|"
+                 r"analytics engineer"),
+    ("field-deployment", r"field|deployment|customer success|support engineer|technical support|customer support|"
+                         r"solutions?|integration|service|applications? (engineer|specialist)|trainer|training|"
+                         r"education|implementation|onsite|install|consultant|learning (content|product)"),
+    ("manufacturing-ops", r"manufactur|production|technician|assembl|supply chain|quality|procurement|operations|"
+                          r"logistics|facilities|\bnpi\b|test engineer|supplier|process engineer|validation|"
+                          r"inspector|\biqc\b|warehouse|material handler|materialista|machinist|planner|buyer|"
+                          r"sourcing|monteur|monta[zž]|industrial engineer|equipment engineer|component engineer|"
+                          r"\bq[ac]\b|shipping|lagerlogistik|produktion|feinoptik|category manag"),
+    ("g-and-a", r"financ|legal|counsel|recruit|talent|people|\bhr\b|accounting|accountant|payroll|admin|"
+                r"executive assistant|office|tax\b|treasury|controller|audit|paralegal|kaufm|workplace|"
+                r"environmental|health and safety|\behs\b|communications|compensation|accounts payable|"
+                r"accounts receivable|revenue analyst|fixed assets|fp&a|business partner|chief of staff|"
+                r"corporate (strategy|development)|"
+                r"investor|public affairs|government|\bhrb|human resources"),
+
+    ("manufacturing-ops", r"welder|metrology|inspection|construction|\bbim\b|cell operator|machine operator|inventory"),
+    ("hardware", r"radar|aerodynamic|propulsion|structur(al|es)|avionics|\bgnc\b|guidance|warhead|mass properties|"
+                 r"low observables|antenna|actuation|closures|flight sciences|air vehicle|rocket|munition|energetic|"
+                 r"payload|electronic|\brf\b|systems engineer|safety engineer|reliability|instrument"),
+    ("robotics-controls", r"autonomous (vehicle|driving)|mapping|simulation|state estimation"),
+    ("ml-ai", r"data (creator|collection)"),
+    ("software", r"android|\bios\b|mobile|test automation|information security|cyber|\bsecurity\b"),
+    ("field-deployment", r"operator|fleet|maintenance|launch|forward deployed|site acquisition|readiness|mission ops"),
+    ("go-to-market", r"commercial|growth|partnership|partner (program|relationship)|pricing|proposal|capture"),
+    ("product-design", r"program (director|coordinator|lead)|project lead|strategic project"),
 ]
 BOSTON = re.compile(r"boston|cambridge, ?ma|massachusetts|\bma\b|waltham|somerville|watertown|woburn|burlington, ?ma|"
                     r"bedford, ?ma|billerica|wilmington, ?ma|north reading|beverly|medford|lexington, ?ma|charlestown", re.I)

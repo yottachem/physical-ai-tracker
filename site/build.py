@@ -49,7 +49,9 @@ TYPE_LABELS = {"funding": "Funding", "valuation": "Valuation", "revenue": "Reven
                "listing": "Listing", "market": "Market", "status": "Status"}
 FUNCTIONS = {"ml-ai": "ML and AI", "software": "Software", "robotics-controls": "Robotics and controls",
              "hardware": "Hardware", "research": "Research", "manufacturing-ops": "Manufacturing and ops",
-             "field-deployment": "Field deployment", "go-to-market": "Go to market", "g-and-a": "G&A", "other": "Other"}
+             "field-deployment": "Field deployment", "product-design": "Product and design",
+             "regulatory-clinical": "Regulatory and clinical", "go-to-market": "Go to market", "g-and-a": "G&A",
+             "other": "Other"}
 # Hand-curated inputs listed on the status page: everything else is fetched each run
 CURATED = [("reference/companies.yaml", "Company registry: segments, HQ, Boston flag, ownership, domains, news terms, boards"),
            ("reference/segments.yaml", "Customer segments from the Nov 2026 market map"),
