@@ -38,7 +38,7 @@ agility-robotics,AGLT,2026-10-12,10.66,USD
 agility-robotics,AGLT,2026-10-19,10.26,USD
 agility-robotics,AGLT,2026-10-26,8.15,USD
 agility-robotics,AGLT,2026-11-02,9.9,USD
-agility-robotics,AGLT,2026-11-09,8.55,USD
+agility-robotics,AGLT,2026-11-09,8.4305,USD
 aurora-innovation,AUR,2025-01-01,8.39,USD
 aurora-innovation,AUR,2025-01-08,6.41,USD
 aurora-innovation,AUR,2025-01-15,7.26,USD
@@ -136,7 +136,7 @@ aurora-innovation,AUR,2026-10-14,5.01,USD
 aurora-innovation,AUR,2026-10-21,5.12,USD
 aurora-innovation,AUR,2026-10-28,4.27,USD
 aurora-innovation,AUR,2026-11-04,4.41,USD
-aurora-innovation,AUR,2026-11-09,4.64,USD
+aurora-innovation,AUR,2026-11-09,4.635,USD
 ginkgo-bioworks,DNA,2025-01-01,11.2,USD
 ginkgo-bioworks,DNA,2025-01-08,8.56,USD
 ginkgo-bioworks,DNA,2025-01-15,11.58,USD
@@ -234,7 +234,7 @@ ginkgo-bioworks,DNA,2026-10-14,9.86,USD
 ginkgo-bioworks,DNA,2026-10-21,11.27,USD
 ginkgo-bioworks,DNA,2026-10-28,10.76,USD
 ginkgo-bioworks,DNA,2026-11-04,11.29,USD
-ginkgo-bioworks,DNA,2026-11-09,12.44,USD
+ginkgo-bioworks,DNA,2026-11-09,12.43,USD
 intuitive-surgical,ISRG,2025-01-01,531.88,USD
 intuitive-surgical,ISRG,2025-01-08,538.88,USD
 intuitive-surgical,ISRG,2025-01-15,604.12,USD
@@ -332,7 +332,7 @@ intuitive-surgical,ISRG,2026-10-14,438.0,USD
 intuitive-surgical,ISRG,2026-10-21,445.88,USD
 intuitive-surgical,ISRG,2026-10-28,440.75,USD
 intuitive-surgical,ISRG,2026-11-04,452.8,USD
-intuitive-surgical,ISRG,2026-11-09,461.495,USD
+intuitive-surgical,ISRG,2026-11-09,461.5332,USD
 kodiak-ai,KDK,2025-09-22,7.42,USD
 kodiak-ai,KDK,2025-09-29,7.43,USD
 kodiak-ai,KDK,2025-10-06,9.04,USD
@@ -392,7 +392,7 @@ kodiak-ai,KDK,2026-10-12,1.35,USD
 kodiak-ai,KDK,2026-10-19,1.02,USD
 kodiak-ai,KDK,2026-10-26,1.22,USD
 kodiak-ai,KDK,2026-11-02,1.28,USD
-kodiak-ai,KDK,2026-11-09,1.385,USD
+kodiak-ai,KDK,2026-11-09,1.3864,USD
 pony-ai,PONY,2025-01-01,15.26,USD
 pony-ai,PONY,2025-01-08,14.13,USD
 pony-ai,PONY,2025-01-15,13.28,USD
@@ -490,7 +490,7 @@ pony-ai,PONY,2026-10-14,5.28,USD
 pony-ai,PONY,2026-10-21,5.07,USD
 pony-ai,PONY,2026-10-28,4.55,USD
 pony-ai,PONY,2026-11-04,4.75,USD
-pony-ai,PONY,2026-11-09,4.84,USD
+pony-ai,PONY,2026-11-09,4.855,USD
 serve-robotics,SERV,2025-01-01,18.61,USD
 serve-robotics,SERV,2025-01-08,16.41,USD
 serve-robotics,SERV,2025-01-15,19.41,USD
@@ -588,7 +588,7 @@ serve-robotics,SERV,2026-10-14,3.05,USD
 serve-robotics,SERV,2026-10-21,2.94,USD
 serve-robotics,SERV,2026-10-28,2.61,USD
 serve-robotics,SERV,2026-11-04,3.22,USD
-serve-robotics,SERV,2026-11-09,3.458,USD
+serve-robotics,SERV,2026-11-09,3.452,USD
 symbotic,SYM,2025-01-01,25.59,USD
 symbotic,SYM,2025-01-08,25.13,USD
 symbotic,SYM,2025-01-15,33.43,USD
@@ -686,7 +686,7 @@ symbotic,SYM,2026-10-14,39.69,USD
 symbotic,SYM,2026-10-21,38.98,USD
 symbotic,SYM,2026-10-28,37.52,USD
 symbotic,SYM,2026-11-04,36.82,USD
-symbotic,SYM,2026-11-09,38.69,USD
+symbotic,SYM,2026-11-09,38.615,USD
 unitree,688836.SS,2026-08-16,672.41,CNY
 unitree,688836.SS,2026-08-23,585.0,CNY
 unitree,688836.SS,2026-08-30,530.3,CNY
