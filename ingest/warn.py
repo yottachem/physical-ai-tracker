@@ -64,6 +64,8 @@ warnings.filterwarnings("ignore", message="Data Validation extension", module="o
 def sheet_rows(url, name):
     resp = requests.get(url, headers=UA, timeout=60)
     resp.raise_for_status()
+    if not resp.content.startswith(b"PK"):  # e.g. a block page served to cloud runners; logged as a source error
+        raise ValueError(f"not a spreadsheet ({resp.headers.get('Content-Type', '?')}, {len(resp.content)} bytes)")
     wb = openpyxl.load_workbook(io.BytesIO(resp.content), read_only=True, data_only=True)
     ws = next((s for s in wb.worksheets if name and s.title.strip() == name), wb.worksheets[0])
     yield from ws.iter_rows(values_only=True)
