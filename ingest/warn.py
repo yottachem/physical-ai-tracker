@@ -4,8 +4,9 @@ Sources (public state spreadsheets, fetched as published):
   CA  EDD "Detailed WARN Report", current fiscal year (July 1 on), updated Tuesdays and Thursdays
   TX  TWC WARN Act listings, current and previous calendar year, read from data/warn/tx/: twc.texas.gov serves
       GitHub runners an empty page, so tools/push_tx_warn.py copies the files into the repo daily from a Mac
-  MA  the fiscal-year WARN report spreadsheet, saved by hand into data/warn/ma/ (mass.gov refuses scripted
-      downloads). Every .xlsx there is read; columns are found by their headers, so layout changes are tolerated.
+  MA  the WARN report (fiscal year to date, July 1 on; downloaded as "WARN Report for the Week Ending ....csv"),
+      saved by hand into data/warn/ma/ (mass.gov refuses scripted downloads). Every .csv and .xlsx there is read and
+      repeated rows are dropped; columns are found by their headers, so layout changes are tolerated.
 
 An employer matches a tracked company when its name, after dropping a trailing " - site" and legal suffixes,
 starts with the company's name or one of its quoted news terms. One-word names of companies with ambiguous names
@@ -15,6 +16,7 @@ their notices describe the parent. Every match is queued for review; nothing rea
 Usage: uv run python -m ingest.warn [company-id ...]
 """
 import argparse
+import csv
 import hashlib
 import io
 import json
@@ -65,7 +67,7 @@ MA_PAGE = "https://www.mass.gov/info-details/worker-adjustment-and-retraining-ac
 MA_FIELDS = {  # field: header keywords, first matching column wins
     "employer": ("company", "employer"),
     "notice": ("received", "notice date", "warn date"),
-    "effective": ("effective", "layoff date", "separation"),
+    "effective": ("effective", "layoff date", "layoffs", "separation"),
     "count": ("employees", "affected", "number", "#"),
     "site": ("location", "city", "address", "town"),
     "kind": ("type", "closure", "layoff/"),
@@ -73,8 +75,24 @@ MA_FIELDS = {  # field: header keywords, first matching column wins
 
 
 def ma():
-    for path in sorted(MA_DIR.glob("*.xlsx")):
-        yield from ma_rows(sheet_values(path.read_bytes(), None), f"{MA_PAGE}#{path.name}")
+    seen = set()  # each weekly file repeats the fiscal year so far
+    for path in sorted([*MA_DIR.glob("*.xlsx"), *MA_DIR.glob("*.csv")]):
+        rows = list(sheet_values(path.read_bytes(), None)) if path.suffix == ".xlsx" else csv_values(path.read_bytes())
+        if not any(header_map(r).keys() >= {"employer", "notice"} for r in rows[:20]):
+            raise ValueError(f"no header row with company and notice-date columns in data/warn/ma/{path.name}")
+        for n in ma_rows(rows, MA_PAGE):
+            key = (n["employer"], n["notice"], n["site"], str(n["count"]))
+            if key not in seen:
+                seen.add(key)
+                yield n
+
+
+def csv_values(content):
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = content.decode("cp1252")  # mass.gov exports are Windows-encoded ("Labour\xe9")
+    return list(csv.reader(io.StringIO(text)))
 
 
 def ma_rows(rows, url):
@@ -89,9 +107,13 @@ def ma_rows(rows, url):
         get = lambda f: r[cols[f]] if f in cols and cols[f] < len(r) else None  # noqa: E731
         notice = as_date(get("notice"))
         if notice and get("employer"):
-            yield dict(state="MA", url=url, employer=str(get("employer")).strip(), notice=notice,
-                       effective=as_date(get("effective")) or "", count=get("count") or "",
-                       kind=re.sub(r"\s+", " ", str(get("kind") or "")).strip(),
+            employer = str(get("employer")).strip()
+            updated = employer.lower().startswith("*updated*")
+            kind = re.sub(r"\s+", " ", str(get("kind") or "")).strip()
+            effective = get("effective")
+            yield dict(state="MA", url=url, employer=employer[9:].strip() if updated else employer, notice=notice,
+                       effective=as_date(effective) or re.sub(r"\s+", " ", str(effective or "")).strip(),
+                       count=get("count") or "", kind=", ".join(filter(None, [kind, "updated notice" if updated else ""])),
                        site=re.sub(r"\s+", " ", str(get("site") or "")).strip())
 
 

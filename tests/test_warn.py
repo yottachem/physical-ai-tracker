@@ -74,3 +74,18 @@ def test_tx_reads_repo_copy(tmp_path, monkeypatch):
     [row] = list(warn.tx())
     assert row["employer"] == "Acme Robotics" and row["notice"] == "2026-11-02" and row["site"] == "Austin, Travis County"
     assert row["url"].endswith(f"warn-act-listings-{date.today().year}-twc.xlsx")
+
+
+def test_ma_csv_export(tmp_path, monkeypatch):
+    from ingest import warn
+    monkeypatch.setattr(warn, "MA_DIR", tmp_path)
+    text = ("RECEIVED,EMPLOYER,CITY/TOWN,REGION,DATE(S) OF LAYOFFS,# EMPLOYEES IMPACTED\r\n"
+            '9/25/2026,*Updated* Revvity,"Lawrence, MA",Northeast,12/09/2025 - 06/30/2027,53\r\n'
+            '7/1/2026,"Labouré College of Healthcare, Inc.","Milton, MA",Southeast,8/30/2026,65\r\n,,,,,\r\n')
+    for week in ("10-30", "11-06"):  # weekly files repeat the fiscal year so far
+        (tmp_path / f"WARN Report for the Week Ending {week}-2026.csv").write_bytes(text.encode("cp1252"))
+    rows = list(warn.ma())
+    assert [(r["employer"], r["notice"], r["effective"], r["kind"]) for r in rows] == [
+        ("Revvity", "2026-09-25", "12/09/2025 - 06/30/2027", "updated notice"),
+        ("Labouré College of Healthcare, Inc.", "2026-07-01", "2026-08-30", "")]
+    assert rows[0]["site"] == "Lawrence, MA" and rows[0]["count"] == "53"
