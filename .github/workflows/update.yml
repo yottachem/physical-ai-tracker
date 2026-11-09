@@ -1,9 +1,8 @@
 name: update
-# Daily: SEC filings -> news -> acceptance rules -> (Mondays) job boards and public financials -> test -> commit data.
+# Daily: SEC filings -> WARN notices (CA, TX) -> news -> acceptance rules -> (Mondays) job boards and public financials -> test -> commit data.
 # Commits data/news/articles.csv, data/review/queue.csv, data/jobs/counts.csv, data/public/*.csv and auto-accepted
-# ledger rows, so the
-# site's history accumulates in git. Raw snapshots stay in the runner (gitignored).
-# Off until the owner turns it on: scheduled runs need repo variable SCHEDULE_ON=true.
+# ledger rows, so the site's history accumulates in git. Raw snapshots stay in the runner (gitignored).
+# Scheduled runs need repo variable SCHEDULE_ON=true (on since 2026-11-07).
 # Secret: CONTACT_EMAIL (SEC User-Agent; never written to the repo).
 on:
   schedule:
@@ -39,6 +38,8 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - name: SEC filings
         run: uv run python -m ingest.filings --since "$(date -u -d '14 days ago' +%F)"
+      - name: WARN notices
+        run: uv run python -m ingest.warn
       - name: News
         run: uv run python -m ingest.news --sources bing,gnews,gdelt --days "${{ inputs.news_days || '3' }}"
       - name: Acceptance rules

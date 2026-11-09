@@ -10,7 +10,7 @@ Which physical AI companies are growing, raising, hiring or shrinking? This proj
 | Private funding, listings, material events | SEC EDGAR filings watcher: Form D, S-1/S-4/DRS, Forms 15 and 25, 8-K by item | Daily |
 | Funding and valuations | Announcements, accepted by source tier (below) | Daily |
 | Open roles | Public job boards: Greenhouse, Lever, Ashby, Workday, Workable, Rippling, BambooHR, Teamtailor | Weekly |
-| Layoffs | State WARN notices | Weekly |
+| Layoffs | State WARN notices: California, Texas (Massachusetts not yet) | Daily |
 | Headcount | 10-K / 20-F employee count (public); company-stated figures (private) | Weekly / on detection |
 | Public companies | SEC EDGAR XBRL: revenue, net income, R&D, cash, shares outstanding | Weekly |
 
@@ -28,6 +28,7 @@ uv run pytest                        # registry, ledger and tier rules
 LAUNCH_GATE=1 uv run pytest          # also fails while any registry field is still marked verify
 
 uv run python -m ingest.filings      # new SEC filings -> data/review/queue.csv
+uv run python -m ingest.warn         # CA and TX WARN notices naming tracked companies -> data/review/queue.csv
 uv run python -m ingest.news         # headlines -> data/news/articles.csv (--days, --sources)
 uv run python -m classify.accept     # tier-1 funding -> ledger (auto); the rest -> review queue
 uv run python -m ingest.jobs         # open roles -> data/jobs/counts.csv

@@ -11,7 +11,7 @@
 tier1:
   wires: [businesswire.com, globenewswire.com, prnewswire.com, accesswire.com]
   filings: [sec.gov]
-  government: [maryland.gov, masstech.org, darpa.mil, arpa-h.gov, fda.gov, energy.gov]
+  government: [ca.gov, maryland.gov, masstech.org, texas.gov, darpa.mil, arpa-h.gov, fda.gov, energy.gov]
   university: [cmu.edu, mit.edu]
   ir_hosting: [q4cdn.com]   # investor-relations document host (Ginkgo's Novo release)
   outlets: [reuters.com, bloomberg.com, wsj.com, ft.com, nytimes.com, apnews.com, cnbc.com, axios.com,

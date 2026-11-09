@@ -1,6 +1,6 @@
 """Review-queue actions for the /review-events skill. Every decision is written by this script, never by hand.
 
-  uv run python -m classify.review list [--company ID] [--source news|sec] [--limit N]   (limit counts groups)
+  uv run python -m classify.review list [--company ID] [--source news|sec|warn] [--limit N]   (limit counts groups)
   uv run python -m classify.review accept QID --type funding [--date D] [--round R] [--amount USD] [--valuation USD]
                                          [--qualifier approx|at_least|up_to] [--status closed|reported|announced]
                                          [--detail TEXT] [--source URL ...] [--group]
@@ -119,7 +119,7 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("list")
     p.add_argument("--company")
-    p.add_argument("--source", choices=["news", "sec"])
+    p.add_argument("--source", choices=["news", "sec", "warn"])
     p.add_argument("--limit", type=int, default=40)
     p.add_argument("--members", type=int, default=3, help="group members shown under each lead")
     p = sub.add_parser("accept")
