@@ -2,6 +2,7 @@
 # ownership: private | public | subsidiary (own brand, owned by parent) | division (inside parent; parent-level data only)
 # boston: Greater Boston as the map's Boston spotlight defines it (includes Beverly, Wilmington, Bedford, Billerica)
 # news.terms: exact phrases (any match); news.context: words one of which must also appear (ambiguous names)
+# ticker: US symbol (needs cik), or SYMBOL.EXCHANGE for non-US listings (688836.SS); no SEC filings for those
 # careers: {ats: greenhouse | lever | ashby | workable | other, token: board token, url: careers page}
 # verify: fields not yet confirmed against a primary source; LAUNCH_GATE=1 pytest fails while any remain
 
@@ -326,10 +327,10 @@ companies:
     segments: [humanoids]
     hq: Salem, OR
     boston: false
-    ownership: private
+    ownership: public
     parent: null
-    ticker: null
-    cik: 1727116
+    ticker: AGLT
+    cik: 2074973
     domain: agilityrobotics.com
     other_domains: []
     news:
@@ -338,7 +339,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Digit humanoid for warehouse tote handling
-    verify: [ownership, ticker]
+    verify: []
   apptronik:
     name: Apptronik
     segments: [humanoids]
@@ -399,9 +400,9 @@ companies:
     segments: [humanoids]
     hq: Hangzhou, China
     boston: false
-    ownership: private
+    ownership: public
     parent: null
-    ticker: null
+    ticker: 688836.SS
     cik: null
     domain: unitree.com
     other_domains: []
@@ -411,7 +412,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Low-cost humanoids (G1, R1) for research, education and early commercial use
-    verify: [domain, careers]
+    verify: [careers, domain]
   neura-robotics:
     name: NEURA Robotics
     segments: [humanoids]

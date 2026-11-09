@@ -11,7 +11,7 @@
 tier1:
   wires: [businesswire.com, globenewswire.com, prnewswire.com, accesswire.com]
   filings: [sec.gov]
-  government: [masstech.org, darpa.mil, arpa-h.gov, fda.gov, energy.gov]
+  government: [maryland.gov, masstech.org, darpa.mil, arpa-h.gov, fda.gov, energy.gov]
   university: [cmu.edu, mit.edu]
   ir_hosting: [q4cdn.com]   # investor-relations document host (Ginkgo's Novo release)
   outlets: [reuters.com, bloomberg.com, wsj.com, ft.com, nytimes.com, apnews.com, cnbc.com, axios.com,
@@ -19,24 +19,26 @@ tier1:
 
 tier2: [3dprint.com, abc7news.com, androidauthority.com, arstechnica.com, automationworld.com, barrons.com,
         biopharmatrend.com, biospace.com, bizjournals.com, bostonbizscene.com, breakbulk.news, breakingdefense.com,
-        business.mammothtimes.com, businessinsider.com, citybiz.co, cnet.com, dcvelocity.com, defensenews.com,
-        digitalengineering247.com, digitaltrends.com, eetimes.com, electrek.co, electronicsweekly.com, engadget.com,
-        engineering.com, exchange4media.com, fiercebiotech.com, finance.yahoo.com, fleetowner.com, forbes.com,
-        fortune.com, freightwaves.com, geekwire.com, genengnews.com, gizmodo.com, insidehpc.com,
-        interestingengineering.com, logisticsmgmt.com, logisticsviewpoints.com, manufacturing.net, marketbeat.com,
-        marketwatch.com, mediapost.com, medicaldevice-network.com, mmh.com, nasdaq.com, optics.org, pulse2.com,
-        qz.com, robotics247.com, roboticsandautomationnews.com, rutlandherald.com, scmp.com, sifted.eu,
-        siliconangle.com, spectrum.ieee.org, statnews.com, streetinsider.com, supplychain247.com, tech.yahoo.com,
-        techradar.com, techrepublic.com, techspot.com, thenextweb.com, theregister.com, theverge.com,
-        truckinginfo.com, trucknews.com, venturebeat.com, wired.com, zdnet.com]
+        business.mammothtimes.com, businessinsider.com, caixinglobal.com, citybiz.co, cnet.com, dcvelocity.com,
+        defensenews.com, digitalengineering247.com, digitaltrends.com, eetimes.com, electrek.co,
+        electronicsweekly.com, engadget.com, engineering.com, eweek.com, exchange4media.com, fiercebiotech.com,
+        finance.yahoo.com, fleetowner.com, forbes.com, fortune.com, freightwaves.com, geekwire.com, genengnews.com,
+        gizmodo.com, insidehpc.com, interestingengineering.com, logisticsmgmt.com, logisticsviewpoints.com,
+        manufacturing.net, maritime-executive.com, marketbeat.com, marketwatch.com, mediapost.com,
+        medicaldevice-network.com, mmh.com, nasdaq.com, news.usni.org, optics.org, pulse2.com, qz.com,
+        robotics247.com, roboticsandautomationnews.com, rutlandherald.com, scmp.com, sifted.eu, siliconangle.com,
+        spectrum.ieee.org, statnews.com, streetinsider.com, supplychain247.com, tech.yahoo.com, techradar.com,
+        techrepublic.com, techspot.com, thenextweb.com, theregister.com, theverge.com, truckinginfo.com,
+        trucknews.com, venturebeat.com, wired.com, yicaiglobal.com, zdnet.com]
 
-secondary: [247wallst.com, ad-hoc-news.de, ai2.work, ainvest.com, aiwiki.ai, benzinga.com, boringbusinessnerd.com,
-            complex.com, cryptobriefing.com, dealroom.co, deep-tech-week.com, dev.to, evsint.com, excedr.com, fast.io,
-            finance.biggo.com, finviz.com, fool.com, hoodline.com, humanoid.guide, ifactoryapp.com, insidermonkey.com,
-            investing.com, kalkinemedia.com, komo.ai, konsulteer.com, letsdatascience.com, maginative.com,
-            markets.businessinsider.com, markets.financialcontent.com, marketscreener.com, marktechpost.com, mean.ceo,
-            menafn.com, metavert.io, meticulousresearch.com, mikekalil.com, morningstar.com, msn.com, nbot.ai,
-            neuronfeed.com, newmarketpitch.com, note.com, owler.com, pdpspectra.com, pulse.bot, remio.ai, sacra.com,
+secondary: [247wallst.com, ad-hoc-news.de, ai2.work, ainvest.com, aiwiki.ai, asdnews.com, benzinga.com,
+            boringbusinessnerd.com, complex.com, cryptobriefing.com, dealroom.co, deep-tech-week.com, dev.to,
+            evsint.com, excedr.com, fast.io, finance.biggo.com, finviz.com, fool.com, hoodline.com, humanoid.guide,
+            humanoidsdaily.com, ifactoryapp.com, insidermonkey.com, investing.com, kalkinemedia.com, komo.ai,
+            konsulteer.com, letsdatascience.com, maginative.com, markets.businessinsider.com,
+            markets.financialcontent.com, marketscreener.com, marktechpost.com, mean.ceo, menafn.com, metavert.io,
+            meticulousresearch.com, mikekalil.com, morningstar.com, msn.com, nbot.ai, neuronfeed.com,
+            newmarketpitch.com, note.com, owler.com, pdpspectra.com, pulse.bot, remio.ai, runtimewire.com, sacra.com,
             seekingalpha.com, simplify.jobs, simplywall.st, standardbots.com, startupfortune.com, stocktitan.net,
             techtimes.com, theaiinsider.tech, tracxn.com, tradingview.com, treeview.studio, unite.ai, vocal.media,
             yahoo.com, zacks.com]

@@ -34,7 +34,9 @@ def test_company_fields(cid):
     if c["ownership"] in {"subsidiary", "division"}:
         assert c["parent"], "subsidiaries and divisions name their parent"
     if c["ownership"] == "public":
-        assert c["ticker"] and c["cik"], "public companies need ticker and CIK (financials come from EDGAR)"
+        assert c["ticker"], "public companies need a ticker"
+        if "." not in c["ticker"]:  # US listing; non-US tickers carry an exchange suffix (688836.SS) and no SEC filings
+            assert c["cik"], "US-listed companies need a CIK (financials come from EDGAR)"
     assert set(c["verify"]) <= VERIFY_FIELDS
     if c["careers"]:
         assert c["careers"]["ats"] in ATS and c["careers"]["token"]
