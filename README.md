@@ -31,7 +31,7 @@ uv run python -m ingest.filings      # new SEC filings -> data/review/queue.csv
 uv run python -m ingest.news         # headlines -> data/news/articles.csv (--days, --sources)
 uv run python -m classify.accept     # tier-1 funding -> ledger (auto); the rest -> review queue
 uv run python -m ingest.jobs         # open roles -> data/jobs/counts.csv
-uv run python -m classify.review list   # review queue; in Claude Code, /review-events works through it
+uv run python -m classify.review list   # review queue, grouped by event; in Claude Code, /review-events works through it
 ```
 
 `.github/workflows/update.yml` runs this daily (job boards on Mondays) and commits the data files. Scheduled runs

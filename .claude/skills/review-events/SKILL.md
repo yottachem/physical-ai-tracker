@@ -14,8 +14,10 @@ owner approves.
 ## Steps
 
 1. **Refresh and list.** `uv run python -m classify.accept` (decides any new articles), then
-   `uv run python -m classify.review list --limit 40`. Work one company at a time when the queue is long
-   (`--company ID`), largest first. Say how many are open and how you will batch them.
+   `uv run python -m classify.review list --limit 40`. The list groups items that describe the same event
+   (`classify/group.py`); each group's lead item (best source tier) comes first, with its members under it. Work one
+   company at a time when the queue is long (`--company ID`), largest first. Say how many items and groups are open
+   and how you will batch them.
 
 2. **Check each item before proposing anything.**
    - Open the source (WebFetch for news; for SEC, the filing itself). Confirm the company, the event, the figures
@@ -33,7 +35,10 @@ owner approves.
    - If a figure needs a better source than the one queued, find the company release or a tier-1 report and pass
      it with `--source`. A tier-1 source is better than several secondary ones.
 
-3. **Propose in a table**: qid, company, proposal (accept / reject / dup), type, round, amount, valuation, status,
+   - For a group, check the lead's source and skim the member titles for one that does not belong (grouping is by
+     figure, type and title overlap, and can be wrong). Propose splitting it out if so.
+
+3. **Propose in a table**, one row per group: qid (the lead's), group size, company, proposal (accept / reject / dup), type, round, amount, valuation, status,
    date, sources, one-line reason. Group obvious rejects (wrong company, routine filings) in one row each line.
 
 4. **Apply only what the owner approves**, using the script, never by editing CSVs:
@@ -43,6 +48,9 @@ owner approves.
    uv run python -m classify.review reject QID --reason "different company named Medra"
    uv run python -m classify.review dup QID E0042
    ```
+   Add `--group` to apply the decision to every open item in QID's group (after an accept, the rest close as
+   duplicates of the new row). Act on any member that does not belong first, without `--group`. When one group
+   holds two ledger events (an acquisition and the valuation reported with it), accept the first without `--group`.
    If the script notes an unclassified source domain, propose a tier for it in `reference/source_tiers.yaml`.
 
 5. **Verify and wait.** `uv run pytest -q` must pass. Show `git diff --stat` and the new ledger rows. Do not
