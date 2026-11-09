@@ -20,7 +20,8 @@ TYPES = {"funding", "valuation", "revenue", "deployment", "product", "partnershi
 STATUS = {"closed", "reported", "announced"}
 ACCEPT = {"seed", "auto", "reviewed"}
 QUALIFIERS = {"", "approx", "at_least", "up_to"}
-ATS = {"greenhouse", "lever", "ashby", "workable", "workday", "rippling", "bamboohr", "teamtailor", "other"}
+ATS = {"greenhouse", "lever", "ashby", "workable", "workday", "rippling", "bamboohr", "teamtailor", "smartrecruiters",
+       "other"}
 VERIFY_FIELDS = {"hq", "domain", "ticker", "cik", "careers", "ownership", "segments"}
 
 

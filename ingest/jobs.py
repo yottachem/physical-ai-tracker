@@ -1,6 +1,7 @@
 """Weekly open roles per company from public job boards: total, by function, and Boston-area count.
 
-Greenhouse, Lever, Ashby, Workable, Rippling and BambooHR have public JSON job-board endpoints; Teamtailor has an RSS
+Greenhouse, Lever, Ashby, Workable, Rippling, BambooHR and SmartRecruiters have public JSON job-board endpoints;
+Teamtailor has an RSS
 feed. Workday career sites answer the
 same POST their own pages use (unofficial). Posting titles and locations go to the raw snapshot only; the site publishes
 counts. Companies with hiring_scope: parent are skipped: a parent's board (NVIDIA, Amazon, BICO) cannot be split to the
@@ -120,9 +121,24 @@ def teamtailor(token):
             for i in ET.fromstring(r.content).iter("item")]
 
 
+def smartrecruiters(token):
+    url = f"https://api.smartrecruiters.com/v1/companies/{token}/postings"
+    jobs, offset = [], 0
+    while True:
+        r = requests.get(url, params={"limit": 100, "offset": offset}, headers=UA, timeout=60)
+        r.raise_for_status()
+        d = r.json()
+        jobs += [{"title": j["name"], "location": (j.get("location") or {}).get("fullLocation", "")}
+                 for j in d.get("content", [])]
+        offset += 100
+        if offset >= d.get("totalFound", 0) or not d.get("content"):
+            return jobs
+        time.sleep(0.5)
+
+
 FETCH = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday, "workable": workable,
          "rippling": rippling,
-         "bamboohr": bamboohr, "teamtailor": teamtailor}
+         "bamboohr": bamboohr, "teamtailor": teamtailor, "smartrecruiters": smartrecruiters}
 
 
 def summarize(jobs):

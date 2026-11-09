@@ -4,7 +4,8 @@
 # boston_note: required when boston is true but the HQ is elsewhere; the site shows it next to the Boston tag
 # news.terms: exact phrases (any match); news.context: words one of which must also appear (ambiguous names)
 # ticker: US symbol (needs cik), or SYMBOL.EXCHANGE for non-US listings (688836.SS); no SEC filings for those
-# careers: {ats: greenhouse | lever | ashby | workable | other, token: board token, url: careers page}
+# careers: {ats: greenhouse | lever | ashby | workable | workday | rippling | bamboohr | teamtailor | smartrecruiters,
+#   token: board token} or {ats: other, token: careers page URL} (listed on the site, not counted); null = no public board
 # verify: fields not yet confirmed against a primary source; LAUNCH_GATE=1 pytest fails while any remain
 
 companies:
@@ -164,15 +165,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: trilobio.com
-    other_domains: []
+    domain: trilo.bio
+    other_domains: [trilobio.com]
     news:
       terms: ['"Trilobio"']
     careers: {ats: ashby, token: trilobio}
     hiring_scope: company
     newsroom_feed: null
     focus: Whole-lab lab-in-a-box automation with no-code software for biologists
-    verify: [domain, careers]
+    verify: []
   potato:
     name: Potato
     segments: [lab-automation]
@@ -182,7 +183,7 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: potato.ai
     other_domains: []
     news:
       terms: ['"Potato"']
@@ -191,7 +192,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Robotic benchwork with AI agents generating and prioritizing experiments
-    verify: [domain, careers]
+    verify: []
   physical-intelligence:
     name: Physical Intelligence
     segments: [foundation-models]
@@ -246,7 +247,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Video-trained foundation models for factory and logistics manipulation
-    verify: [careers]
+    verify: []
   sudo-ai:
     name: Sudo AI
     segments: [foundation-models]
@@ -413,7 +414,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Low-cost humanoids (G1, R1) for research, education and early commercial use
-    verify: [careers, domain]
+    verify: []
   neura-robotics:
     name: NEURA Robotics
     segments: [humanoids]
@@ -697,7 +698,7 @@ companies:
     parent: Baidu
     ticker: BIDU
     cik: 1329099
-    domain: null
+    domain: apollogo.com
     other_domains: []
     news:
       terms: ['"Apollo Go"']
@@ -705,7 +706,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Robotaxi in China, expanding abroad
-    verify: [domain]
+    verify: []
   pony-ai:
     name: Pony.ai
     segments: [mobility]
@@ -882,11 +883,11 @@ companies:
     other_domains: []
     news:
       terms: ['"CMR Surgical"']
-    careers: null
+    careers: {ats: other, token: 'https://cmrsurgical.com/careers'}
     hiring_scope: company
     newsroom_feed: null
     focus: Versius soft-tissue surgical robot; trained and validated with NVIDIA Cosmos-H simulation
-    verify: [careers]
+    verify: []
   moon-surgical:
     name: Moon Surgical
     segments: [healthcare]
@@ -918,11 +919,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Intuitive Surgical"']
-    careers: null
+    careers: {ats: smartrecruiters, token: intuitive}
     hiring_scope: company
     newsroom_feed: null
     focus: da Vinci 5; AI in analytics and case review, motion surgeon-controlled
-    verify: [careers]
+    verify: []
   diligent-robotics:
     name: Diligent Robotics
     segments: [healthcare]
@@ -958,7 +959,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: LaserWeeder (AI vision plus CO2 lasers) and Autonomous Tractor Kit; Large Plant Model
-    verify: [careers]
+    verify: []
   ginkgo-bioworks:
     name: Ginkgo Bioworks
     segments: [lab-automation]
@@ -994,7 +995,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: 'NEBULA autonomous iPSC manufacturing: AI imaging, laser cell editing and robotics in a closed loop'
-    verify: [careers]
+    verify: []
   physical-superintelligence:
     name: Physical Superintelligence
     segments: [lab-automation]
@@ -1094,15 +1095,15 @@ companies:
     parent: Teradyne
     ticker: TER
     cik: 97210
-    domain: teradynerobotics.com
-    other_domains: [universal-robots.com, mobile-industrial-robots.com]
+    domain: universal-robots.com
+    other_domains: [mobile-industrial-robots.com, teradyne.com]
     news:
       terms: ['"Teradyne Robotics"', '"Universal Robots"', '"Mobile Industrial Robots"']
     careers: null
     hiring_scope: parent
     newsroom_feed: null
     focus: Universal Robots cobots and MiR mobile robots with AI Accelerator; UR AI Trainer
-    verify: [domain]
+    verify: []
   tutor-intelligence:
     name: Tutor Intelligence
     segments: [warehouse-factory]
@@ -1156,7 +1157,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: Fleet robotics for Amazon fulfillment; not sold externally
-    verify: [domain]
+    verify: []
   venti-technologies:
     name: Venti Technologies
     segments: [mobility]
@@ -1166,15 +1167,15 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: ventitech.ai
     other_domains: []
     news:
       terms: ['"Venti Technologies"']
-    careers: null
+    careers: {ats: ashby, token: goventi}
     hiring_scope: company
     newsroom_feed: null
     focus: Autonomous vehicles for ports, airports and logistics hubs
-    verify: [domain, careers]
+    verify: []
   motional:
     name: Motional
     segments: [mobility]
@@ -1242,11 +1243,11 @@ companies:
     other_domains: []
     news:
       terms: ['"Inkbit"']
-    careers: null
+    careers: {ats: other, token: 'https://inkbit3d.com/careers'}
     hiring_scope: company
     newsroom_feed: null
     focus: Multi-material 3D printing controlled by machine vision and AI
-    verify: [careers]
+    verify: []
   irobot:
     name: iRobot
     segments: [consumer-home]
@@ -1260,11 +1261,11 @@ companies:
     other_domains: []
     news:
       terms: ['"iRobot"']
-    careers: null
+    careers: {ats: other, token: 'https://careers.irobot.com/'}
     hiring_scope: company
     newsroom_feed: null
     focus: Roomba vacuums and mops
-    verify: [careers]
+    verify: []
   vicarious-surgical:
     name: Vicarious Surgical
     segments: [healthcare]
@@ -1282,7 +1283,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Single-incision surgical robot, first for ventral hernia
-    verify: [careers]
+    verify: []
   dexai-robotics:
     name: Dexai Robotics
     segments: [consumer-home]
@@ -1292,7 +1293,7 @@ companies:
     parent: Sony
     ticker: null
     cik: null
-    domain: null
+    domain: dexai.com
     other_domains: []
     news:
       terms: ['"Dexai Robotics"']
@@ -1300,7 +1301,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Kitchen robots (sold to Sony per the Boston Globe; thin public data)
-    verify: [domain, careers]
+    verify: []
   xyz-robotics:
     name: XYZ Robotics
     segments: [warehouse-factory]
@@ -1311,7 +1312,7 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: xyzrobotics.ai
     other_domains: []
     news:
       terms: ['"XYZ Robotics"']
@@ -1319,7 +1320,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: MassRobotics resident; thin public data
-    verify: [domain, careers]
+    verify: []
   ava-robotics:
     name: Ava Robotics
     segments: [warehouse-factory]
@@ -1329,15 +1330,15 @@ companies:
     parent: null
     ticker: null
     cik: 1774240
-    domain: null
+    domain: avarobotics.com
     other_domains: []
     news:
       terms: ['"Ava Robotics"']
-    careers: null
+    careers: {ats: other, token: 'https://www.avarobotics.com/join'}
     hiring_scope: company
     newsroom_feed: null
     focus: MassRobotics resident; thin public data
-    verify: [domain, careers]
+    verify: []
   brecourt-solutions:
     name: Brecourt Solutions
     segments: [defense]
@@ -1347,7 +1348,7 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: null
+    domain: brecourtsolutions.com
     other_domains: []
     news:
       terms: ['"Brecourt Solutions"']
@@ -1355,4 +1356,4 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Indoor first-responder drones; MassRobotics resident; thin public data
-    verify: [domain, careers]
+    verify: []
