@@ -1,0 +1,28 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block path %}feed.html{% endblock %}
+{% block title %}Feed{% endblock %}
+{% block description %}Latest headlines about tracked physical AI companies, linked to the publisher.{% endblock %}
+{% block body %}
+<h1>Feed</h1>
+<p class="lede">Headlines from the last {{ days }} days that name a tracked company, newest first. Links go to the publisher.</p>
+<p class="sub">Event tags are matched from the headline and send it to the ledger or the review queue; a tag is not a confirmed event until it appears on the company page. Tier 1 = company release, filing, wire service or an allowlisted outlet.</p>
+<div class="filters" role="group" aria-label="Filter headlines">
+  <label>Segment <select name="seg"><option value="">All</option>{% for sid, s in segments.items() %}<option value="{{ sid }}">{{ s.name }}</option>{% endfor %}</select></label>
+  <label>Event <select name="ev"><option value="">All</option>{% for e, label in event_types %}<option value="{{ e }}">{{ label }}</option>{% endfor %}</select></label>
+  <label>Location <select name="boston"><option value="">All</option><option value="boston">Greater Boston</option></select></label>
+  <label>Source <select name="tier"><option value="">All</option><option value="tier1">Tier 1</option></select></label>
+  <span class="count"></span>
+</div>
+<div class="tw"><table>
+<thead><tr><th>Date</th><th>Company</th><th>Headline</th><th>Publisher</th><th>Events</th></tr></thead>
+<tbody>
+{% for a in rows %}
+<tr data-row data-seg="{{ a.r.c.segments | join(' ') }}" data-ev="{{ a.event_list | join(' ') }}" data-boston="{{ 'boston' if a.r.c.boston else '' }}" data-tier="{{ a.tier }}">
+<td class="d">{{ a.date }}</td><td>{{ m.company(a.r) }}</td><td class="hl"><a href="{{ a.url }}">{{ a.title }}</a></td>
+<td>{{ a.publisher or a.domain }}{% if a.tier == "tier1" %} <span class="tag">tier 1</span>{% endif %}</td>
+<td class="meta">{{ a.event_list | map("replace", "-", " ") | join(", ") }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% endblock %}
+{% block script %}{% include "_filter.html.j2" %}{% endblock %}

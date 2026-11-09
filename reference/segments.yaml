@@ -1,14 +1,14 @@
 # Customer segments, from the Nov 2026 market map (sections 1-10) plus manufacturing-construction for the
 # Boston-spotlight companies that fit none of the ten. Boston is a filter (companies.yaml boston: true), not a segment.
 segments:
-  lab-automation: {name: Lab automation and scientific AI, customers: pharma, biotech, materials and chemistry R&D, government research}
-  foundation-models: {name: Robot foundation models and platforms, customers: robot OEMs and enterprises deploying robots}
-  humanoids: {name: Industrial and logistics humanoids, customers: automotive OEMs, 3PLs, manufacturers}
-  warehouse-factory: {name: Warehouse and factory robots, customers: retailers, 3PLs, parcel carriers, manufacturers}
-  consumer-home: {name: Consumer home robots, customers: households}
-  wearables: {name: Consumer electronics and AI wearables, customers: consumers}
-  mobility: {name: Autonomous mobility, trucking and delivery, customers: riders, shippers, retailers, ports}
-  defense: {name: Defense and government, customers: militaries and government agencies}
-  healthcare: {name: Surgical and hospital robotics, customers: hospitals and surgeons}
-  agriculture: {name: Agriculture, customers: specialty-crop growers}
-  manufacturing-construction: {name: Manufacturing and construction, customers: manufacturers and homebuilders}
+  lab-automation: {name: Lab automation and scientific AI, customers: 'pharma, biotech, materials and chemistry R&D, government research'}
+  foundation-models: {name: Robot foundation models and platforms, customers: 'robot OEMs and enterprises deploying robots'}
+  humanoids: {name: Industrial and logistics humanoids, customers: 'automotive OEMs, 3PLs, manufacturers'}
+  warehouse-factory: {name: Warehouse and factory robots, customers: 'retailers, 3PLs, parcel carriers, manufacturers'}
+  consumer-home: {name: Consumer home robots, customers: 'households'}
+  wearables: {name: Consumer electronics and AI wearables, customers: 'consumers'}
+  mobility: {name: 'Autonomous mobility, trucking and delivery', customers: 'riders, shippers, retailers, ports'}
+  defense: {name: Defense and government, customers: 'militaries and government agencies'}
+  healthcare: {name: Surgical and hospital robotics, customers: 'hospitals and surgeons'}
+  agriculture: {name: Agriculture, customers: 'specialty-crop growers'}
+  manufacturing-construction: {name: Manufacturing and construction, customers: 'manufacturers and homebuilders'}

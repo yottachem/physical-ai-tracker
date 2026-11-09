@@ -1,0 +1,52 @@
+{% extends "base.html.j2" %}
+{% block path %}methods.html{% endblock %}
+{% block title %}Methods{% endblock %}
+{% block description %}Where the physical AI tracker's figures come from, how sources are tiered, and what it misses.{% endblock %}
+{% block body %}
+<h1>Methods</h1>
+<p class="lede">Every figure on this site links to its source. The site updates itself daily; anything it cannot confirm from a primary source waits for a person to check it.</p>
+{% if preview %}<p class="pending">Draft text for review.</p>{% endif %}
+
+<div class="prose">
+<h2>Companies</h2>
+<p>The company list and its customer segments come from a physical AI market map drawn up in November 2026: companies building robots, autonomous vehicles and AI for physical work, grouped by who buys from them. Companies are added through the same review as events. "Greater Boston" follows the map's Boston spotlight (including Beverly, Wilmington, Bedford and Billerica); a company headquartered elsewhere carries the tag only with a stated reason, such as a Boston R&amp;D site.</p>
+<p>Divisions of larger companies (Waymo, Amazon Robotics, Tesla Optimus) have no separable funding, job board or headcount. Their pages show events only, and they are left out of hiring totals.</p>
+
+<h2>Events and the ledger</h2>
+<p>Funding rounds, valuations, deployments, contracts, acquisitions, listings, layoffs and other events live in one ledger. Each row has a date, a status and at least one source link.</p>
+<ul>
+<li><b>Closed</b>: completed and confirmed by the company, a filing or tier-1 reporting.</li>
+<li><b>Announced</b>: stated by the company but not yet complete (a pending acquisition, a planned facility).</li>
+<li><b>Reported</b>: talks or unconfirmed figures from reporting. Shown in orange italics, never added to closed totals.</li>
+</ul>
+<p>Rows are never silently overwritten. A correction changes the row and keeps the sources that support it.</p>
+
+<h2>Sources and tiers</h2>
+<p>Headlines are collected daily from Bing News, GDELT, Google News and the RSS feeds of company newsrooms; filings from SEC EDGAR; layoff notices from state WARN reports; open roles weekly from public job boards; financials, headcount and shares outstanding from SEC filings; and weekly closing prices. Sources are tiered in <a href="{{ repo }}/blob/main/reference/source_tiers.yaml">source_tiers.yaml</a>:</p>
+<ul>
+<li><b>Tier 1</b>: the company's own site, wire services, SEC filings, government and universities, and an allowlist of outlets.</li>
+<li><b>Tier 2</b>: trade and general press not on the allowlist.</li>
+<li><b>Secondary</b>: trackers, aggregators and databases. Used to find events, never as the only source.</li>
+</ul>
+<p>Google News is used only to discover headlines; the site links to the publisher, never to Google. Only headlines, links, dates and publishers are stored, never article text.</p>
+
+<h2>What is accepted automatically</h2>
+<p>A funding or valuation headline is added to the ledger without review only when all of these hold: it comes from a tier-1 source with a publisher link; it names the company and no other tracked company; it carries exactly one amount with a closing verb or a named round, and no debt, grant or "invests in" wording; and it does not conflict with an existing row. A figure within 10% of an existing row is treated as the same event. Everything else, including every non-funding event, SEC filing and WARN notice, goes to a review queue and reaches the ledger only after a person checks it.</p>
+
+<h2>Totals</h2>
+<ul>
+<li><b>Closed equity raised</b> sums closed rounds with a disclosed amount. Debt, loans, grants and awards are excluded. A "&ge;" marks a total that includes an "at least" figure.</li>
+<li><b>Market value</b> is the latest weekly close times common shares outstanding from the latest SEC filing. Prices come from an unofficial Yahoo Finance endpoint; listings outside the US show a price only.</li>
+<li><b>Open roles</b> are the postings on a company's public job board on the count date. A board can lag hiring, list evergreen roles or cover several sites.</li>
+<li><b>Headcount</b> is quoted from annual reports with the sentence it came from, or from company statements; it is a dated point, not a series.</li>
+</ul>
+
+<h2>Known gaps</h2>
+<ul>
+<li>Private valuations exist only when a company or tier-1 reporting states one.</li>
+<li>Layoff notices cover California and Texas daily and Massachusetts from a monthly file; other states are not checked.</li>
+<li>The market map leaves out mining, edge AI chips and most Chinese humanoid makers other than Unitree.</li>
+<li>Headline matching uses company names plus context words for ambiguous names (Figure, Sunday, Potato); a few unrelated headlines get through and are filtered in review.</li>
+</ul>
+</div>
+{% endblock %}

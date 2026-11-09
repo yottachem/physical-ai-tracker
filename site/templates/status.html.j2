@@ -1,0 +1,24 @@
+{% extends "base.html.j2" %}
+{% block path %}status.html{% endblock %}
+{% block title %}Status{% endblock %}
+{% block description %}When each source last produced data, and the size of the review queue.{% endblock %}
+{% block body %}
+<h1>Status</h1>
+<p class="lede">Built {{ built }}. The ledger holds {{ ledger_n }} events, {{ auto_n }} of them accepted automatically; {{ open }} item{{ "" if open == 1 else "s" }} wait{{ "s" if open == 1 else "" }} in the review queue.</p>
+
+<h2>Sources</h2>
+<p class="sub">Last new data from each source. A source that fails keeps its last data, and the date shows how old it is.</p>
+<div class="tw"><table>
+<thead><tr><th>Source</th><th>Feeds</th><th>Cadence</th><th class="n">Last new data</th></tr></thead>
+<tbody>
+{% for s in sources %}<tr><td>{{ s.name }}</td><td>{{ s.what }}</td><td>{{ s.cadence }}</td><td class="n">{{ s.last or "–" }}</td></tr>{% endfor %}
+</tbody></table></div>
+
+<h2>Curated by hand</h2>
+<p class="sub">These inputs change only when someone edits them. Dates are the last change in the repository.</p>
+<div class="tw"><table>
+<thead><tr><th>File</th><th>Holds</th><th class="n">Last changed</th></tr></thead>
+<tbody>
+{% for c in curated %}<tr><td><a href="{{ repo }}/blob/main/{{ c.path }}">{{ c.path }}</a></td><td>{{ c.what }}</td><td class="n">{{ c.changed or "–" }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

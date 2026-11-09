@@ -1,0 +1,19 @@
+{# Row filter for tables whose rows carry data-* attributes. Without JavaScript every row stays visible. #}
+<script>
+(() => {
+  const sels = [...document.querySelectorAll(".filters select")];
+  const rows = [...document.querySelectorAll("tr[data-row]")];
+  const count = document.querySelector(".filters .count");
+  const apply = () => {
+    let n = 0;
+    for (const r of rows) {
+      const ok = sels.every(s => !s.value || (" " + r.dataset[s.name] + " ").includes(" " + s.value + " "));
+      r.hidden = !ok; n += ok;
+    }
+    document.querySelectorAll("[data-group]").forEach(g => { g.hidden = !g.querySelector("tr[data-row]:not([hidden])"); });
+    if (count) count.textContent = n + " rows shown";
+  };
+  sels.forEach(s => s.addEventListener("change", apply));
+  apply();
+})();
+</script>

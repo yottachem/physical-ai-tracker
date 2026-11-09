@@ -1,0 +1,43 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block path %}{% endblock %}
+{% block title %}Market map{% endblock %}
+{% block body %}
+<h1>Physical AI companies, by who buys from them</h1>
+<p class="lede">{{ figs.companies }} companies building robots and AI for the physical world, in {{ segments | length }} customer segments. Funding, valuations and announcements come from company releases, filings and reporting; open roles from public job boards, counted weekly.</p>
+<div class="figs">
+  <div class="fig"><b>{{ figs.companies }}</b><span>companies tracked ({{ figs.boston }} in Greater Boston)</span></div>
+  <div class="fig"><b>{{ figs.raised_12m | fmt("usd") }}</b><span>closed equity rounds, last 12 months</span></div>
+  <div class="fig"><b>{{ figs.roles | fmt }}</b><span>open roles on {{ figs.boards }} company job boards</span></div>
+  <div class="fig"><b>{{ figs.boston_roles | fmt }}</b><span>of them in Greater Boston</span></div>
+</div>
+
+<div class="filters" role="group" aria-label="Filter companies">
+  <label>Location <select name="boston"><option value="">All</option><option value="boston">Greater Boston</option></select></label>
+  <label>Ownership <select name="own"><option value="">All</option><option value="private">Private</option><option value="public">Public</option><option value="subsidiary">Subsidiary</option><option value="division">Division</option></select></label>
+  <span class="count"></span>
+</div>
+
+{% for g in groups %}
+<section data-group>
+<h2 id="{{ g.id }}">{{ g.name }}</h2>
+<p class="sub">Customers: {{ g.customers }}</p>
+<div class="tw"><table>
+<thead><tr><th>Company</th><th class="n">Latest valuation</th><th class="n">Closed equity raised</th><th class="n">Open roles</th><th></th><th>Latest news</th></tr></thead>
+<tbody>
+{% for r in g.rows %}
+<tr data-row data-boston="{{ 'boston' if r.c.boston else '' }}" data-own="{{ r.ownership }}">
+<td>{{ m.company(r) }}<span class="meta">{{ r.stage }} · {{ r.c.hq }}</span></td>
+<td class="n">{{ m.valuation(r.valuation) }}</td>
+<td class="n">{% if r.raised %}{% if r.raised_floor %}&ge;{% endif %}{{ r.raised | fmt("usd") }}{% else %}<span class="muted">–</span>{% endif %}</td>
+<td class="n">{% if r.roles is not none %}{{ r.roles }}{% elif r.c.hiring_scope == "parent" %}<span class="muted" title="Job board describes the parent company">parent</span>{% else %}<span class="muted">–</span>{% endif %}</td>
+<td>{{ r.spark | safe }}</td>
+<td class="hl">{% if r.last_news %}<a href="{{ r.last_news.url }}">{{ r.last_news.title }}</a><small>{{ r.last_news.date }} · {{ r.last_news.publisher or r.last_news.domain }}</small>{% else %}<span class="muted">–</span>{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody></table></div>
+</section>
+{% endfor %}
+<p class="note-p">* Boston-tagged but headquartered elsewhere; hover for why. Companies in two segments appear in both. Latest news is the newest headline that carries an event or comes from a tier-1 source. Valuations in orange italics are reported (talks or unconfirmed), not closed.</p>
+{% endblock %}
+{% block script %}{% include "_filter.html.j2" %}{% endblock %}

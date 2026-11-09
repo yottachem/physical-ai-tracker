@@ -1,0 +1,8 @@
+{% macro company(r, up="") %}<span class="co"><a href="{{ up }}company/{{ r.id }}.html">{{ r.c.name }}</a></span>
+{%- if r.c.boston %}<span class="tag{% if r.c.boston_note %} note{% endif %}"{% if r.c.boston_note %} title="{{ r.c.boston_note }}"{% endif %}>Boston{% if r.c.boston_note %}*{% endif %}</span>{% endif %}{% endmacro %}
+
+{% macro valuation(v) %}{% if v %}<span{% if v.status != "closed" %} class="rep"{% endif %}>{% if v.qualifier == "at_least" %}&ge;{% elif v.qualifier == "approx" %}~{% elif v.qualifier == "up_to" %}&le;{% endif %}{{ v.valuation | fmt("usd") }}</span>{% else %}<span class="muted">–</span>{% endif %}{% endmacro %}
+
+{% macro amount(row) %}{% if row.amount %}<span{% if row.status == "reported" %} class="rep"{% endif %}>{% if row.qualifier == "at_least" %}&ge;{% elif row.qualifier == "approx" %}~{% elif row.qualifier == "up_to" %}&le;{% endif %}{{ row.amount | fmt("usd") }}</span>{% else %}<span class="muted">–</span>{% endif %}{% endmacro %}
+
+{% macro sources(row) %}<span class="src">{% for l in row.links %}<a href="{{ l.url }}">{{ l.host }}</a>{% endfor %}</span>{% endmacro %}

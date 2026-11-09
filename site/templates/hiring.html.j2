@@ -1,0 +1,42 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block path %}hiring.html{% endblock %}
+{% block title %}Hiring{% endblock %}
+{% block description %}Open roles at physical AI companies from public job boards, by segment, function and location.{% endblock %}
+{% block body %}
+<h1>Hiring</h1>
+<p class="lede">{{ total | fmt }} open roles on {{ rows | length }} company job boards as of {{ last }}, {{ boston | fmt }} of them in Greater Boston.</p>
+<p class="sub">Counted weekly from public job-board APIs (Greenhouse, Lever, Ashby and others). Function is inferred from the job title. Companies whose board describes a parent (NVIDIA, Tesla, Amazon, ...) are left out, as are companies without a public board.{% if first != last %} Change is since {{ first }}.{% endif %}</p>
+
+<div class="two">
+<div>
+<h2>By segment</h2>
+<div class="tw"><table>
+<thead><tr><th>Segment</th><th class="n">Companies</th><th class="n">Roles</th><th class="n">Boston</th></tr></thead>
+<tbody>
+{% for s in seg_rows %}<tr><td>{{ s.name }}</td><td class="n">{{ s.companies }}</td><td class="n">{{ s.roles | fmt }}</td><td class="n">{{ s.boston | fmt }}</td></tr>{% endfor %}
+</tbody></table></div>
+</div>
+<div>
+<h2>By function</h2>
+<div class="tw"><table class="bars">
+<thead><tr><th>Function</th><th class="n">Roles</th><th></th></tr></thead>
+<tbody>
+{% set top = by_function[0][1] if by_function else 1 %}
+{% for name, v in by_function %}<tr><td>{{ name }}</td><td class="n">{{ v | fmt }}</td><td class="bar-cell"><div class="hbar" style="width: {{ (100 * v / top) | round(1) }}%"></div></td></tr>{% endfor %}
+</tbody></table></div>
+</div>
+</div>
+
+<h2>By company</h2>
+<div class="tw"><table>
+<thead><tr><th>Company</th><th class="n">Open roles</th><th class="n">Boston</th>{% if first != last %}<th class="n">Change</th>{% endif %}<th></th></tr></thead>
+<tbody>
+{% for r in rows %}
+<tr><td>{{ m.company(r) }}</td><td class="n">{{ r.roles }}</td><td class="n">{{ r.boston_roles }}</td>{% if first != last %}<td class="n">{% if r.change is not none %}{{ "%+d" | format(r.change) }}{% else %}<span class="muted">new</span>{% endif %}</td>{% endif %}<td>{{ r.spark | safe }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+
+<h2>Not counted</h2>
+<p class="sub">{% for r in not_counted %}<a href="company/{{ r.id }}.html">{{ r.c.name }}</a> ({% if r.c.hiring_scope == "parent" %}parent board{% elif r.careers_url %}careers page only{% else %}no public board{% endif %}){{ ", " if not loop.last else "." }}{% endfor %}</p>
+{% endblock %}

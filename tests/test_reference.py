@@ -94,3 +94,8 @@ def test_tiers_do_not_overlap():
 def test_launch_gate_nothing_left_to_verify():
     left = {cid: c["verify"] for cid, c in COMPANIES.items() if c["verify"]}
     assert not left, left
+
+
+def test_segments_have_name_and_customers():
+    for sid, s in load_segments().items():  # an unquoted comma in a flow mapping silently adds a key
+        assert set(s) == {"name", "customers"}, sid

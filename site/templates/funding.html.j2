@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block path %}funding.html{% endblock %}
+{% block title %}Funding{% endblock %}
+{% block description %}Disclosed funding rounds and valuations of physical AI companies, by segment and half-year, with sources.{% endblock %}
+{% block body %}
+<h1>Funding</h1>
+<p class="lede">Disclosed equity rounds by customer segment and half-year. Closed rounds and reported ones (talks, unconfirmed) are totaled separately and never added together.</p>
+<p class="sub">Debt, loans, grants and awards are left out of the totals but listed below. A company in two segments counts in both, so segment totals do not add up to a market total. Rounds dated only by year are not in the half-year table.</p>
+<div class="tw"><table>
+<thead><tr><th>Segment</th>{% for p in periods %}<th class="n">{{ p }}</th>{% endfor %}</tr></thead>
+<tbody>
+{% for t in table %}
+<tr><td>{{ t.name }}</td>{% for p in periods %}{% set x = t.cells[p] %}<td class="n">{% if x.closed %}{{ x.closed | fmt("usd") }}{% else %}<span class="muted">–</span>{% endif %}{% if x.reported %}<br><span class="rep">{{ x.reported | fmt("usd") }}</span>{% endif %}</td>{% endfor %}</tr>
+{% endfor %}
+</tbody></table></div>
+
+<h2>Ledger</h2>
+<p class="sub">Every funding and valuation row, newest first. Form D amounts are amounts sold to date as filed, not round sizes.</p>
+<div class="tw"><table>
+<thead><tr><th>Date</th><th>Company</th><th>Round</th><th class="n">Amount</th><th class="n">Valuation</th><th>Status</th><th>Detail</th><th>Sources</th></tr></thead>
+<tbody>
+{% for x in rows %}
+<tr><td class="d">{{ x.date | show_date }}</td><td><span class="co"><a href="company/{{ x.company }}.html">{{ x.name }}</a></span></td><td>{{ x.round or x.type_label }}</td><td class="n">{{ m.amount(x) }}</td><td class="n">{% if x.valuation %}{{ x.valuation | fmt("usd") }}{% else %}<span class="muted">–</span>{% endif %}</td><td>{{ x.status }}</td><td class="detail">{{ x.detail }}</td><td>{{ m.sources(x) }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% endblock %}

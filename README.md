@@ -2,7 +2,7 @@
 
 Which physical AI companies are growing, raising, hiring or shrinking? This project tracks about 75 companies across 11 customer segments (lab automation, robot foundation models, humanoids, warehouse and factory robots, home robots, AI wearables, autonomous mobility, defense, surgical and hospital robotics, agriculture, manufacturing and construction), with a Boston-area filter. It follows each company's status, funding and valuations, employment and size, and public announcements, refreshed on a schedule.
 
-**Status: pre-launch.** Registry and seed ledger built from the Nov 2026 market map; SEC filings, news, job boards, acceptance rules and the review queue run. Site not built yet. Target launch early Jan 2027.
+**Status: pre-launch.** Registry and seed ledger built from the Nov 2026 market map; SEC filings, news, job boards, acceptance rules and the review queue run. Site in internal preview (`site/build.py --preview`); not published. Target launch early Jan 2027.
 
 | Signal | Source | Cadence |
 |--------|--------|---------|
@@ -36,6 +36,7 @@ uv run python -m ingest.jobs         # open roles -> data/jobs/counts.csv
 uv run python -m ingest.financials   # public pure plays: XBRL facts and annual-report headcount -> data/public/
 uv run python -m ingest.prices       # weekly closes and market value (run after financials) -> data/public/
 uv run python -m classify.review list   # review queue, grouped by event; in Claude Code, /review-events works through it
+uv run python site/build.py --preview   # site -> site/dist (market map, company pages, feed, funding, hiring, methods, status)
 ```
 
 `.github/workflows/update.yml` runs this daily (job boards on Mondays) and commits the data files. Scheduled runs
@@ -62,7 +63,8 @@ SEC requires a contact email: set `CONTACT_EMAIL`, or the macOS Keychain item `p
 | `data/public/headcount.csv` | Employee count from each 10-K / 20-F, with the quoted sentence and filing link |
 | `data/public/prices.csv` | Weekly closing price per public company since 2025, with currency |
 | `data/public/market_value.csv` | Latest close x latest SEC share count; blank market cap where shares are unknown (non-US, SPAC-shell CIK) |
-| `tests/` | Registry, ledger and tier rules |
+| `site/` | `build.py` + Jinja templates + server-rendered SVG charts (`charts.py`, shared with lifesci-tools-tracker); output in `site/dist/` (gitignored) |
+| `tests/` | Registry, ledger, tier rules, ingest parsers, site build |
 
 ## License
 
