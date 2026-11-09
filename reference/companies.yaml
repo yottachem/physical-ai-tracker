@@ -1,6 +1,7 @@
 # Company registry. Seeded 2026-11-06 from reference/seed/physical-ai-market-map-2026-11.md (Josh's Nov 2026 market map).
 # ownership: private | public | subsidiary (own brand, owned by parent) | division (inside parent; parent-level data only)
 # boston: Greater Boston as the map's Boston spotlight defines it (includes Beverly, Wilmington, Bedford, Billerica)
+# boston_note: required when boston is true but the HQ is elsewhere; the site shows it next to the Boston tag
 # news.terms: exact phrases (any match); news.context: words one of which must also appear (ambiguous names)
 # ticker: US symbol (needs cik), or SYMBOL.EXCHANGE for non-US listings (688836.SS); no SEC filings for those
 # careers: {ats: greenhouse | lever | ashby | workable | other, token: board token, url: careers page}
@@ -1305,6 +1306,7 @@ companies:
     segments: [warehouse-factory]
     hq: Shanghai, China
     boston: true
+    boston_note: Founded in Boston (2018); HQ moved to Shanghai, a small R&D team stays in Boston (MassRobotics)
     ownership: private
     parent: null
     ticker: null

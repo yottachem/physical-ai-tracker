@@ -31,6 +31,8 @@ def test_company_fields(cid):
     assert c["segments"] and set(c["segments"]) <= set(SEGMENTS), c["segments"]
     assert c["ownership"] in OWNERSHIP
     assert isinstance(c["boston"], bool)
+    if c["boston"] and not c["hq"].endswith(", MA"):  # e.g. XYZ Robotics: Shanghai HQ, Boston R&D
+        assert c.get("boston_note"), "Boston-tagged companies headquartered elsewhere need a boston_note"
     if c["ownership"] in {"subsidiary", "division"}:
         assert c["parent"], "subsidiaries and divisions name their parent"
     if c["ownership"] == "public":
