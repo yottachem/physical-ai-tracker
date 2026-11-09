@@ -6,7 +6,7 @@ Which physical AI companies are growing, raising, hiring or shrinking? This proj
 
 | Signal | Source | Cadence |
 |--------|--------|---------|
-| Announcements | Bing News RSS (publisher links), GDELT, Google News RSS (discovery only; links resolved to the publisher) | Daily |
+| Announcements | Bing News RSS (publisher links), GDELT, Google News RSS (discovery only; links resolved to the publisher), company newsroom RSS/Atom feeds (17 companies) | Daily |
 | Private funding, listings, material events | SEC EDGAR filings watcher: Form D, S-1/S-4/DRS, Forms 15 and 25, 8-K by item | Daily |
 | Funding and valuations | Announcements, accepted by source tier (below) | Daily |
 | Open roles | Public job boards: Greenhouse, Lever, Ashby, Workday, Workable, Rippling, BambooHR, Teamtailor | Weekly |
@@ -47,7 +47,7 @@ SEC requires a contact email: set `CONTACT_EMAIL`, or the macOS Keychain item `p
 
 | Path | Purpose |
 |------|---------|
-| `reference/companies.yaml` | Company registry: segments, HQ, Boston flag, ownership, ticker/CIK, domains, news terms, job board |
+| `reference/companies.yaml` | Company registry: segments, HQ, Boston flag, ownership, ticker/CIK, domains, news terms, job board, newsroom feed |
 | `reference/segments.yaml` | The 11 customer segments |
 | `reference/source_tiers.yaml` | Tier-1, tier-2 and secondary source domains |
 | `reference/ledger.csv` | Accepted events: funding, valuation, revenue, deployments, status, headcount; each with sources and accept path |

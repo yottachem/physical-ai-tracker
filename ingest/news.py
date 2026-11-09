@@ -1,17 +1,19 @@
-"""News ingest: Bing News RSS, Google News RSS and GDELT per company -> data/news/articles.csv.
+"""News ingest: Bing News RSS, Google News RSS, GDELT and company newsroom feeds -> data/news/articles.csv.
 
 - Bing News RSS: primary for links. Its redirect links carry the publisher URL in the `url` parameter.
 - GDELT DOC 2.0: publisher URLs directly; at most 1 request per 5 seconds; backs off and skips on HTTP 429.
 - Google News RSS: discovery only. Items keep the publisher name and domain; the publisher link comes from Bing or
   GDELT carrying the same headline, or from a Bing search scoped to the publisher's site. The site never links to
   Google.
+- Newsroom: the company's own RSS/Atom feed (companies.yaml newsroom_feed), a primary source. Its headlines often
+  omit the company name, so the news-term filter is skipped for it; posts without an event stay feed items.
 Only headlines, links, dates and publishers are stored, never article text.
 
 A headline counts for a company when one of its news terms (all quoted phrases in the term) appears in the title or
 summary, and, when the company has context words, one of those appears too. Phrases in `exclude` (other
 companies with the same name) rule a headline out.
 
-Usage: uv run python -m ingest.news [--sources bing,gnews,gdelt] [--days N] [company-id ...]
+Usage: uv run python -m ingest.news [--sources bing,gnews,gdelt,newsroom] [--days N] [company-id ...]
 """
 import argparse
 import csv
@@ -136,6 +138,29 @@ def gnews(c, days):
     return out
 
 
+ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def newsroom(c, days):
+    if not c.get("newsroom_feed"):
+        return []
+    r = requests.get(c["newsroom_feed"], headers=UA, timeout=30)
+    r.raise_for_status()
+    root = ET.fromstring(r.content)
+    since = (date.today() - timedelta(days=days)).isoformat()
+    out = []
+    for i in root.iter("item"):  # RSS
+        when = i.findtext("pubDate")
+        out.append({"title": (i.findtext("title") or "").strip(), "summary": "", "url": (i.findtext("link") or "").strip(),
+                    "date": _day(parsedate_to_datetime(when)) if when else ""})
+    for e in root.iter(ATOM + "entry"):  # Atom
+        link = next((x.get("href") for x in e.iter(ATOM + "link") if x.get("rel", "alternate") == "alternate"), "")
+        when = e.findtext(ATOM + "published") or e.findtext(ATOM + "updated") or ""
+        out.append({"title": (e.findtext(ATOM + "title") or "").strip(), "summary": "", "url": link or "",
+                    "date": _day(datetime.fromisoformat(when.replace("Z", "+00:00"))) if when else ""})
+    return [dict(it, publisher=c["name"]) for it in out if it["date"] >= since]
+
+
 class Gdelt:
     """Spaced requests; after a 429 it waits once, then stops for the rest of the run."""
     def __init__(self):
@@ -210,7 +235,7 @@ def merge(company, items, store, by_url, by_title, today):
 def main(ids, sources, days, resolve_max=400):
     recent = (date.today() - timedelta(days=3)).isoformat()
     companies = load_companies()
-    fetch = {"bing": bing, "gnews": gnews, "gdelt": Gdelt()}
+    fetch = {"bing": bing, "gnews": gnews, "gdelt": Gdelt(), "newsroom": newsroom}
     store = read_articles()
     by_url = {(a["company"], a["url"]): a for a in store if a["url"]}
     by_title = {(a["company"], norm_title(a["title"])): a for a in store}
@@ -225,10 +250,10 @@ def main(ids, sources, days, resolve_max=400):
             except (requests.RequestException, ET.ParseError, RuntimeError, ValueError, TypeError) as e:
                 errors[f"{cid}:{name}"] = f"{type(e).__name__}: {e}"[:200]
                 continue
-            kept = [dict(it, via=name) for it in items if relevant(c, it["title"], it["summary"])]
+            kept = [dict(it, via=name) for it in items if name == "newsroom" or relevant(c, it["title"], it["summary"])]
             raw[f"{cid}:{name}"] = {"fetched": len(items), "kept": len(kept), "items": kept}
             got += kept
-            if name != "gdelt":
+            if name != "gdelt" and (name != "newsroom" or c.get("newsroom_feed")):
                 time.sleep(1)
         added = merge(cid, got, store, by_url, by_title, today)
         new += added

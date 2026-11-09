@@ -99,7 +99,7 @@ companies:
       terms: ['"HighRes Biosolutions"', '"HighRes Bio"']
     careers: {ats: other, token: 'https://www.paycomonline.net/v4/ats/web.php/portal/A490811F8035AE70DC4C2BD27F50067F/career-page'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.highresbio.com/blog/rss.xml'
     focus: Robotic workcells and Cellario orchestration, with an AI layer of lab agents and robotic perception
     verify: []
   emerald-cloud-lab:
@@ -264,7 +264,7 @@ companies:
       context: [robot]
     careers: {ats: other, token: 'https://wcn7iq2vq1am.jobs.feishu.cn/863711/'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.sudo.ai/rss.xml'
     focus: Robot foundation models for manipulation
     verify: []
   nvidia:
@@ -430,7 +430,7 @@ companies:
       terms: ['"NEURA Robotics"']
     careers: {ats: other, token: 'https://jobs.neura-robotics.com/'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://neura-robotics.com/feed/'
     focus: Multi-form-factor physical AI platform (cobots, 4NE1 humanoid)
     verify: []
   symbotic:
@@ -448,7 +448,7 @@ companies:
       terms: ['"Symbotic"']
     careers: {ats: workday, token: symbotic.wd504.myworkdayjobs.com/Symbotic}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.symbotic.com/feed'
     focus: AI-orchestrated high-density storage and retrieval for large distribution centers
     verify: []
   locus-robotics:
@@ -520,7 +520,7 @@ companies:
       terms: ['"Ambi Robotics"']
     careers: {ats: lever, token: ambirobotics}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.ambirobotics.com/feed'
     focus: AI parcel sorting and handling on its AmbiOS platform
     verify: []
   mind-robotics:
@@ -668,7 +668,7 @@ companies:
       terms: ['"Waymo"']
     careers: {ats: greenhouse, token: waymo}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.waymo.com/blog/rss.xml'
     focus: Driverless ride-hailing
     verify: []
   zoox:
@@ -740,7 +740,7 @@ companies:
       terms: ['"Aurora Innovation"']
     careers: {ats: ashby, token: aurora-operations-inc}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.aurora.tech/rss.xml'
     focus: Driverless Class 8 trucking on Sun Belt freight lanes
     verify: []
   kodiak-ai:
@@ -758,7 +758,7 @@ companies:
       terms: ['"Kodiak AI"', '"Kodiak Robotics"']
     careers: {ats: greenhouse, token: kodiak}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://kodiak.ai/feed.xml'
     focus: Driverless trucks, starting off-highway in the Permian Basin; Bosch production hardware
     verify: []
   zipline:
@@ -831,7 +831,7 @@ companies:
       terms: ['"Anduril"']
     careers: {ats: greenhouse, token: andurilindustries}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.anduril.com/feed.xml'
     focus: Lattice autonomy OS, drones, counter-UAS, autonomous aircraft
     verify: []
   shield-ai:
@@ -849,7 +849,7 @@ companies:
       terms: ['"Shield AI"']
     careers: {ats: lever, token: shieldai}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.shield.ai/feed'
     focus: Hivemind autonomy software for aircraft
     verify: []
   saronic:
@@ -885,7 +885,7 @@ companies:
       terms: ['"CMR Surgical"']
     careers: {ats: other, token: 'https://cmrsurgical.com/careers'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://us.cmrsurgical.com/feed'
     focus: Versius soft-tissue surgical robot; trained and validated with NVIDIA Cosmos-H simulation
     verify: []
   moon-surgical:
@@ -1083,7 +1083,7 @@ companies:
       terms: ['"Realtime Robotics"']
     careers: {ats: workable, token: realtime-robotics}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://rtr.ai/feed/'
     focus: Real-time collision-free motion planning for multi-robot work cells
     verify: []
   teradyne-robotics:
@@ -1137,7 +1137,7 @@ companies:
       terms: ['"Berkshire Grey"']
     careers: {ats: bamboohr, token: berkshiregrey}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.berkshiregrey.com/feed/'
     focus: AI picking and sortation; Scoop autonomous trailer unloader
     verify: []
   amazon-robotics:
@@ -1191,7 +1191,7 @@ companies:
       terms: ['"Motional"']
     careers: {ats: greenhouse, token: motional}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.motional.com/rss.xml'
     focus: AI-first driving stack on Hyundai IONIQ 5
     verify: []
   blue-water-autonomy:
@@ -1245,7 +1245,7 @@ companies:
       terms: ['"Inkbit"']
     careers: {ats: other, token: 'https://inkbit3d.com/careers'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.inkbit3d.com/blog-feed.xml'
     focus: Multi-material 3D printing controlled by machine vision and AI
     verify: []
   irobot:
@@ -1336,7 +1336,7 @@ companies:
       terms: ['"Ava Robotics"']
     careers: {ats: other, token: 'https://www.avarobotics.com/join'}
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://www.avarobotics.com/blog-feed.xml'
     focus: MassRobotics resident; thin public data
     verify: []
   brecourt-solutions:
@@ -1354,6 +1354,6 @@ companies:
       terms: ['"Brecourt Solutions"']
     careers: null
     hiring_scope: company
-    newsroom_feed: null
+    newsroom_feed: 'https://brecourtsolutions.com/feed/'
     focus: Indoor first-responder drones; MassRobotics resident; thin public data
     verify: []

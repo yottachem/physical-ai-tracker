@@ -42,7 +42,7 @@ jobs:
       - name: WARN notices
         run: uv run python -m ingest.warn
       - name: News
-        run: uv run python -m ingest.news --sources bing,gnews,gdelt --days "${{ inputs.news_days || '3' }}"
+        run: uv run python -m ingest.news --sources bing,gnews,gdelt,newsroom --days "${{ inputs.news_days || '3' }}"
       - name: Acceptance rules
         run: uv run python -m classify.accept
       - name: Job boards, public financials and prices (Mondays, or when asked)
