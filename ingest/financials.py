@@ -8,7 +8,8 @@ Financials: data.sec.gov companyfacts. Only facts carrying an SEC "frame" are ke
 (CY2026Q2, CY2025, CY2025Q4I for an instant) and EDGAR assigns it to one fact per company, concept and period, which
 removes the duplicates that comparatives in later filings create. Periods from 2023 on.
   revenue, net_income, rnd (R&D expense): quarterly and annual durations
-  cash (cash and equivalents), shares (common shares outstanding, all classes summed): instants
+  cash (cash and equivalents), shares (common shares outstanding, all classes summed; the balance-sheet total when
+  the cover page reports only per-class counts): instants
 Facts filed while the CIK was still a SPAC shell (current or former EDGAR name like "... Acquisition Corp" or
 "... Capital Corp") describe the shell, not the company, and are dropped; a CIK that is still a shell is skipped
 until EDGAR renames it.
@@ -82,6 +83,12 @@ def facts(cik, cutoff):
                                           unit="shares", form=f["form"], accn=f["accn"], filed=f["filed"],
                                           tag="dei:EntityCommonStockSharesOutstanding"))
             s["value"] += f["val"]
+    if not shares:  # cover-page counts reported only per share class (Symbotic, Ginkgo): balance-sheet total instead
+        for f in gaap.get("CommonStockSharesOutstanding", {}).get("units", {}).get("shares", []):
+            if f.get("frame") and f["form"] in FORMS and f["end"] >= SINCE and f["filed"] >= cutoff:
+                shares[(f["accn"], f["end"])] = dict(metric="shares", frame=f["frame"], start="", end=f["end"],
+                                                     value=f["val"], unit="shares", form=f["form"], accn=f["accn"],
+                                                     filed=f["filed"], tag="CommonStockSharesOutstanding")
     return [*rows.values(), *shares.values()]
 
 
