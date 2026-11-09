@@ -1,4 +1,8 @@
-from ingest.warn import match, matchers, norm
+from datetime import datetime
+
+import pytest
+
+from ingest.warn import as_date, header_map, ma_rows, match, matchers, norm
 
 COMPANIES = {
     "figure-ai": {"name": "Figure AI", "hiring_scope": "company", "ownership": "private",
@@ -26,3 +30,24 @@ def test_match():
     assert match("Sunday Bakery LLC", ms) is None          # ambiguous one-word name needs a whole-name match
     assert match("Apple, Inc. - Cupertino", ms) is None    # parent scope is skipped
     assert match("Diligent Robots Co", ms) is None
+
+
+def test_ma_rows_find_columns_by_header():
+    rows = [("Massachusetts WARN Report FY2027",), (),
+            ("Company Name", "Location", "WARN Received Date", "Effective Date", "Number of Employees Affected", "Type"),
+            ("Diligent Robotics Inc", "Boston", datetime(2026, 10, 2), "12/1/2026", 40, "Layoff"),
+            ("Total", None, None, None, 40, None)]
+    got = list(ma_rows(rows, "u"))
+    assert got == [dict(state="MA", url="u", employer="Diligent Robotics Inc", notice="2026-10-02",
+                        effective="2026-12-01", count=40, kind="Layoff", site="Boston")]
+
+
+def test_ma_rows_without_header_is_an_error():
+    with pytest.raises(ValueError):
+        list(ma_rows([("Name", "Date"), ("x", "1/1/2026")], "u"))
+
+
+def test_header_map_uses_each_column_once():
+    assert header_map(["Employer", "Notice Date", "Employees Affected", "City"]) == \
+        {"employer": 0, "notice": 1, "count": 2, "site": 3}
+    assert as_date("10/02/2026") == "2026-10-02" and as_date("n/a") is None

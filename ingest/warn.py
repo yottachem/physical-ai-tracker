@@ -3,7 +3,8 @@
 Sources (public state spreadsheets, fetched as published):
   CA  EDD "Detailed WARN Report", current fiscal year (July 1 on), updated Tuesdays and Thursdays
   TX  TWC WARN Act listings, current and previous calendar year
-Massachusetts posts its WARN reports on mass.gov, which refuses scripted downloads; MA is not covered yet.
+  MA  the fiscal-year WARN report spreadsheet, saved by hand into data/warn/ma/ (mass.gov refuses scripted
+      downloads). Every .xlsx there is read; columns are found by their headers, so layout changes are tolerated.
 
 An employer matches a tracked company when its name, after dropping a trailing " - site" and legal suffixes,
 starts with the company's name or one of its quoted news terms. One-word names of companies with ambiguous names
@@ -24,7 +25,7 @@ import warnings
 import openpyxl
 import requests
 
-from ingest.common import load_companies, write_snapshot
+from ingest.common import ROOT, load_companies, write_snapshot
 from ingest.filings import read_queue, write_queue
 
 UA = {"User-Agent": "physical-ai-tracker (+https://github.com/yottachem/physical-ai-tracker)"}
@@ -55,7 +56,64 @@ def tx():
                            count=r[4], kind="", site=f"{r[7] or ''}, {r[2] or ''} County".strip(", "))
 
 
-SOURCES = {"CA": ca, "TX": tx}
+MA_DIR = ROOT / "data" / "warn" / "ma"
+MA_PAGE = "https://www.mass.gov/info-details/worker-adjustment-and-retraining-act-warn-weekly-report"
+MA_FIELDS = {  # field: header keywords, first matching column wins
+    "employer": ("company", "employer"),
+    "notice": ("received", "notice date", "warn date"),
+    "effective": ("effective", "layoff date", "separation"),
+    "count": ("employees", "affected", "number", "#"),
+    "site": ("location", "city", "address", "town"),
+    "kind": ("type", "closure", "layoff/"),
+}
+
+
+def ma():
+    for path in sorted(MA_DIR.glob("*.xlsx")):
+        yield from ma_rows(sheet_values(path.read_bytes(), None), f"{MA_PAGE}#{path.name}")
+
+
+def ma_rows(rows, url):
+    rows = iter(rows)
+    for header in rows:
+        cols = header_map(header)
+        if "employer" in cols and "notice" in cols:
+            break
+    else:
+        raise ValueError(f"no header row with company and notice-date columns in {url}")
+    for r in rows:
+        get = lambda f: r[cols[f]] if f in cols and cols[f] < len(r) else None  # noqa: E731
+        notice = as_date(get("notice"))
+        if notice and get("employer"):
+            yield dict(state="MA", url=url, employer=str(get("employer")).strip(), notice=notice,
+                       effective=as_date(get("effective")) or "", count=get("count") or "",
+                       kind=re.sub(r"\s+", " ", str(get("kind") or "")).strip(),
+                       site=re.sub(r"\s+", " ", str(get("site") or "")).strip())
+
+
+def header_map(header):
+    """{field: column index}; each column is used once, fields in MA_FIELDS order."""
+    names = [re.sub(r"\s+", " ", str(h or "")).strip().lower() for h in header]
+    cols = {}
+    for field, keys in MA_FIELDS.items():
+        i = next((i for i, n in enumerate(names) if n and i not in cols.values() and any(k in n for k in keys)), None)
+        if i is not None:
+            cols[field] = i
+    return cols
+
+
+def as_date(v):
+    if isinstance(v, datetime):
+        return v.date().isoformat()
+    for fmt in ("%m/%d/%Y", "%m/%d/%y", "%Y-%m-%d", "%B %d, %Y"):
+        try:
+            return datetime.strptime(str(v).strip(), fmt).date().isoformat()
+        except ValueError:
+            pass
+    return None
+
+
+SOURCES = {"CA": ca, "TX": tx, "MA": ma}
 
 
 warnings.filterwarnings("ignore", message="Data Validation extension", module="openpyxl")
@@ -66,7 +124,11 @@ def sheet_rows(url, name):
     resp.raise_for_status()
     if not resp.content.startswith(b"PK"):  # e.g. a block page served to cloud runners; logged as a source error
         raise ValueError(f"not a spreadsheet ({resp.headers.get('Content-Type', '?')}, {len(resp.content)} bytes)")
-    wb = openpyxl.load_workbook(io.BytesIO(resp.content), read_only=True, data_only=True)
+    yield from sheet_values(resp.content, name)
+
+
+def sheet_values(content, name):
+    wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
     ws = next((s for s in wb.worksheets if name and s.title.strip() == name), wb.worksheets[0])
     yield from ws.iter_rows(values_only=True)
 
@@ -106,7 +168,9 @@ def main(ids):
             print(f"{state}: ERROR {errors[state]}", flush=True)
             continue
         hits = [(n, cid) for n in notices if (cid := match(n["employer"], ms))]
-        snapshot[state] = {"notices": len(notices), "matches": [dict(n, company=cid) for n, cid in hits]}
+        latest = max((n["notice"] for n in notices), default="none")  # an old MA date means the file needs refreshing
+        snapshot[state] = {"notices": len(notices), "latest": latest,
+                           "matches": [dict(n, company=cid) for n, cid in hits]}
         for n, cid in hits:
             key = "|".join(str(n[k]) for k in ("employer", "notice", "site", "count"))
             qid = f"warn:{state}:{hashlib.sha1(key.encode()).hexdigest()[:12]}"
@@ -119,7 +183,7 @@ def main(ids):
                           "url": n["url"], "parsed": json.dumps(n, sort_keys=True), "status": "open"})
             known.add(qid)
             added += 1
-        print(f"{state}: {len(notices)} notices, {len(hits)} match tracked companies", flush=True)
+        print(f"{state}: {len(notices)} notices (latest {latest}), {len(hits)} match tracked companies", flush=True)
     write_snapshot("warn", {"companies": snapshot, "errors": errors})
     write_queue(queue)
     print(f"{added} queued; {len(errors)} errors")
