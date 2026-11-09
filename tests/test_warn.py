@@ -51,3 +51,26 @@ def test_header_map_uses_each_column_once():
     assert header_map(["Employer", "Notice Date", "Employees Affected", "City"]) == \
         {"employer": 0, "notice": 1, "count": 2, "site": 3}
     assert as_date("10/02/2026") == "2026-10-02" and as_date("n/a") is None
+
+
+def test_tx_reads_repo_copy(tmp_path, monkeypatch):
+    import io
+    from datetime import date, datetime
+
+    import openpyxl
+    import pytest
+
+    from ingest import warn
+    monkeypatch.setattr(warn, "TX_DIR", tmp_path)
+    with pytest.raises(ValueError):
+        list(warn.tx())
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["Notice Date", "Job Site Name", "County", "WDA", "Employees", "Layoff Date", "Address", "City"])
+    ws.append([datetime(2026, 11, 2), "Acme Robotics", "Travis", "", 40, datetime(2027, 1, 2), "", "Austin"])
+    buf = io.BytesIO()
+    wb.save(buf)
+    (tmp_path / f"warn-act-listings-{date.today().year}-twc.xlsx").write_bytes(buf.getvalue())
+    [row] = list(warn.tx())
+    assert row["employer"] == "Acme Robotics" and row["notice"] == "2026-11-02" and row["site"] == "Austin, Travis County"
+    assert row["url"].endswith(f"warn-act-listings-{date.today().year}-twc.xlsx")

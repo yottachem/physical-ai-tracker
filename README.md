@@ -10,7 +10,7 @@ Which physical AI companies are growing, raising, hiring or shrinking? This proj
 | Private funding, listings, material events | SEC EDGAR filings watcher: Form D, S-1/S-4/DRS, Forms 15 and 25, 8-K by item | Daily |
 | Funding and valuations | Announcements, accepted by source tier (below) | Daily |
 | Open roles | Public job boards: Greenhouse, Lever, Ashby, Workday, Workable, Rippling, BambooHR, Teamtailor | Weekly |
-| Layoffs | State WARN notices: California, Texas; Massachusetts from a monthly hand-saved file (data/warn/ma/) | Daily |
+| Layoffs | State WARN notices: California; Texas from a daily copy in data/warn/tx/ (twc.texas.gov blocks GitHub runners; `tools/push_tx_warn.py` pushes it from a Mac); Massachusetts from a monthly hand-saved file (data/warn/ma/) | Daily |
 | Headcount | 10-K / 20-F employee count (public); company-stated figures (private) | Weekly / on detection |
 | Public companies | SEC EDGAR XBRL: revenue, net income, R&D, cash, shares outstanding | Weekly |
 | Market value | Yahoo Finance weekly closes (unofficial endpoint) x SEC shares outstanding | Weekly |
@@ -64,6 +64,7 @@ SEC requires a contact email: set `CONTACT_EMAIL`, or the macOS Keychain item `p
 | `data/public/prices.csv` | Weekly closing price per public company since 2025, with currency |
 | `data/public/market_value.csv` | Latest close x latest SEC share count; blank market cap where shares are unknown (non-US, SPAC-shell CIK) |
 | `site/` | `build.py` + Jinja templates + server-rendered SVG charts (`charts.py`, shared with lifesci-tools-tracker); output in `site/dist/` (gitignored) |
+| `tools/push_tx_warn.py` | Run daily on the maintainer's Mac (launchd): copies the Texas WARN files into data/warn/tx/ through the GitHub API when they change |
 | `tests/` | Registry, ledger, tier rules, ingest parsers, site build |
 
 ## License

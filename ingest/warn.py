@@ -2,7 +2,8 @@
 
 Sources (public state spreadsheets, fetched as published):
   CA  EDD "Detailed WARN Report", current fiscal year (July 1 on), updated Tuesdays and Thursdays
-  TX  TWC WARN Act listings, current and previous calendar year
+  TX  TWC WARN Act listings, current and previous calendar year, read from data/warn/tx/: twc.texas.gov serves
+      GitHub runners an empty page, so tools/push_tx_warn.py copies the files into the repo daily from a Mac
   MA  the fiscal-year WARN report spreadsheet, saved by hand into data/warn/ma/ (mass.gov refuses scripted
       downloads). Every .xlsx there is read; columns are found by their headers, so layout changes are tolerated.
 
@@ -41,15 +42,18 @@ def ca():
                        count=r[6], kind=str(r[5] or "").replace("\n", " "), site=re.sub(r"\s+", " ", str(r[7] or "")))
 
 
+TX_DIR = ROOT / "data" / "warn" / "tx"
+TX_URL = "https://www.twc.texas.gov/sites/default/files/oei/docs/warn-act-listings-{y}-twc.xlsx"
+
+
 def tx():
     year = date.today().year
-    for y in (year, year - 1):
-        url = f"https://www.twc.texas.gov/sites/default/files/oei/docs/warn-act-listings-{y}-twc.xlsx"
-        try:
-            rows = list(sheet_rows(url, None))
-        except requests.HTTPError:
-            continue
-        for r in rows:
+    paths = [p for y in (year, year - 1) if (p := TX_DIR / f"warn-act-listings-{y}-twc.xlsx").exists()]
+    if not paths:
+        raise ValueError(f"no Texas file in {TX_DIR.relative_to(ROOT)} (pushed daily by tools/push_tx_warn.py)")
+    for path in paths:
+        url = TX_URL.format(y=path.name.split("-")[3])
+        for r in sheet_values(path.read_bytes(), None):
             if isinstance(r[0], datetime) and r[1]:
                 yield dict(state="TX", url=url, employer=str(r[1]), notice=r[0].date().isoformat(),
                            effective=r[5].date().isoformat() if isinstance(r[5], datetime) else "",
