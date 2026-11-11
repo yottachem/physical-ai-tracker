@@ -1366,3 +1366,682 @@ companies:
     newsroom_feed: 'https://brecourtsolutions.com/feed/'
     focus: Indoor first-responder drones; MassRobotics resident; thin public data
     verify: []
+  familiar-machines:
+    name: 'Familiar Machines & Magic'
+    segments: [consumer-home]
+    hq: 'Boston, MA'
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: familiarmachines.com
+    other_domains: []
+    news:
+      terms: ['"Familiar Machines"']
+    careers: {ats: ashby, token: FamiliarMachines}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Pet-like home robot (the Familiar) for health and wellness; founded by iRobot co-founder Colin Angle
+    verify: []
+  generalist-ai:
+    name: Generalist AI
+    segments: [foundation-models]
+    hq: San Mateo, CA
+    boston: true
+    boston_note: Somerville office; about half of open roles are posted there
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: generalistai.com
+    other_domains: []
+    news:
+      terms: ['"Generalist AI"']
+      context: [robot]
+    careers: {ats: ashby, token: generalist}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Robot foundation models trained on large-scale real-world manipulation data
+    verify: []
+  general-intuition:
+    name: General Intuition
+    segments: [foundation-models]
+    hq: 'New York, NY'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: generalintuition.com
+    other_domains: []
+    news:
+      terms: ['"General Intuition"']
+      context: [world model, agent, Medal, robot]
+    careers: {ats: ashby, token: generalintuition-medal}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'World models and spatial-temporal reasoning agents trained on video-game clips, aimed at robots and drones'
+    verify: []
+  dyna-robotics:
+    name: Dyna Robotics
+    segments: [foundation-models]
+    hq: 'Redwood City, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: dyna.co
+    other_domains: []
+    news:
+      terms: ['"Dyna Robotics"']
+    careers: {ats: ashby, token: dyna-robotics}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Foundation models for commercial robot manipulation, deployed first in laundry folding and food prep'
+    verify: [hq]
+  genesis-ai:
+    name: Genesis AI
+    segments: [foundation-models]
+    hq: San Carlos, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: genesis-ai.company
+    other_domains: []
+    news:
+      terms: ['"Genesis AI"']
+      context: [robot, simulation, physics]
+    careers: {ats: ashby, token: genesis}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Physics simulation engine and robot foundation models trained on simulated data
+    verify: [hq]
+  field-ai:
+    name: Field AI
+    segments: [foundation-models]
+    hq: 'Irvine, CA'
+    boston: true
+    boston_note: Boston engineering site; open roles posted in Boston, MA
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: fieldai.com
+    other_domains: []
+    news:
+      terms: ['"Field AI"', '"FieldAI"']
+      context: [robot, autonomy, autonomous]
+    careers: {ats: lever, token: field-ai}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Field Foundation Models for autonomy in unstructured outdoor sites (construction, energy, mining)'
+    verify: [hq]
+  atoms:
+    name: Atoms
+    segments: [manufacturing-construction]
+    hq: 'San Francisco, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: atoms.co
+    other_domains: []
+    news:
+      terms: ['"Atoms"']
+      context: [Kalanick, robot]
+    careers: null   # greenhouse 'atoms' board lists CloudKitchens roles (Bogota, Dubai, Jakarta)
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Task-specific industrial robots for food, mining and transportation; Travis Kalanick''s company'
+    verify: [careers]
+  persona-ai:
+    name: Persona AI
+    segments: [humanoids]
+    hq: 'Houston, TX'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: personainc.ai
+    other_domains: []
+    news:
+      terms: ['"Persona AI"']
+      context: [humanoid, robot]
+    careers: {ats: ashby, token: persona.ai}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Humanoids for shipbuilding and heavy industrial work
+    verify: []
+  galbot:
+    name: Galbot
+    segments: [humanoids]
+    hq: 'Beijing, China'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: galbot.com
+    other_domains: []
+    news:
+      terms: ['"Galbot"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Wheeled humanoids for retail, pharmacy and factory tasks, trained largely in simulation'
+    verify: []
+  agibot:
+    name: AgiBot
+    segments: [humanoids]
+    hq: 'Shanghai, China'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: agibot.com
+    other_domains: []
+    news:
+      terms: ['"AgiBot"', '"Zhiyuan Robotics"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Humanoids and data-collection factories for manufacturing and service; among China''s highest-volume makers'
+    verify: []
+  ubtech:
+    name: UBTech Robotics
+    segments: [humanoids]
+    hq: 'Shenzhen, China'
+    boston: false
+    ownership: public
+    parent: null
+    ticker: 9880.HK
+    cik: null
+    domain: ubtrobot.com
+    other_domains: []
+    news:
+      terms: ['"UBTech"', '"UBTECH"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Walker S industrial humanoids in auto and electronics plants; education and service robots
+    verify: []
+  xpeng-robotics:
+    name: XPeng Robotics
+    segments: [humanoids]
+    hq: 'Guangzhou, China'
+    boston: false
+    ownership: division
+    parent: XPeng
+    ticker: null
+    cik: null
+    domain: xpeng.com
+    other_domains: []
+    news:
+      terms: ['"XPeng Robotics"', '"XPeng IRON"']
+    careers: null
+    hiring_scope: parent
+    newsroom_feed: null
+    focus: 'IRON humanoid from carmaker XPeng, aimed at retail and factory work'
+    verify: [ownership]
+  acumino:
+    name: Acumino
+    segments: [warehouse-factory]
+    hq: 'Boston, MA'
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: acumino.ai
+    other_domains: []
+    news:
+      terms: ['"Acumino"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Hardware-agnostic physical AI for dexterous industrial manipulation
+    verify: []
+  unit-ai:
+    name: UNIT AI
+    segments: [warehouse-factory]
+    hq: 'Boston, MA'
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: unit-ai.com
+    other_domains: []
+    news:
+      terms: ['"UNIT AI"']
+      context: [warehouse, fulfillment, robot, automation]
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Networked warehouse automation for e-commerce fulfillment and returns, no warehouse redesign needed'
+    verify: [careers]
+  algorized:
+    name: Algorized
+    segments: [warehouse-factory]
+    hq: 'Etoy, Switzerland'
+    boston: true
+    boston_note: MassRobotics resident startup with a Boston presence
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: algorized.com
+    other_domains: []
+    news:
+      terms: ['"Algorized"']
+    careers: {ats: lever, token: algorized}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Edge sensing and intent prediction so robots work safely beside people
+    verify: [hq]
+  vecna-robotics:
+    name: Vecna Robotics
+    segments: [warehouse-factory]
+    hq: 'Waltham, MA'
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: vecnarobotics.com
+    other_domains: []
+    news:
+      terms: ['"Vecna Robotics"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Autonomous forklifts and tuggers with orchestration software for warehouses and plants
+    verify: []
+  sereact:
+    name: Sereact
+    segments: [warehouse-factory]
+    hq: 'Stuttgart, Germany'
+    boston: true
+    boston_note: Boston office; open roles posted there
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: sereact.ai
+    other_domains: []
+    news:
+      terms: ['"Sereact"']
+    careers: {ats: ashby, token: sereact}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Hardware-agnostic AI models for pick-and-place and industrial robots
+    verify: []
+  mytra:
+    name: Mytra
+    segments: [warehouse-factory]
+    hq: 'Brisbane, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: mytra.ai
+    other_domains: []
+    news:
+      terms: ['"Mytra"']
+    careers: {ats: rippling, token: mytra}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Modular 3D storage-and-retrieval grid with robots that move in any direction
+    verify: [hq]
+  formic:
+    name: Formic
+    segments: [warehouse-factory]
+    hq: 'Chicago, IL'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: formic.co
+    other_domains: []
+    news:
+      terms: ['"Formic Technologies"', '"Formic robots"']
+    careers: {ats: greenhouse, token: formic}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Robots-as-a-service for palletizing and packaging in small and mid-size plants
+    verify: []
+  standard-bots:
+    name: Standard Bots
+    segments: [warehouse-factory]
+    hq: 'Glen Cove, NY'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: standardbots.com
+    other_domains: []
+    news:
+      terms: ['"Standard Bots"']
+    careers: {ats: ashby, token: StandardBots}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: US-built collaborative arms (RO1) with an AI training platform for factory tasks
+    verify: []
+  hadrian:
+    name: Hadrian
+    segments: [manufacturing-construction]
+    hq: 'Torrance, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: hadrian.co
+    other_domains: []
+    news:
+      terms: ['"Hadrian Automation"', '"Hadrian Manufacturing"']
+    careers: {ats: ashby, token: hadrian-automation}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Automated precision-machining factories for aerospace and defense parts
+    verify: []
+  bedrock-robotics:
+    name: Bedrock Robotics
+    segments: [manufacturing-construction]
+    hq: 'San Francisco, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: bedrockrobotics.com
+    other_domains: []
+    news:
+      terms: ['"Bedrock Robotics"']
+    careers: {ats: ashby, token: bedrock-robotics}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Retrofit autonomy kits for excavators and other construction equipment
+    verify: []
+  machina-labs:
+    name: Machina Labs
+    segments: [manufacturing-construction]
+    hq: Chatsworth, CA
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: machinalabs.ai
+    other_domains: []
+    news:
+      terms: ['"Machina Labs"']
+    careers: {ats: ashby, token: machina-labs}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Robotic sheet-metal forming cells for aerospace, defense and automotive parts'
+    verify: []
+  luminous-robotics:
+    name: Luminous Robotics
+    segments: [manufacturing-construction]
+    hq: 'Boston, MA'
+    boston: true
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: luminousrobotics.com
+    other_domains: []
+    news:
+      terms: ['"Luminous Robotics"', '"LUMI robot"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: LUMI robots that install panels on utility-scale solar farms
+    verify: []
+  helsing:
+    name: Helsing
+    segments: [defense]
+    hq: 'Munich, Germany'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: helsing.ai
+    other_domains: []
+    news:
+      terms: ['"Helsing"']
+      context: [defense, defence, drone, AI, military]
+    careers: {ats: greenhouse, token: helsing}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Defense AI software, strike drones (HX-2) and autonomous underwater and air systems'
+    verify: []
+  quantum-systems:
+    name: Quantum Systems
+    segments: [defense]
+    hq: 'Moosburg, Germany'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: quantum-systems.com
+    other_domains: []
+    news:
+      terms: ['"Quantum Systems"']
+      context: [drone, UAV, Vector, Trinity, defense, defence, military]
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'VTOL reconnaissance drones (Vector, Trinity) for militaries and government'
+    verify: []
+  mach-industries:
+    name: Mach Industries
+    segments: [defense]
+    hq: 'Huntington Beach, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: machindustries.com
+    other_domains: []
+    news:
+      terms: ['"Mach Industries"']
+    careers: {ats: greenhouse, token: machindustries}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Autonomous strike and loitering systems built in high-volume US factories
+    verify: []
+  tekever:
+    name: Tekever
+    segments: [defense]
+    hq: 'Lisbon, Portugal'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: tekever.com
+    other_domains: []
+    news:
+      terms: ['"Tekever"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Long-endurance surveillance drones (AR3, AR5) with onboard AI'
+    verify: []
+  stark:
+    name: Stark
+    segments: [defense]
+    hq: 'Berlin, Germany'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: stark-defence.com
+    other_domains: []
+    news:
+      terms: ['"Stark Defence"', '"STARK Defence"', '"Stark drone"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Loitering munitions and strike drones
+    verify: []
+  skydio:
+    name: Skydio
+    segments: [defense]
+    hq: 'San Mateo, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: skydio.com
+    other_domains: []
+    news:
+      terms: ['"Skydio"']
+    careers: {ats: ashby, token: skydio}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Autonomous drones and docks for defense, public safety and infrastructure inspection'
+    verify: []
+  wayve:
+    name: Wayve
+    segments: [mobility]
+    hq: 'London, UK'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: wayve.ai
+    other_domains: []
+    news:
+      terms: ['"Wayve"']
+    careers: {ats: ashby, token: wayve}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: End-to-end driving AI licensed to automakers (Nissan) and robotaxi partners (Uber)
+    verify: []
+  waabi:
+    name: Waabi
+    segments: [mobility]
+    hq: 'Toronto, Canada'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: waabi.ai
+    other_domains: []
+    news:
+      terms: ['"Waabi"']
+    careers: {ats: lever, token: waabi}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Driverless trucks trained in a generative simulator; Volvo partnership
+    verify: []
+  nuro:
+    name: Nuro
+    segments: [mobility]
+    hq: 'Mountain View, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: nuro.ai
+    other_domains: []
+    news:
+      terms: ['"Nuro"']
+    careers: {ats: greenhouse, token: nuro}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Autonomy licensed to automakers and robotaxi programs (Lucid and Uber)
+    verify: []
+  applied-intuition:
+    name: Applied Intuition
+    segments: [mobility, defense]
+    hq: 'Mountain View, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: appliedintuition.com
+    other_domains: []
+    news:
+      terms: ['"Applied Intuition"']
+    careers: {ats: ashby, token: applied}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Simulation, autonomy and vehicle software for automakers, trucks and defense vehicles'
+    verify: []
+  skyryse:
+    name: Skyryse
+    segments: [mobility]
+    hq: 'El Segundo, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: skyryse.com
+    other_domains: []
+    news:
+      terms: ['"Skyryse"']
+    careers: {ats: greenhouse, token: skyryse}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: SkyOS fly-by-wire flight system that automates helicopters and aircraft
+    verify: []
+  cornerstone-robotics:
+    name: Cornerstone Robotics
+    segments: [healthcare]
+    hq: Hong Kong
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: cornerstone-robotics.com
+    other_domains: []
+    news:
+      terms: ['"Cornerstone Robotics"']
+    careers: null
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Multi-port surgical robot (Sentire) for general and urologic surgery
+    verify: []
+  cellares:
+    name: Cellares
+    segments: [lab-automation]
+    hq: 'South San Francisco, CA'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: cellares.com
+    other_domains: []
+    news:
+      terms: ['"Cellares"']
+    careers: {ats: lever, token: cellares}
+    hiring_scope: company
+    newsroom_feed: null
+    focus: Automated cell-therapy manufacturing (Cell Shuttle) run as a contract manufacturer
+    verify: [careers]   # Lever board shows 1 role; may not be the main board
