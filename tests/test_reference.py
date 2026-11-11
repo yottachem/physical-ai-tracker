@@ -17,7 +17,7 @@ LEDGER = load_ledger()
 OWNERSHIP = {"private", "public", "subsidiary", "division"}
 TYPES = {"funding", "valuation", "revenue", "deployment", "product", "partnership", "contract", "facility",
          "acquisition", "regulatory", "headcount", "layoff", "listing", "market", "status"}
-STATUS = {"closed", "reported", "announced"}
+STATUS = {"closed", "reported", "announced", "superseded"}
 ACCEPT = {"seed", "auto", "reviewed"}
 QUALIFIERS = {"", "approx", "at_least", "up_to"}
 ATS = {"greenhouse", "lever", "ashby", "workable", "workday", "rippling", "bamboohr", "teamtailor", "smartrecruiters",

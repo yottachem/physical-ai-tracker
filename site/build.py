@@ -290,7 +290,7 @@ def load():
     """Everything the pages are built from; analysis/claims.py uses it too."""
     companies = load_companies()
     segments = load_segments()
-    ledger = [ledger_row(r, companies) for r in load_ledger()]
+    ledger = [ledger_row(r, companies) for r in load_ledger() if r["status"] != "superseded"]
     articles = read_articles()
     jobs = jobs_by_company()
     values = {r["company"]: {**r, "cap": num(r["market_cap"]), "close_n": num(r["close"])}
