@@ -71,9 +71,9 @@ claims:
 
   defense:
     - id: capital
-      holds: t.raised_rank == 1 and t.raised_share >= 0.4
+      holds: t.raised_rank == 2 and t.raised_share >= 0.25
       text: >-
-        The largest segment by capital: **{t.raised_share:pct}** of all closed equity in the last 12 months
+        Second only to mobility in capital: **{t.raised_share:pct}** of all closed equity in the last 12 months
         ({t.raised_12m:usd} across {t.rounds_12m:int} rounds), from {t.n:int} companies.
       fallback: >-
         {t.raised_12m:usd} closed across {t.rounds_12m:int} rounds in the last 12 months.
@@ -87,19 +87,12 @@ claims:
 
   foundation_models:
     - id: capital
-      holds: t.raised_rank == 2 and t.raised_multiple >= 3
+      holds: t.raised_rank == 3 and t.raised_multiple >= 3
       text: >-
-        Second only to defense in capital: {t.raised_12m:usd} closed in the last 12 months, **{t.raised_multiple:x}**
-        the 12 months before, in {t.rounds_12m:int} rounds.
+        Third in capital: {t.raised_12m:usd} closed in the last 12 months, **{t.raised_multiple:x}** the 12 months
+        before, in {t.rounds_12m:int} rounds.
       fallback: >-
         {t.raised_12m:usd} closed in the last 12 months; {t.raised_prev_12m:usd} in the 12 months before.
-    - id: few_roles
-      holds: t.raised_share >= 2 * t.roles_share
-      text: >-
-        A far larger share of capital than of hiring: {t.raised_share:pct} of the market's closed equity, but
-        {t.roles_share:pct} of counted open roles ({t.roles:int} across {t.boards:int} boards).
-      fallback: >-
-        {t.raised_share:pct} of closed equity in the last 12 months; {t.roles_share:pct} of counted open roles.
 
   mobility:
     - id: one_round
@@ -119,10 +112,10 @@ claims:
 
   warehouse_factory:
     - id: boston
-      holds: t.boston_n_rank == 1 and t.boston_share >= 0.4
+      holds: t.boston_n_rank == 1 and t.boston_n >= 0.5 * t.n
       text: >-
-        The most Boston-heavy segment: {t.boston_n:int} of {t.n:int} companies, and **{t.boston_share:pct}** of its
-        {t.roles:int} open roles are in the Boston area.
+        The most Boston-heavy segment: **{t.boston_n:int} of {t.n:int}** companies are in Greater Boston or have a site
+        there, and {t.boston_share:pct} of its {t.roles:int} open roles are in the Boston area.
       fallback: >-
         {t.boston_n:int} of {t.n:int} companies carry the Boston tag; {t.boston_roles:int} of {t.roles:int} open roles
         are in the Boston area.
@@ -136,9 +129,9 @@ claims:
 
   humanoids:
     - id: reported
-      holds: t.reported_12m >= 2 * t.raised_12m
+      holds: t.reported_12m > t.raised_12m
       text: >-
-        Much of the money is not closed yet: **{t.reported_12m:usd}** in rounds reported or announced in the last 12
+        More money is reported than closed: **{t.reported_12m:usd}** in rounds reported or announced in the last 12
         months, against {t.raised_12m:usd} closed.
       fallback: >-
         {t.raised_12m:usd} closed and {t.reported_12m:usd} reported or announced in the last 12 months.
@@ -153,10 +146,11 @@ claims:
         {t.boston_roles:int} of {t.roles:int} open roles are in the Boston area.
 
   healthcare:
-    - id: no_rounds
-      holds: t.rounds_12m == 0
+    - id: one_round
+      holds: t.rounds_12m == 1
       text: >-
-        No closed equity rounds with a disclosed amount in the last 12 months.
+        One closed equity round with a disclosed amount in the last 12 months: {t.top_round_company:poss}
+        {t.top_round:usd}.
       fallback: >-
         {t.raised_12m:usd} closed across {t.rounds_12m:int} rounds in the last 12 months.
     - id: one_hirer
