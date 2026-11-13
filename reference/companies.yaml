@@ -2,6 +2,7 @@
 # ownership: private | public | subsidiary (own brand, owned by parent) | division (inside parent; parent-level data only)
 # boston: Greater Boston as the map's Boston spotlight defines it (includes Beverly, Wilmington, Bedford, Billerica)
 # boston_note: required when boston is true but the HQ is elsewhere; the site shows it next to the Boston tag
+# hq_note: optional second site shown after the HQ on the company page (Genesis AI: US site)
 # news.terms: exact phrases (any match); news.context: words one of which must also appear (ambiguous names)
 # ticker: US symbol (needs cik), or SYMBOL.EXCHANGE for non-US listings (688836.SS); no SEC filings for those
 # careers: {ats: greenhouse | lever | ashby | workable | workday | rippling | bamboohr | teamtailor | smartrecruiters,
@@ -1440,18 +1441,19 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: 'Foundation models for commercial robot manipulation, deployed first in laundry folding and food prep'
-    verify: [hq]
+    verify: []
   genesis-ai:
     name: Genesis AI
     segments: [foundation-models]
-    hq: San Carlos, CA
+    hq: 'Paris, France'
+    hq_note: 'US site: San Carlos, CA'
     boston: false
     ownership: private
     parent: null
     ticker: null
     cik: null
-    domain: genesis-ai.company
-    other_domains: []
+    domain: genesis.ai
+    other_domains: [genesis-ai.company]
     news:
       terms: ['"Genesis AI"']
       context: [robot, simulation, physics]
@@ -1459,7 +1461,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Physics simulation engine and robot foundation models trained on simulated data
-    verify: [hq]
+    verify: []
   field-ai:
     name: Field AI
     segments: [foundation-models]
@@ -1479,7 +1481,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: 'Field Foundation Models for autonomy in unstructured outdoor sites (construction, energy, mining)'
-    verify: [hq]
+    verify: []
   atoms:
     name: Atoms
     segments: [manufacturing-construction]
@@ -1494,11 +1496,11 @@ companies:
     news:
       terms: ['"Atoms"']
       context: [Kalanick, robot]
-    careers: null   # greenhouse 'atoms' board lists CloudKitchens roles (Bogota, Dubai, Jakarta)
+    careers: {ats: other, token: 'https://atoms.co/openroles'}   # greenhouse 'atoms' board covers the merged Atoms group incl. CloudKitchens roles; listed, not counted (Josh 2026-11-13)
     hiring_scope: company
     newsroom_feed: null
     focus: 'Task-specific industrial robots for food, mining and transportation; Travis Kalanick''s company'
-    verify: [careers]
+    verify: []
   persona-ai:
     name: Persona AI
     segments: [humanoids]
@@ -1577,7 +1579,7 @@ companies:
     segments: [humanoids]
     hq: 'Guangzhou, China'
     boston: false
-    ownership: division
+    ownership: subsidiary
     parent: XPeng
     ticker: null
     cik: null
@@ -1589,7 +1591,7 @@ companies:
     hiring_scope: parent
     newsroom_feed: null
     focus: 'IRON humanoid from carmaker XPeng, aimed at retail and factory work'
-    verify: [ownership]
+    verify: []
   acumino:
     name: Acumino
     segments: [warehouse-factory]
@@ -1617,16 +1619,16 @@ companies:
     parent: null
     ticker: null
     cik: null
-    domain: unit-ai.com
-    other_domains: []
+    domain: unitai.co
+    other_domains: [unitailabs.com]
     news:
       terms: ['"UNIT AI"']
       context: [warehouse, fulfillment, robot, automation]
-    careers: null
+    careers: null   # no public board; unitai.co lists none (checked 2026-11-13)
     hiring_scope: company
     newsroom_feed: null
     focus: 'Networked warehouse automation for e-commerce fulfillment and returns, no warehouse redesign needed'
-    verify: [careers]
+    verify: []
   algorized:
     name: Algorized
     segments: [warehouse-factory]
@@ -1645,7 +1647,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Edge sensing and intent prediction so robots work safely beside people
-    verify: [hq]
+    verify: []
   vecna-robotics:
     name: Vecna Robotics
     segments: [warehouse-factory]
@@ -1700,7 +1702,7 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Modular 3D storage-and-retrieval grid with robots that move in any direction
-    verify: [hq]
+    verify: []
   formic:
     name: Formic
     segments: [warehouse-factory]
@@ -2044,4 +2046,4 @@ companies:
     hiring_scope: company
     newsroom_feed: null
     focus: Automated cell-therapy manufacturing (Cell Shuttle) run as a contract manufacturer
-    verify: [careers]   # Lever board shows 1 role; may not be the main board
+    verify: []

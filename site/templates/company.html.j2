@@ -8,7 +8,7 @@
 <p>{% for sid, name in r.segments %}<a class="pill" href="../index.html#{{ sid }}">{{ name }}</a> {% endfor %}{% if c.boston %}<span class="tag">Greater Boston</span>{% endif %}</p>
 <h1>{{ c.name }}</h1>
 <p class="lede">{{ c.focus }}.</p>
-<p class="sub">{{ r.stage }} · {{ c.hq }} · <a href="https://{{ c.domain }}">{{ c.domain }}</a>{% if c.boston_note %}<br>Boston tag: {{ c.boston_note }}{% endif %}</p>
+<p class="sub">{{ r.stage }} · {{ c.hq }}{% if c.hq_note %} ({{ c.hq_note }}){% endif %} · <a href="https://{{ c.domain }}">{{ c.domain }}</a>{% if c.boston_note %}<br>Boston tag: {{ c.boston_note }}{% endif %}</p>
 
 <div class="figs">
   <div class="fig"><b>{{ m.valuation(r.valuation) }}</b><span>latest valuation{% if r.valuation %} ({{ r.valuation.date | show_date }}){% endif %}</span></div>
