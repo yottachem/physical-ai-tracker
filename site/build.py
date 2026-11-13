@@ -39,7 +39,7 @@ from ingest.news import read_articles  # noqa: E402
 DIST = HERE / "dist"
 REPO = "https://github.com/yottachem/physical-ai-tracker"
 SITE_URL = "https://yottachem.github.io/physical-ai-tracker/"
-ANALYTICS_TOKEN = ""  # Cloudflare Web Analytics token, set at launch
+ANALYTICS_TOKEN = "ee99837aed054d67b79a567044baec28"  # Cloudflare Web Analytics (shared yottachem.github.io token)
 FEED_DAYS = 60
 NOT_EQUITY = re.compile(r"\b(debt|loan|credit|grant|award|bridge)\b", re.I)
 STAGE = re.compile(r"^(Pre-seed|Seed|Series [A-Z](-\d)?)\b", re.I)

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 1200x630 social preview card, rendered by site/social.py. Light theme only. */
+:root { --bg:#f5f4ef; --fg:#1c1f26; --muted:#5d6370; --s1:#2f4ba0; color-scheme: light; }
+* { box-sizing: border-box; margin: 0; }
+body { width: 1200px; height: 630px; background: var(--bg); color: var(--fg); font-family: "IBM Plex Sans", sans-serif;
+  padding: 44px 56px; display: grid; grid-template-columns: 420px 1fr; gap: 28px; border-top: 10px solid var(--s1); }
+h1 { font: 400 48px/1.08 "Newsreader", Georgia, serif; letter-spacing: -.01em; margin-top: 18px; }
+p { font: 400 21px/1.4 "Newsreader", Georgia, serif; color: var(--muted); margin-top: 18px; }
+.brand { font: 500 14px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--s1); }
+.url { position: absolute; bottom: 40px; left: 56px; font: 400 16px "IBM Plex Mono", monospace; color: var(--muted); }
+.cap { font: 500 13px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 26px 0 10px; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart .bar { fill: var(--s1); } .chart .lab { font: 400 17px "IBM Plex Sans", sans-serif; fill: var(--fg); }
+.chart .val { font: 500 15px "IBM Plex Mono", monospace; fill: var(--muted); }
+</style>
+</head>
+<body>
+<div>
+  <div class="brand">Physical AI Tracker</div>
+  <h1>Where the money is going in physical AI</h1>
+  <p>{{ n }} companies across {{ segments }} segments: funding, hiring and announcements, each figure linked to its source. Updated daily.</p>
+  <div class="url">{{ site_url | replace("https://", "") }}</div>
+</div>
+<div>
+  <div class="cap">Closed equity, last 12 months ({{ raised }} total)</div>
+  {{ chart | safe }}
+</div>
+</body>
+</html>

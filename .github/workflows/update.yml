@@ -3,7 +3,8 @@ name: update
 # financials and prices -> test -> commit data.
 # Commits data/news/articles.csv, data/review/queue.csv, data/jobs/counts.csv, data/public/*.csv and auto-accepted
 # ledger rows, so the site's history accumulates in git. Raw snapshots stay in the runner (gitignored).
-# Scheduled runs need repo variable SCHEDULE_ON=true (on since 2026-11-07).
+# Then: check statements -> build site -> deploy to GitHub Pages. A push to main skips ingest and rebuilds the site.
+# Scheduled runs need repo variable SCHEDULE_ON=true (on since 2026-11-07); deploys need PAGES_LIVE=true.
 # Secret: CONTACT_EMAIL (SEC User-Agent; never written to the repo).
 on:
   schedule:
@@ -17,10 +18,14 @@ on:
       news_days:
         description: "News lookback in days"
         default: "3"
+  push:
+    branches: [main]
 
 permissions:
   contents: write
   issues: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: update
@@ -38,14 +43,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - name: SEC filings
+        if: github.event_name != 'push'
         run: uv run python -m ingest.filings --since "$(date -u -d '14 days ago' +%F)"
       - name: WARN notices
+        if: github.event_name != 'push'
         run: uv run python -m ingest.warn
       - name: News
+        if: github.event_name != 'push'
         run: uv run python -m ingest.news --sources bing,gnews,gdelt,newsroom --days "${{ inputs.news_days || '3' }}"
       - name: Acceptance rules
+        if: github.event_name != 'push'
         run: uv run python -m classify.accept
       - name: Job boards, public financials and prices (Mondays, or when asked)
+        if: github.event_name != 'push'
         run: |
           if [ "${{ inputs.jobs }}" = "true" ] || [ "$(date -u +%u)" = "1" ]; then
             uv run python -m ingest.jobs
@@ -57,8 +67,10 @@ jobs:
       - name: Check statements
         run: uv run python -m analysis.claims
       - name: Test
+        id: test
         run: uv run pytest -q
       - name: Commit data
+        if: github.event_name != 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
@@ -67,6 +79,13 @@ jobs:
           git commit -m "Data update $(date -u +%F)"
           git pull --rebase   # main may have moved during the run (registry edits)
           git push
+      - name: Build site
+        if: always() && steps.test.outcome == 'success'
+        run: uv run python site/build.py
+      - uses: actions/upload-pages-artifact@v3
+        if: always() && steps.test.outcome == 'success'
+        with:
+          path: site/dist
       - name: Open an issue for statements under review
         if: always() && github.event_name == 'schedule' && hashFiles('analysis/results/review.json') != ''
         run: |
@@ -78,3 +97,14 @@ jobs:
       - name: Open an issue if the run fails
         if: failure() && github.event_name == 'schedule'
         run: gh issue create -R "$GITHUB_REPOSITORY" --title "Update failed $(date -u +%F)" --body "See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+  deploy:
+    needs: update
+    if: vars.PAGES_LIVE == 'true'
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
