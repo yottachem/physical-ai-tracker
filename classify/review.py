@@ -22,7 +22,7 @@ from collections import defaultdict
 from datetime import date
 
 from classify.group import group_of, groups
-from ingest.common import LEDGER, LEDGER_COLUMNS, load_ledger, tier_of
+from ingest.common import LEDGER, LEDGER_COLUMNS, load_companies, load_ledger, tier_of
 from ingest.filings import read_queue, write_queue
 
 TYPES = ["funding", "valuation", "revenue", "deployment", "product", "partnership", "contract", "facility",
@@ -69,6 +69,8 @@ def cmd_list(a):
 def cmd_accept(a):
     queue = read_queue()
     q = find(queue, a.qid)
+    if a.company and a.company not in load_companies():
+        sys.exit(f"{a.company} not in reference/companies.yaml")
     a.members_of = group_of(queue, a.qid) if a.group else []
     sources = [s for s in [q["url"], *a.source] if s]
     if not sources:
@@ -79,7 +81,7 @@ def cmd_accept(a):
     ledger = load_ledger()
     eid = f"E{max(int(e['id'][1:]) for e in ledger) + 1:04d}"
     row = {k: "" for k in LEDGER_COLUMNS}
-    row.update(id=eid, company=q["company"], date=a.date or q["date"], type=a.type, round=a.round or "",
+    row.update(id=eid, company=a.company or q["company"], date=a.date or q["date"], type=a.type, round=a.round or "",
                amount_usd=a.amount or "", valuation_usd=a.valuation or "", qualifier=a.qualifier or "",
                status=a.status, detail=a.detail or q["title"], sources=" ".join(sources), accept="reviewed",
                added=date.today().isoformat())
@@ -133,6 +135,7 @@ def main():
     p.add_argument("--status", default="closed", choices=["closed", "reported", "announced"])
     p.add_argument("--detail")
     p.add_argument("--source", action="append", default=[])
+    p.add_argument("--company", help="record under this company instead of the matched one (item named the wrong company)")
     p.add_argument("--group", action="store_true")
     p = sub.add_parser("reject")
     p.add_argument("qid")

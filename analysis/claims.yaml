@@ -87,10 +87,10 @@ claims:
 
   foundation_models:
     - id: capital
-      holds: t.raised_rank == 3 and t.raised_multiple >= 3
+      holds: t.raised_multiple >= 3
       text: >-
-        Third in capital: {t.raised_12m:usd} closed in the last 12 months, **{t.raised_multiple:x}** the 12 months
-        before, in {t.rounds_12m:int} rounds.
+        {t.raised_12m:usd} closed in the last 12 months, **{t.raised_multiple:x}** the 12 months before, in
+        {t.rounds_12m:int} rounds.
       fallback: >-
         {t.raised_12m:usd} closed in the last 12 months; {t.raised_prev_12m:usd} in the 12 months before.
 

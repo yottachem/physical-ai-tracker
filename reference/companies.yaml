@@ -2047,3 +2047,21 @@ companies:
     newsroom_feed: null
     focus: Automated cell-therapy manufacturing (Cell Shuttle) run as a contract manufacturer
     verify: []
+  agile-robots:
+    name: Agile Robots
+    segments: [warehouse-factory, humanoids]
+    hq: 'Munich, Germany'
+    boston: false
+    ownership: private
+    parent: null
+    ticker: null
+    cik: null
+    domain: agile-robots.com
+    other_domains: []
+    news:
+      terms: ['"Agile Robots"']
+    careers: {ats: greenhouse, token: agilerobotsse}   # main board (Munich); a small US Workable board 'agile-robots' is not counted
+    hiring_scope: company
+    newsroom_feed: null
+    focus: 'Force-sensitive robot arms and AI automation systems for industry; building legged and wheeled humanoids near Munich'
+    verify: []
