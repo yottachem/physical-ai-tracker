@@ -122,6 +122,28 @@ td.muted, .muted { color: var(--muted); }
 .bars td.bar-cell { width: 45%; } .hbar { height: 10px; background: var(--s1); min-width: 1px; }
 td.d { font: 12.5px var(--font-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
 td.detail { min-width: 30ch; }
+/* Market map tables become one card per company on phones: name and HQ, three labeled figures, then the latest headline */
+@media (max-width: 640px) {
+  .tw:has(> table.cards) { overflow: visible; }
+  table.cards, table.cards tbody { display: block; border: 0; background: none; min-width: 0; }
+  table.cards thead { display: none; }
+  table.cards tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; background: var(--surface);
+    border: 1px solid var(--line); border-left: 3px solid var(--fg); padding: 10px 12px 12px; margin: 0 0 8px; }
+  table.cards td { display: block; padding: 0; border: 0; min-width: 0; }
+  table.cards td.c-co { grid-column: 1 / -1; }
+  table.cards .co { font-size: 15.5px; }
+  table.cards td.n { text-align: left; white-space: normal; font-size: 14px; }
+  table.cards td[data-label]::before { content: attr(data-label); display: block; font: 500 10px/1.4 var(--font-data);
+    text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 1px; }
+  table.cards td.c-spark { display: none; }
+  table.cards td.hl { grid-column: 1 / -1; max-width: none; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 13.5px; }
+  table.cards td.hl.none { display: none; }
+  table.cards .rep::after { display: block; content: "reported"; }
+  table.cards td.hl a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; line-height: 1.4; }
+  .jump { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+  .jump a { font-size: 12.5px; color: var(--fg); text-decoration: none; padding: 5px 9px; border: 1px solid var(--line); background: var(--surface); }
+}
+@media (min-width: 641px) { .jump { display: none; } }
 [hidden] { display: none !important; }
 </style>
 </head>

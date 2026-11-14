@@ -33,23 +33,24 @@
   <label>Ownership <select name="own"><option value="">All</option><option value="private">Private</option><option value="public">Public</option><option value="subsidiary">Subsidiary</option><option value="division">Division</option></select></label>
   <span class="count"></span>
 </div>
+<nav class="jump" aria-label="Jump to segment">{% for g in groups %}<a href="#{{ g.id }}">{{ g.name }}</a>{% endfor %}</nav>
 
 {% for g in groups %}
 <section data-group>
 <h2 id="{{ g.id }}">{{ g.name }}</h2>
 <p class="sub">Customers: {{ g.customers }}</p>
 {{ said(claims.get(g.id | replace("-", "_"), [])) }}
-<div class="tw"><table>
+<div class="tw"><table class="cards">
 <thead><tr><th>Company</th><th class="n">Latest valuation</th><th class="n">Closed equity raised</th><th class="n">Open roles</th><th></th><th>Latest news</th></tr></thead>
 <tbody>
 {% for r in g.rows %}
 <tr data-row data-boston="{{ 'boston' if r.c.boston else '' }}" data-own="{{ r.ownership }}">
-<td>{{ m.company(r) }}<span class="meta">{{ r.stage }} · {{ r.c.hq }}</span></td>
-<td class="n">{{ m.valuation(r.valuation) }}</td>
-<td class="n">{% if r.raised %}{% if r.raised_floor %}&ge;{% endif %}{{ r.raised | fmt("usd") }}{% else %}<span class="muted">–</span>{% endif %}</td>
-<td class="n">{% if r.roles is not none %}{{ r.roles }}{% elif r.c.hiring_scope == "parent" %}<span class="muted" title="Job board describes the parent company">parent</span>{% else %}<span class="muted">–</span>{% endif %}</td>
-<td>{{ r.spark | safe }}</td>
-<td class="hl">{% if r.last_news %}<a href="{{ r.last_news.url }}">{{ r.last_news.title }}</a><small>{{ r.last_news.date }} · {{ r.last_news.publisher or r.last_news.domain }}</small>{% else %}<span class="muted">–</span>{% endif %}</td>
+<td class="c-co">{{ m.company(r) }}<span class="meta">{{ r.stage }} · {{ r.c.hq }}</span></td>
+<td class="n" data-label="Valuation">{{ m.valuation(r.valuation) }}</td>
+<td class="n" data-label="Closed equity">{% if r.raised %}{% if r.raised_floor %}&ge;{% endif %}{{ r.raised | fmt("usd") }}{% else %}<span class="muted">–</span>{% endif %}</td>
+<td class="n" data-label="Open roles">{% if r.roles is not none %}{{ r.roles }}{% elif r.c.hiring_scope == "parent" %}<span class="muted" title="Job board describes the parent company">parent</span>{% else %}<span class="muted">–</span>{% endif %}</td>
+<td class="c-spark">{{ r.spark | safe }}</td>
+<td class="hl{% if not r.last_news %} none{% endif %}" data-label="Latest news">{% if r.last_news %}<a href="{{ r.last_news.url }}">{{ r.last_news.title }}</a><small>{{ r.last_news.date }} · {{ r.last_news.publisher or r.last_news.domain }}</small>{% else %}<span class="muted">–</span>{% endif %}</td>
 </tr>
 {% endfor %}
 </tbody></table></div>
