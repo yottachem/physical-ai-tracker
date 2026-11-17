@@ -116,6 +116,9 @@ ol.fn { font-size: 13px; color: var(--muted); padding-left: 20px; max-width: 86c
 .filters { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 13.5px; margin: 10px 0; padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); }
 .filters select { font: inherit; background: var(--bg); color: var(--fg); border: 1px solid var(--line); padding: 3px 6px; }
 .filters .count { margin-left: auto; color: var(--muted); font: 12px var(--font-data); }
+/* Market map: each segment heading pins to the top while its section is on screen; the next section's heading pushes it off */
+section[data-group] > h2 { position: sticky; top: 0; z-index: 2; background: var(--bg); padding-bottom: 6px; margin-bottom: 0; }
+section[data-group] > h2 + .sub { margin-top: 6px; }
 .seg-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
 .seg-head .sub { margin: 0; }
 td.muted, .muted { color: var(--muted); }
