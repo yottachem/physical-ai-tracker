@@ -19,6 +19,13 @@ owner approves.
    company at a time when the queue is long (`--company ID`), largest first. Say how many items and groups are open
    and how you will batch them.
 
+   **Overnight suggestions.** If a nightly triage file exists (`~/lan/outbox/triage-YYYY-MM-DD.json`, newest
+   first; on the owner's machine it is mirrored from the triage node), read it and match its items to the open
+   queue by qid. Use its decision, type, round, amount and reason as the starting proposal for that group and say
+   which ones came from it ("overnight: local" or "overnight: claude"), listing the escalated ones first. It is a
+   starting point only: step 2 still applies to every item, and where the source disagrees, the source wins. Items
+   opened since the file was written have no suggestion. No file: skip this.
+
 2. **Check each item before proposing anything.**
    - Open the source (WebFetch for news; for SEC, the filing itself). Confirm the company, the event, the figures
      and the date from the source text, not the headline. Headlines round, mix up rounds, and attribute other
