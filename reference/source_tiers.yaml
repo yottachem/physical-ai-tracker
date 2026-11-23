@@ -17,7 +17,7 @@ tier1:
   outlets: [reuters.com, bloomberg.com, wsj.com, ft.com, nytimes.com, apnews.com, cnbc.com, axios.com,
             theinformation.com, techcrunch.com, bostonglobe.com, therobotreport.com]
 
-tier2: [3dprint.com, abc7news.com, androidauthority.com, arstechnica.com, asahi.com, automate.org, automationworld.com,
+tier2: [3dprint.com, abc7news.com, androidauthority.com, arstechnica.com, asahi.com, automate.org, automationworld.com, autonews.com,
         aviationweek.com, barrons.com, biopharmatrend.com, biospace.com, bizjournals.com, bostonbizscene.com,
         breakbulk.news, breakingdefense.com, builtin.com, business.mammothtimes.com, businessinsider.com,
         caixinglobal.com, cbtnews.com, citybiz.co, clearygottlieb.com, cnet.com, dcvelocity.com, defensenews.com,
@@ -25,11 +25,11 @@ tier2: [3dprint.com, abc7news.com, androidauthority.com, arstechnica.com, asahi.
         electronicsweekly.com, engadget.com, engineering.com, equalocean.com, evertiq.com, eweek.com,
         exchange4media.com, fiercebiotech.com, finance.yahoo.com, fleetowner.com, forbes.com, fortune.com,
         freightwaves.com, gasgoo.com, geekwire.com, genengnews.com, gizmodo.com, goodwinlaw.com, hitconsultant.net, insidehpc.com,
-        interestingengineering.com, koreaherald.com, labusinessjournal.com, logisticsmgmt.com, logisticsviewpoints.com, manilatimes.net,
+        interestingengineering.com, koreaherald.com, labusinessjournal.com, laist.com, logisticsmgmt.com, logisticsviewpoints.com, manilatimes.net,
         manufacturing.net, maritime-executive.com, marketbeat.com, marketwatch.com, massrobotics.org, mediapost.com,
         medicaldevice-network.com, mmh.com, mobihealthnews.com, nasdaq.com, naval-technology.com, navalnews.com, nbcnews.com, news.usni.org, optics.org,
         pharmaphorum.com, pocketgamer.biz, pulse2.com, qz.com, robotics247.com, roboticsandautomationnews.com,
-        rutlandherald.com, sacbee.com, scmp.com, sifted.eu, siliconangle.com, spectrum.ieee.org, statnews.com,
+        rutlandherald.com, sacbee.com, scmp.com, sfstandard.com, sifted.eu, siliconangle.com, spectrum.ieee.org, statnews.com,
         streetinsider.com, supplychain247.com, tech.eu, tech.yahoo.com, technode.com, techradar.com, techrepublic.com,
         techspot.com, thenextweb.com, thepharmaletter.com, theprint.in, theregister.com, thestar.com.my, theverge.com,
         truckinginfo.com, trucknews.com, ttnews.com, venturebeat.com, washingtontechnology.com, wired.com, wwd.com,
@@ -44,5 +44,5 @@ secondary: [247wallst.com, ad-hoc-news.de, ai2.work, ainvest.com, aiwiki.ai, aol
             meticulousresearch.com, mikekalil.com, morningstar.com, msn.com, nbot.ai, neuronfeed.com,
             newmarketpitch.com, newsarticleinsiders.com, note.com, owler.com, pdpspectra.com, pulse.bot, remio.ai, runtimewire.com, sacra.com,
             seekingalpha.com, simplify.jobs, simplywall.st, standardbots.com, startupfortune.com, stocktitan.net,
-            techtimes.com, theaiinsider.tech, tracxn.com, tradingview.com, treeview.studio, unite.ai, vocal.media,
+            techtimes.com, theaiinsider.tech, therundown.ai, tracxn.com, tradingview.com, treeview.studio, unite.ai, vocal.media,
             yahoo.com, zacks.com]
